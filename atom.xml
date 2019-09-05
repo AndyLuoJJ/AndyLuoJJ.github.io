@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>/Users/Antinomy/Documents/Gridea/output</id>
+    <id>https://AndyLuoJJ.github.io</id>
     <title>Gridea</title>
-    <updated>2019-09-03T06:53:15.919Z</updated>
+    <updated>2019-09-05T16:32:07.467Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="/Users/Antinomy/Documents/Gridea/output"/>
-    <link rel="self" href="/Users/Antinomy/Documents/Gridea/output/atom.xml"/>
+    <link rel="alternate" href="https://AndyLuoJJ.github.io"/>
+    <link rel="self" href="https://AndyLuoJJ.github.io/atom.xml"/>
     <subtitle>温故而知新</subtitle>
-    <logo>/Users/Antinomy/Documents/Gridea/output/images/avatar.png</logo>
-    <icon>/Users/Antinomy/Documents/Gridea/output/favicon.ico</icon>
+    <logo>https://AndyLuoJJ.github.io/images/avatar.png</logo>
+    <icon>https://AndyLuoJJ.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Gridea</rights>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>/Users/Antinomy/Documents/Gridea/output/post/hello-gridea/index.html</id>
-        <link href="/Users/Antinomy/Documents/Gridea/output/post/hello-gridea/index.html">
+        <id>https://AndyLuoJJ.github.io/post/hello-gridea</id>
+        <link href="https://AndyLuoJJ.github.io/post/hello-gridea">
         </link>
         <updated>2018-12-11T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
