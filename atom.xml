@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://AndyLuoJJ.github.io</id>
     <title>Andy的小书架</title>
-    <updated>2019-09-11T09:31:11.991Z</updated>
+    <updated>2019-09-11T09:38:31.924Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://AndyLuoJJ.github.io"/>
     <link rel="self" href="https://AndyLuoJJ.github.io/atom.xml"/>
@@ -16,11 +16,9 @@
         <link href="https://AndyLuoJJ.github.io/post/xu-lun-ru-he-chong-fen-li-yong-icloud-he-zi-dai-app-shi-xian-apple-she-bei-zhi-jian-de-hu-tong">
         </link>
         <updated>2019-09-11T08:18:05.000Z</updated>
-        <summary type="html"><![CDATA[<p><img src="https://upload-images.jianshu.io/upload_images/12329372-d63f0b5241ad546e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="iCloud"></p>
-<p>第一个专题定位为「如何充分利用 iCloud 和自带 App 实现 Apple 设备之间的互通」。本篇是该系列主题的第一篇文章。</p>
+        <summary type="html"><![CDATA[<p>第一个专题定位为「如何充分利用 iCloud 和自带 App 实现 Apple 设备之间的互通」。本篇是该系列主题的第一篇文章。</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p><img src="https://upload-images.jianshu.io/upload_images/12329372-d63f0b5241ad546e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="iCloud"></p>
-<p>第一个专题定位为「如何充分利用 iCloud 和自带 App 实现 Apple 设备之间的互通」。本篇是该系列主题的第一篇文章。</p>
+        <content type="html"><![CDATA[<p>第一个专题定位为「如何充分利用 iCloud 和自带 App 实现 Apple 设备之间的互通」。本篇是该系列主题的第一篇文章。</p>
 <!-- more -->
 <blockquote>
 <h3 id="目录">目录</h3>
