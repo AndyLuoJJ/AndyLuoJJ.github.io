@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://AndyLuoJJ.github.io</id>
     <title>Andy的小书架</title>
-    <updated>2019-09-13T09:46:01.225Z</updated>
+    <updated>2019-09-13T09:46:48.187Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://AndyLuoJJ.github.io"/>
     <link rel="self" href="https://AndyLuoJJ.github.io/atom.xml"/>
@@ -10,6 +10,181 @@
     <logo>https://AndyLuoJJ.github.io/images/avatar.png</logo>
     <icon>https://AndyLuoJJ.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Andy的小书架</rights>
+    <entry>
+        <title type="html"><![CDATA[Swift Package Manager - Swift自带的包管理器]]></title>
+        <id>https://AndyLuoJJ.github.io/post/swift-package-manager-swift-zi-dai-de-bao-guan-li-qi</id>
+        <link href="https://AndyLuoJJ.github.io/post/swift-package-manager-swift-zi-dai-de-bao-guan-li-qi">
+        </link>
+        <updated>2019-09-13T09:41:12.000Z</updated>
+        <summary type="html"><![CDATA[<p>WWDC19 为 Swift 带来了新的活力 - Swift Package Manager 将促使 Swift 向其他领域的发展迈出重要的一步。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>WWDC19 为 Swift 带来了新的活力 - Swift Package Manager 将促使 Swift 向其他领域的发展迈出重要的一步。</p>
+<!-- more -->
+<p>为了能够更方便地通过 Swift 创建可执行文件及第三方库，Apple 提供了 Swift Package Manager 来帮助开发人员管理项目，以便复用代码及简化管理流程。</p>
+<h3 id="相关概念">相关概念</h3>
+<h4 id="package">Package</h4>
+<p>Package 包含一系列的 Swift 源文件和一个名为<code>Package.swift</code>的配置文件。配置文件中定义了Package 的名称和内容。一个 Package 可以产生多个 target，而每个 target 唯一对应一个 product 及一个或以上的 dependency。</p>
+<p>Target 是 Package 产生的目标，一个 Package 可以有多个目标。每个 Target 都产生一个输出，这个输出可以是空的、可执行文件、库、系统模块，并且每个 target 都可以是基于其他的库进行开发的，这些库就称为这个target 的依赖（dependency）。</p>
+<h4 id="module">Module</h4>
+<p>Swift 将 Package 中的文件以 module（模块）的形式进行管理，每一个 module 都规定了一个命名空间（namespace），并且通过访问控制符，可以控制 module 内部的代码是否可以被 module 外的代码所访问。</p>
+<p>每一个工程都可以将它需要用到的代码全部包含到一个 module 中，也可以将其他的 module 导入（import）进来，作为自己的依赖（dependency）。<strong>注意 target 的依赖和工程的依赖稍有不同，所有 target 的依赖构成的集合才是工程的依赖。</strong></p>
+<p>通过将能够解决某一特定类型的问题的代码封装成一个独立的模块，可以使代码复用到其他场景中。例如，用于解析JSON数据的模块可以用到所有需要与网络数据打交道的项目中，这样就不需要重新自己写相应功能的代码了。<strong>对这类代码的要求是必须独立于项目之外，具有类似于函数的特性。</strong></p>
+<p>SPM 允许我们从本地或者网络上获取到我们所需要的其他第三方 module。</p>
+<h4 id="library">Library</h4>
+<p>Library 类似于开发中的库，即工程本身不产生可执行文件，而是作用一个通用的功能模块，可以被导入到其他项目中发挥作用。</p>
+<h4 id="dependency">Dependency</h4>
+<p>如果想要能够复用代码，就需要指定自己的工程<em>依赖</em>于哪些外部的代码，因为自己的工程能否正常运行取决于这些外部代码是否正常工作，因此这些外部代码也被称为依赖（dependency）。</p>
+<h3 id="简单使用方法">简单使用方法</h3>
+<p>下面简单介绍一下SPM的使用方法。</p>
+<h4 id="创建项目">创建项目</h4>
+<p>在需要创建项目的目录中执行<code>swift package init</code>以创建一个新的 Swift 项目。</p>
+<pre><code>$ mkdir testProgram
+$ cd testProgram
+$ swift package init (--type library/executable/empty/system module)
+</code></pre>
+<p>type可以有四种类型：</p>
+<ul>
+<li>library: 创建库</li>
+<li>executable: 创建可执行文件</li>
+<li>empty:创建空项目</li>
+<li>system module:创建系统模块项目<br>
+默认创建的是library。</li>
+</ul>
+<p>另外，在创建好项目后，为了能够充分发挥Xcode强大的功能，还可以生成 Xcode project 以便在 Xcode 中编辑、调试代码。cd 到项目目录后，执行<code>swift package generate-xcodeproj</code>就可以创建对应的 Xcode project 了。</p>
+<blockquote>
+<p>目前只能在 Xcode 中实现代码编辑，暂时没有找到能够充分发挥 Xcode 功能的办法，编译和运行都需要回到 Terminal 进行。</p>
+</blockquote>
+<h4 id="添加外部模块">添加外部模块</h4>
+<p>如前所述，<code>Package.swift</code>是项目的配置文件，模版代码如下。</p>
+<pre><code class="language-swift">// swift-tools-version:4.2
+// The swift-tools-version declares the minimum version of Swift required to build this package.
+
+import PackageDescription
+
+let package = Package(
+    name: &quot;testProgram&quot;,
+    products: [
+        // Products define the executables and libraries produced by a package, and make them visible to other packages.
+        // A package can produce multiple executables and libraries.
+        .library(
+            name: &quot;testProgram&quot;,
+            targets: [&quot;testProgram&quot;]),
+        .executable(
+            name: &quot;MainExecutable&quot;,
+            targets: [&quot;MainExecutable&quot;])
+    ],
+    dependencies: [
+        // Dependencies declare other packages that this package depends on.
+        // .package(url: /* package url */, from: &quot;1.0.0&quot;),
+    ],
+    targets: [
+        // Targets are the basic building blocks of a package. A target can define a module or a test suite, and of course an executable.
+        // Targets can depend on other targets in this package, and on products in packages which this package depends on.
+        .target(
+            name: &quot;testProgram&quot;,
+            dependencies: []),
+        .testTarget(
+            name: &quot;testProgramTests&quot;,
+            dependencies: [&quot;testProgram&quot;]),
+    ]
+)
+
+</code></pre>
+<p>该模版代码创建了一个Package实例，并通过构造参数来指定项目的name、product、target和dependency。各字段作用如下：</p>
+<ul>
+<li>name:指定项目名称</li>
+<li>products:指定项目生成的东西，可以是library或者executable，同一个项目可以生成多个library或executable。</li>
+<li>dependencies: 指定项目所使用的依赖库及其URL、版本等信息。</li>
+<li>targets:指定项目生成的目标，</li>
+</ul>
+<p>若要添加开源代码，在.dependency中添加：</p>
+<pre><code class="language-swift">.package(url: &quot;open source url&quot;, from: &quot;version number&quot;)
+</code></pre>
+<p>若要添加本地依赖，在.dependency中添加：</p>
+<pre><code class="language-swift">.package(path:&quot;local path&quot;)
+</code></pre>
+<p>可以添加多个依赖，并且用上述类似的方法还可以创建多个products和targets。</p>
+<p>然后在产生的targets中，指定对应的dependency的名称就可以了。</p>
+<h4 id="发布library">发布library</h4>
+<p>使用Git将自己创建好的library发布到托管仓库中。</p>
+<pre><code>$ git init  // create a new git project
+$ git add . // add all files to the stack
+$ git remote add origin [github-URL] // add a remote origin in the remote repository
+$ git commit -m &quot;Initial Commit&quot; // commit all files in the stack to local repository
+$ git tag 1.0.0 // tag the branch
+$ git push origin master --tags // push local repository to remote repository
+</code></pre>
+<p>tag标记的版本号就是其他项目将本项目作为依赖时引用的版本号（from）。对于本地依赖，虽然可以借助git的本地仓库回溯功能进行代码管理，但是在Swift Package Manager中暂时不支持引用本地依赖的版本号。</p>
+<h4 id="更新依赖包">更新依赖包</h4>
+<p>编辑<code>Package.swift</code>中依赖包的版本信息，然后执行<code>swift package update</code>即可更新需要的依赖包。</p>
+<h4 id="创建模块">创建模块</h4>
+<p>只需要将<code>Package.swift</code>中的products添加.library就可以创建模块了。每一个Package可以产生多个library，不同的library在Sources目录下以不同名称的目录呈现。</p>
+<p>如果生成的library之间有相互关联，则需要在完成一个library的编码工作后，先执行<code>swift build</code>对已有的library进行编译，然后再进行下一个library的编码工作。这有助于以模块化的方式完成library的创建。</p>
+<p>注意：对于使用Git开源的代码，需要打上git tag，别人才能够导入对应版本的代码。同样地，对于本地依赖，最好也加上git tag，但是应该不是必须的。</p>
+<h3 id="实例结合使用swift-for-tensorflow和swift-package-manager">实例——结合使用Swift for TensorFlow和Swift Package Manager</h3>
+<p>为了能够同时使用Swift for TensorFlow和Swift Package Manager进行Swift机器学习项目的管理（个人认为这是比较通用的方法），需要先指定swift路径为SFT的路径，然后使用SPM对项目进行编译、运行等处理。下面macOS上的SFT和SPM为例介绍如何结合使用两者。</p>
+<ol>
+<li>指定swift路径<br>
+在<code>$PATH</code>中指定swift的路径。由于使用了Swift for TensorFLow，因此需要到GitHub仓库中下载对应的swift toolchain，链接<a href="https://github.com/tensorflow/swift">在这里</a>。该swift toolchain中包含了完整的swift编译器，与Xcode自带的toolchain相比多了能够使用TensorFlow的功能。</li>
+</ol>
+<blockquote>
+<p>如果在Linux下进行开发，还需要事先配置好swift的环境，具体教程<a href="https://swift.org/getting-started/">见这里</a>。</p>
+</blockquote>
+<ol start="2">
+<li>创建model对应的library<br>
+由于机器学习模型是比较独立的部分，因此最好将其作为一个独立的module，然后将其导入到其他项目中去。接下来要做的创建ML model对应的library。</li>
+</ol>
+<p>由于例子中MLModel没有使用到第三方库，因此配置文件不需要修改。在<code>./Sources/name</code>中就包含了一个本地module，修改代码为:</p>
+<pre><code class="language-swift">import TensorFlow
+
+struct MLPClassifier {
+    var w1 = Tensor&lt;Float&gt;(shape: [2, 4], repeating: 0.1)
+    var w2 = Tensor&lt;Float&gt;(shape: [4, 1], scalars: [0.4, -0.5, -0.5, 0.4])
+    var b1 = Tensor&lt;Float&gt;([0.2, -0.3, -0.3, 0.2])
+    var b2 = Tensor&lt;Float&gt;([[0.4]])
+
+    func prediction(`for` x: Tensor&lt;Float&gt;) -&gt; Tensor&lt;Float&gt; {
+        let o1 = tanh(matmul(x, w1) + b1)
+        return tanh(matmul(o1, w2) + b2)
+    }
+}
+</code></pre>
+<p>这里用一个简单的MLP模型作为例子进行展示，自定义了一个MLPClassifierd的类，定义了第一层及第二层的权重和bias，然后使用tanh作为activation function，得到“网络”输出的结果。<br>
+通过上述代码就完成了ML model的创建，可以运行swift build看看有没有问题。</p>
+<blockquote>
+<p>为了加速模型的计算，会有warning说没有用optimization编译。对于小网络来说影响不大，但如果网络结构比较复杂的时候可能会导致训练过慢。暂时好像没有什么办法，唯一想到的解决方案是在release模式下编译，即<code>swift build -c release</code>，release模式默认使用-O进行编译。</p>
+</blockquote>
+<ol start="3">
+<li>创建swift项目<br>
+接下来创建使用前面建立好的module的swift项目。新建一个executable的项目，并在Package.swift中添加本地依赖MLModel和用于测试的第三方库SwiftyJSON。</li>
+</ol>
+<p>测试代码如下：</p>
+<pre><code class="language-swift">import TensorFlow
+import MLModel
+
+let input = Tensor&lt;Float&gt;([[0.2, 0.8]])
+let classifier = MLPClassifier()
+let prediction = classifier.prediction(for: input)
+print(prediction)
+</code></pre>
+<p>⚠️：SwiftyJSON要求toolchain版本在4以上，而Swift for TensorFlow的toolchain版本为3，因此暂时没有办法同时使用这两个框架。</p>
+<ol start="4">
+<li>编译运行<br>
+尝试进行编译运行。可以分别执行编译和运行两个步骤，也可以直接运行观察代码运行结果。<br>
+编译项目：</li>
+</ol>
+<pre><code>swift build
+</code></pre>
+<p>默认的编译环境是<code>debug</code>，可通过<code>-c release</code>的标记，将编译环境切换到<code>release</code>。debug模式默认不开启-O优化，因此为了使Swift for TensorFlow获得最佳性能，建议先在release模式下编译项目，再到指定目录执行link生成的可执行文件。</p>
+<p>运行项目：</p>
+<pre><code>swift run (executable name)
+</code></pre>
+<p>也可以找到build生成的可执行文件，然后直接执行。</p>
+<blockquote>
+<p>如果项目中存在多个可执行文件，需要在<code>swift run</code>命令后增加对应的可执行文件的名称。利用这一特性可以将多个独立的工程汇总在一个package下面，便于管理，但是一个不好的地方是如果修改了一个地方就必须把当前package下的所有swift源文件编译一遍。目前的解决方法是当package规模扩大后，将其中一部分相对独立的功能打包成新的swift package，然后导入进来，这样就不用重新编译导入进来的源码了。</p>
+</blockquote>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Homebrew - macOS 上完美的包管理器]]></title>
         <id>https://AndyLuoJJ.github.io/post/homebrew-macos-shang-wan-mei-de-bao-guan-li-qi</id>
