@@ -1,24 +1,103 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://AndyLuoJJ.github.io</id>
-    <title>Andy的小书架</title>
-    <updated>2019-09-13T09:35:53.547Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://AndyLuoJJ.github.io"/>
-    <link rel="self" href="https://AndyLuoJJ.github.io/atom.xml"/>
-    <subtitle>这是我的个人博客，希望能够坚持写一下自己各方面的心得😃</subtitle>
-    <logo>https://AndyLuoJJ.github.io/images/avatar.png</logo>
-    <icon>https://AndyLuoJJ.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2019, Andy的小书架</rights>
-    <entry>
-        <title type="html"><![CDATA[Homebrew - macOS 上完美的包管理器]]></title>
-        <id>https://AndyLuoJJ.github.io/post/homebrew-macos-shang-wan-mei-de-bao-guan-li-qi</id>
-        <link href="https://AndyLuoJJ.github.io/post/homebrew-macos-shang-wan-mei-de-bao-guan-li-qi">
-        </link>
-        <updated>2019-09-13T09:15:33.000Z</updated>
-        <summary type="html"><![CDATA[<p>你需要几个好的「管家」来管理你的电脑 - Homebrew 就是其中一个。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>你需要几个好的「管家」来管理你的电脑 - Homebrew 就是其中一个。</p>
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Homebrew - macOS 上完美的包管理器 | Andy的小书架</title>
+<meta name="description" content="这是我的个人博客，希望能够坚持写一下自己各方面的心得😃" />
+<link rel="shortcut icon" href="https://AndyLuoJJ.github.io/favicon.ico?v=1568367349975">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://AndyLuoJJ.github.io/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://AndyLuoJJ.github.io">
+  <img class="avatar" src="https://AndyLuoJJ.github.io/images/avatar.png?v=1568367349975" alt="">
+  </a>
+  <h1 class="site-title">
+    Andy的小书架
+  </h1>
+  <p class="site-description">
+    这是我的个人博客，希望能够坚持写一下自己各方面的心得😃
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="https://AndyLuoJJ.github.io" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="https://AndyLuoJJ.github.io/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="https://AndyLuoJJ.github.io/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="https://AndyLuoJJ.github.io/post/about/" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Homebrew - macOS 上完美的包管理器
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-09-13
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="https://AndyLuoJJ.github.io/tag/UO8lAU8F3" class="post-tag">
+                  # 工具
+                </a>
+              
+                <a href="https://AndyLuoJJ.github.io/tag/a239CA0YOj" class="post-tag">
+                  # 效率
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://brew.sh/assets/img/homebrew-256x256.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>你需要几个好的「管家」来管理你的电脑 - Homebrew 就是其中一个。</p>
 <!-- more -->
 <h2 id="介绍">介绍</h2>
 <p>As you know，macOS 是一个类 Unix 平台，能够方便地配置各种需要的开发环境，前端、后台、移动端的开发都可以在 macOS 上进行。在开发的过程中，常常需要开发者安装各种各样的第三方工具才能够完成相应的开发任务，比如Python、MySQL。然而，不同于 Ubuntu 自带有 apt-get，在 macOS 上一直没有原生的包管理工具，这也为开发者使用第三方库带来了一定的困难。另一方面，有时候采用官方的安装方法，可能会与系统自身的文件系统纠缠在一起，如果未来某天想要彻底删除第三方库的话，可能会异常繁琐，甚至一不小心就删除了系统文件，得不偿失。Homebrew 的诞生解决了这一问题，通过 Homebrew 可以方便地进行包管理，并且不会对系统文件产生影响。本文将对这个神奇的工具进行一些简单的介绍。</p>
@@ -162,64 +241,109 @@
 <p>作为一款优秀的程序，Homebrew 使用起来非常简单，其使用教程都可以在<a href="https://docs.brew.sh">官方文档</a>中查到。Homebrew 的诞生极大提高了开发者们的效率，让他们不再为第三方库的繁琐安装步骤而烦恼。</p>
 <p>本文只是简单介绍了Homebrew最简单的应用，更加进阶的使用方法可以自行搜索或查阅官方文档。</p>
 <p>另外，除了开发者以外，普通用户有时候也能从中获益。例如，macOS 上的 PSP 模拟器程序 PPSSPP 需要两个库的支持，分别是 sdl2 和 libzip，在官方安装教程中就建议用户使用 Homebrew 安装这两个库，才能够正常运行 PPSSPP。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[绪论 - 如何充分利用 iCloud 和自带 App 实现 Apple 设备之间的互通]]></title>
-        <id>https://AndyLuoJJ.github.io/post/xu-lun-ru-he-chong-fen-li-yong-icloud-he-zi-dai-app-shi-xian-apple-she-bei-zhi-jian-de-hu-tong</id>
-        <link href="https://AndyLuoJJ.github.io/post/xu-lun-ru-he-chong-fen-li-yong-icloud-he-zi-dai-app-shi-xian-apple-she-bei-zhi-jian-de-hu-tong">
-        </link>
-        <updated>2019-09-11T08:18:05.000Z</updated>
-        <summary type="html"><![CDATA[<p>第一个专题定位为「如何充分利用 iCloud 和自带 App 实现 Apple 设备之间的互通」。本篇是该系列主题的第一篇文章。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>第一个专题定位为「如何充分利用 iCloud 和自带 App 实现 Apple 设备之间的互通」。本篇是该系列主题的第一篇文章。</p>
-<!-- more -->
-<blockquote>
-<h3 id="目录">目录</h3>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
 <ul>
-<li>总起</li>
-<li>写作动机</li>
-<li>拟介绍的内容</li>
-<li>结束语</li>
-</ul>
-</blockquote>
-<hr>
-<h4 id="总起">总起</h4>
-<p>随着苹果公司不断开发出新的硬件设备、推行<s>利于圈钱并</s>迎合中国消费者的营销策略，如今在高校学生的群体里，Apple 设备的占有率可谓是节节攀升，在校园里随处可见 iPhone、iPad、MacBook 的身影。特别是近年来苹果为了抢占教育市场，投入了大量的努力，其中的重头戏自然是 new iPad 对 Apple Pencil 的支持、以及面向开发者开放 <code>ClassKit</code> 框架，以期通过硬件和软件的配合，打造一个专属于 Apple 的教育平台。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/12329372-309b46e843eab9e7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Apple 的「人人能创造」课程"></p>
-<p>另外，在 WWDC19 闪亮登场的 iPadOS 同样值得期待，得益于 iOS 的基础，iPadOS 想必能够为用户带来更进一步的生产力，令用户能够在 iPad 上实现轻量办公。对于学生党来说，全新登场的 iPadOS 能够充分发挥他们手上的设备的作用，帮助他们在学习、生活中游刃有余地应对各种不同的使用场景。</p>
-<p>然而，抛开 Apple 针对教育市场的一系列措施不说，如今在日常使用中，能够做到充分利用 Apple 生态的人似乎不多——这可能是由于拥有复数台 Apple 设备的人不多，大多数人都仅使用一台 Apple 设备，如 iPhone 或 iPad，而并没有考虑过完全投入到 Apple 的生态环境中。可能对于不少人来说，iPhone、iPad 和 Mac 更多扮演的是轻度办公和休闲娱乐的角色，并不能承担需要高生产力的任务。（想想你买 iPad 真的是为了看课件吗😊）</p>
-<p>实际上，iOS 和 macOS 两个平台都自带了许多实用的 App，如果充分利用起来，能够很好地提高我们工作生活的效率，配合 iCloud 能够胜任日常生活中的许多任务。同时，对系统自带 App 的充分利用也能避免安装过多的第三方应用，一方面，为手机存储空间较小的用户带来福音，减缓了空间不足的紧迫感；另一方面，在<strong>信任 Apple 和云上贵州</strong>的前提下，能够在一定程度上更好地保护用户的隐私，避免在无意中向自己不信任的第三方泄漏隐私数据和信息。</p>
-<h4 id="写作动机">写作动机</h4>
-<p>在笔者所处的校园环境中，手持 iPhone 人很多，拥有 iPad 的人也不少，但是 Mac 的普及率就呈指数下降了，更别提拥有复数 Apple 设备的究竟有多少人了。在拥有一台 Apple 设备的同学们中，有不少都是把 iPhone 看作是一台比较好用的智能手机、iPad 是不错的追剧神器，而并没有把自己的设备看作是提高工作生活效率的工具。对于拥有多台 Apple 设备的同学们来说，能够协调使用自己设备的人似乎也不多，大多数都是将设备的工作范围划出明确的界限，互不干扰的同时自然也失去了相互合作的可能。</p>
-<p>至于 iCloud，作为 Apple 开发的一款优秀的云盘，它的功能和独特之处得到了许多人的认可，可惜的是，似乎有不少人只是将 iCloud 作为照片存储和系统备份的「备份盘」，而没有看到 iCloud 最本质的功能——「同步盘」。作为「同步盘」，iCloud 最核心的功能是使不同的 Apple 设备之间能够共享数据，正是由于「同步盘」的特点，才使得「移动办公」成为可能。</p>
-<p>在笔者看来，工具是为人服务的，只有合理地使用自己的设备和资源，才能使它们的功能最大化，最大程度地服务于我们的学习和日常生活。因此，笔者希望能够分享一下自己在学习、工作和日常生活中充分利用 iCloud、自带 App 和相关优秀第三方应用的经验，让其他人也能够感受到通过 Apple 设备之间的协作来提升效率、提升幸福感的魅力所在。</p>
-<p>笔者自己原本是 MacBook + Android 的配置，自从换了 iPhone，感觉放着 iCloud 这个神奇的工具不用，有点可惜，于是就开始研究如何充分利用手里设备的互通性来提高自己的工作和学习效率。虽然没办法用准确的数字来量化自己效率的提升程度，但是在这个过程中我确实感受到了 iCloud、系统自带 App 和优秀第三方应用带给我的幸福感。</p>
-<p>出于各种原因，笔者只拥有 iPhone 和 MacBook Pro 两款 Apple 设备，因此只针对这两个设备的互通谈一谈自己的看法。</p>
-<h4 id="拟介绍的内容">拟介绍的内容</h4>
-<p>在这一专题中，笔者将介绍在自己的学习和日常生活中，如何通过系统自带 App 和优质第三方应用，提升 Apple 设备之间的互通性，进而提升工作效率。iOS 和 macOS 之间的互通依赖于iCloud，因此介绍的应用可能需要登录 iCloud 以实现各自的功能，建议在安全的网络环境下使用。如果在蜂窝移动网络下使用 iCloud 进行同步，需要注意数据的使用情况。</p>
-<p>当然，介绍的应用中有部分自带 App 并不需要使用 iCloud，但却给我的使用带来了更好的体验，这些我也会一并介绍。</p>
-<p>说个题外话，Apple 选择云上贵州作为中国的云端服务提供者的举措虽然带来了不少的争议，但经个人亲身体验，确实为中国用户提供了更快的访问速度，也不失为一个方便大众的举措。</p>
-<p>拟介绍的自带应用包括但不限于：</p>
+<li><a href="#%E4%BB%8B%E7%BB%8D">介绍</a>
 <ul>
-<li>iBooks</li>
-<li>备忘录、提醒事项、照片、日历</li>
-<li>Podcast、iTunes、Apple Music</li>
-<li>iWork</li>
-<li>Safari</li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AFhomebrew">什么是Homebrew</a></li>
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8homebrew">为什么要使用Homebrew</a></li>
 </ul>
-<p>拟介绍的第三方应用包括但不限于：</p>
+</li>
+<li><a href="#%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD">安装与卸载</a>
 <ul>
-<li>MarginNote</li>
-<li>印象笔记</li>
-<li>Xmind Zen</li>
+<li><a href="#%E5%AE%89%E8%A3%85">安装</a></li>
+<li><a href="#%E6%9B%B4%E6%96%B0">更新</a></li>
+<li><a href="#%E5%8D%B8%E8%BD%BD">卸载</a></li>
 </ul>
-<p>注：专题内只介绍笔者使用过的 App，除此之外还有很多其他优秀的应用程序，但由于笔者没有使用过，所以不敢妄加评论，大家可以亲自下载其他的 App 试用，找到适合自己的应用。</p>
-<h4 id="结束语">结束语</h4>
-<p>「提高工作效率」是一个老生常谈的话题了，然而很少人能够关注电子设备自身的优势，而是转向第三方服务，这本无可厚非，笔者再次也只是分享一下自己使用电子设备的一些经验而已。Anyway，电子设备和技术的进步只是提升了我们的工作效率和生产力，并不能从根本上解决拖延症的问题🙃。</p>
-<blockquote>
-<p>注：图片摘自<a href="https://www.apple.com/cn/"> Apple 中国官网 </a></p>
-</blockquote>
-]]></content>
-    </entry>
-</feed>
+</li>
+<li><a href="#%E4%BD%BF%E7%94%A8homebrew">使用Homebrew</a>
+<ul>
+<li><a href="#%E5%BA%93%E7%9A%84%E6%9F%A5%E6%89%BE-%E5%AE%89%E8%A3%85-%E6%9B%B4%E6%96%B0-%E5%88%A0%E9%99%A4">库的查找、安装、更新、删除</a></li>
+<li><a href="#%E6%B7%BB%E5%8A%A0%E7%AC%AC%E4%B8%89%E6%96%B9%E4%BB%93%E5%BA%93">添加第三方仓库</a></li>
+<li><a href="#troubleshooting">TroubleShooting</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BD%BF%E7%94%A8homebrew-cask">使用Homebrew Cask</a>
+<ul>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AFhomebrew-cask">什么是Homebrew Cask</a></li>
+<li><a href="#%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%9F%A5%E6%89%BE-%E5%AE%89%E8%A3%85-%E6%9B%B4%E6%96%B0-%E5%88%A0%E9%99%A4">软件的查找、安装、更新、删除</a></li>
+</ul>
+</li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://AndyLuoJJ.github.io/post/xu-lun-ru-he-chong-fen-li-yong-icloud-he-zi-dai-app-shi-xian-apple-she-bei-zhi-jian-de-hu-tong">
+              <h3 class="post-title">
+                绪论 - 如何充分利用 iCloud 和自带 App 实现 Apple 设备之间的互通
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://AndyLuoJJ.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
+
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      console.log('section.offsetHeight', section.offsetHeight);
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
+
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>
