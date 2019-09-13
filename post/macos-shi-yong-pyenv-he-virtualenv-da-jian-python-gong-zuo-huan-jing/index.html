@@ -1,0 +1,268 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>macOS 使用 pyenv 和 virtualenv 搭建 python 工作环境 | Andy的小书架</title>
+<meta name="description" content="这是我的个人博客，希望能够坚持写一下自己各方面的心得😃" />
+<link rel="shortcut icon" href="https://AndyLuoJJ.github.io/favicon.ico?v=1568369032208">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://AndyLuoJJ.github.io/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://AndyLuoJJ.github.io">
+  <img class="avatar" src="https://AndyLuoJJ.github.io/images/avatar.png?v=1568369032208" alt="">
+  </a>
+  <h1 class="site-title">
+    Andy的小书架
+  </h1>
+  <p class="site-description">
+    这是我的个人博客，希望能够坚持写一下自己各方面的心得😃
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="https://AndyLuoJJ.github.io" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="https://AndyLuoJJ.github.io/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="https://AndyLuoJJ.github.io/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="https://AndyLuoJJ.github.io/post/about/" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              macOS 使用 pyenv 和 virtualenv 搭建 python 工作环境
+            </h2>
+            <div class="post-info">
+              <span>
+                2019-09-13
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+                <a href="https://AndyLuoJJ.github.io/tag/QjURE0nOE" class="post-tag">
+                  # Python
+                </a>
+              
+                <a href="https://AndyLuoJJ.github.io/tag/UO8lAU8F3" class="post-tag">
+                  # 工具
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://www.python.org/static/img/python-logo.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>人生苦短，我在 Mac 上用 python。</p>
+<!-- more -->
+<h2 id="介绍">介绍</h2>
+<p>macOS 自带 python2.7，但是为了更好地进行 python 的开发，最好是安装 python3 进行适配。然而，有时候我们需要在不同的项目中使用不同版本的 python，如果直接采用官网的 pkg 文件安装的话不免会产生冲突，而且也没有办法管理。为此，本文通过使用 Homebrew 和相应的工具包来搭建 python 工作环境。</p>
+<blockquote>
+<p>注：对于 Linux 平台，同样也可以使用 pyenv 和 virtualenv 对不同版本的 python 和不同的开发环境进行管理，命令基本相同，只是在安装 pyenv 的时候就没办法使用 Homebrew 了，可以使用 Linux 平台上的 apt-get 等包管理工具进行安装。</p>
+</blockquote>
+<h2 id="准备工作">准备工作</h2>
+<ol>
+<li>安装 Homebrew</li>
+<li>了解如何使用 Terminal</li>
+</ol>
+<h2 id="使用-pyenv-安装-管理多版本-python">使用 pyenv 安装、管理多版本 python</h2>
+<p>pyenv 提供了一个安装、管理多个版本的 python 的工具，可以用类似于 Homebrew 安装包的语句来安装、管理不同版本的 python。</p>
+<h3 id="安装-pyenv">安装 pyenv</h3>
+<p>安装好 Homebrew 以后，执行<code>brew install pyenv</code>即可完成 pyenv 的安装。<br>
+若要卸载 pyenv，执行<code>brew uninstall pyenv</code>即可<br>
+安装完成后，还需要在 .bash_profile 中增加以下内容：</p>
+<pre><code>export PYENV_ROOT=&quot;${HOME}/.pyenv&quot;
+
+if [ -d &quot;${PYENV_ROOT}&quot; ]; then
+  export PATH=&quot;${PYENV_ROOT}/bin:${PATH}&quot;
+  eval &quot;$(pyenv init -)&quot;
+fi
+</code></pre>
+<p>这段代码的作用主要是指明 pyenv 的位置， 以便以后可以直接在命令行里面运行 pyenv 命令。 保存在 ~/.bash_profile 文件中是为了每次用户登陆后自动生效。</p>
+<h3 id="安装-卸载-python">安装、卸载 python</h3>
+<p>完成 pyenv 的安装后，执行<code>pyenv install (python-version)</code>即可安装对应版本号的 python。可通过命令<code>pyenv install --list</code>查看所有可安装的 python 版本，然后替换前面的<code>(python-version)</code>即可。<br>
+安装完毕后，执行<code>pyenv version</code>查看当前 python 版本。<code>pyenv versions</code>查看已安装的 python 版本，前面有星号的表示当前 python 版本<br>
+安装好的 python 实际路径为<code>~/.pyenv/versions</code></p>
+<h3 id="切换-python-版本">切换 python 版本</h3>
+<p>使用<code>pyenv global (python-version)</code>切换全局 python 版本，<code>pyenv global system</code>切换回系统自带 python，<code>pyenv local (python-version)</code>切换当前目录的 python 版本。</p>
+<h2 id="使用-pyenv-virtualenv-创建-管理多个不同的-python-工作区">使用 pyenv-virtualenv 创建、管理多个不同的 python 工作区</h2>
+<p>有时候我们需要在不同的项目工程中使用不同版本的 python，virtualenv 就是一个能够创建隔离的 python 环境的工具，这本来是一个 python 包，本节将介绍一个基于 pyenv 的插件：pyenv-virtualenv。下一节介绍如何单独使用 virtualenv 管理工作区。</p>
+<h3 id="安装-pyenv-virtualenv">安装 pyenv-virtualenv</h3>
+<p>使用 Homebrew 安装：<code>brew install pyenv-virtualenv</code></p>
+<h3 id="创建隔离的工作环境">创建隔离的工作环境</h3>
+<p>创建工作环境：<code>pyenv virtualenv (python-version) (workspace-name)</code>。<br>
+上面这句命令使用给定的python版本创建了一个名为workspace-name的工作环境，目录的实际路径为<code>~/.pyenv/versions/(python-version)/envs</code>，同时会在<code>~/.pyenv/versions</code>中创建一个对应的软链接，指向相应的目录。</p>
+<h3 id="切换不同的工作环境">切换不同的工作环境</h3>
+<p>激活环境：<code>pyenv activate (workspace-name)</code><br>
+退出环境：<code>pyenv deactivate</code><br>
+在这个隔离的虚拟环境中，可以使用 pip 安装需要的包，而不会影响到其他的 python 版本。但是可能会在 home directory 下创建一些隐藏目录（如 keras、matplotlib、jupyter 等）。</p>
+<h3 id="删除工作环境">删除工作环境</h3>
+<p>只需要把工作环境的目录删除掉就可以删除对应的工作环境了</p>
+<blockquote>
+<p>顺带一提的是，使用 PyCharm 等 IDE 的时候，会自动检测出项目是否使用了 virtualenv ，因此直接在 IDE 中运行代码即可，不需要激活虚拟环境。</p>
+</blockquote>
+<h2 id="单独使用-virtualenv-管理工作区">单独使用 virtualenv 管理工作区</h2>
+<p>virtualenv 原本是一个可以通过 pip 安装的 python 包，上面的 pyenv-virtualenv 是以插件的形式，配合 pyenv 进行使用的。如果已经用其他的方法安装了 python，如官网 pkg、Homebrew 等，还可以单独使用 virtualenv 进行管理。效果与前面完全相同，只是使用的命令有所改变。</p>
+<h3 id="安装-virtualenv">安装 virtualenv</h3>
+<p>使用 pip 安装：<code>pip install virtualenv</code></p>
+<h3 id="创建隔离的工作环境-2">创建隔离的工作环境</h3>
+<p>创建工作环境：<code>virtualenv (python-path) (workspace-directory) --option</code><br>
+上述命令中，需要指定工作环境使用 python 的 python 解释器路径，然后会复制一份到工作环境中，并且还需要指定工作环境的实际路径；option 选项则可以指定是否将原来的包一并复制过去，如果使用<code>--no-site-packages</code>则不复制,<code>pyenv global (python-version)</code> 仅复制系统系统包，默认是复制的。</p>
+<h3 id="切换工作环境">切换工作环境</h3>
+<p>首先 cd 到 workspace-directory。<br>
+激活环境：<code>source bin/activate</code><br>
+退出环境：<code>deactivate</code><br>
+激活后就可以在隔离的工作环境中使用 pip 安装需要的包了。</p>
+<h3 id="删除隔离的工作环境">删除隔离的工作环境</h3>
+<p>同样是删除 workspace-directory 即可删除工作环境。</p>
+<h2 id="总结">总结</h2>
+<p>说了这么多，使用这种办法来安装和管理无非是为了能够更好地掌控安装过程，并且安装、卸载也非常干净简洁。在搭建好 python 工作环境以后，马上开始着手干活才是最重要的，不能为了使用工具而使用工具，这样就本末倒置了。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%BB%8B%E7%BB%8D">介绍</a></li>
+<li><a href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C">准备工作</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8-pyenv-%E5%AE%89%E8%A3%85-%E7%AE%A1%E7%90%86%E5%A4%9A%E7%89%88%E6%9C%AC-python">使用 pyenv 安装、管理多版本 python</a>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85-pyenv">安装 pyenv</a></li>
+<li><a href="#%E5%AE%89%E8%A3%85-%E5%8D%B8%E8%BD%BD-python">安装、卸载 python</a></li>
+<li><a href="#%E5%88%87%E6%8D%A2-python-%E7%89%88%E6%9C%AC">切换 python 版本</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BD%BF%E7%94%A8-pyenv-virtualenv-%E5%88%9B%E5%BB%BA-%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AA%E4%B8%8D%E5%90%8C%E7%9A%84-python-%E5%B7%A5%E4%BD%9C%E5%8C%BA">使用 pyenv-virtualenv 创建、管理多个不同的 python 工作区</a>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85-pyenv-virtualenv">安装 pyenv-virtualenv</a></li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E9%9A%94%E7%A6%BB%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83">创建隔离的工作环境</a></li>
+<li><a href="#%E5%88%87%E6%8D%A2%E4%B8%8D%E5%90%8C%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83">切换不同的工作环境</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83">删除工作环境</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8D%95%E7%8B%AC%E4%BD%BF%E7%94%A8-virtualenv-%E7%AE%A1%E7%90%86%E5%B7%A5%E4%BD%9C%E5%8C%BA">单独使用 virtualenv 管理工作区</a>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85-virtualenv">安装 virtualenv</a></li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E9%9A%94%E7%A6%BB%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83-2">创建隔离的工作环境</a></li>
+<li><a href="#%E5%88%87%E6%8D%A2%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83">切换工作环境</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E9%9A%94%E7%A6%BB%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83">删除隔离的工作环境</a></li>
+</ul>
+</li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://AndyLuoJJ.github.io/post/swift-package-manager-swift-zi-dai-de-bao-guan-li-qi">
+              <h3 class="post-title">
+                Swift Package Manager - Swift自带的包管理器
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://AndyLuoJJ.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
+
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      console.log('section.offsetHeight', section.offsetHeight);
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
+
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>
