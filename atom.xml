@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://AndyLuoJJ.github.io</id>
     <title>Andy的小书架</title>
-    <updated>2019-09-13T10:04:00.028Z</updated>
+    <updated>2019-09-13T10:09:07.811Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://AndyLuoJJ.github.io"/>
     <link rel="self" href="https://AndyLuoJJ.github.io/atom.xml"/>
@@ -10,6 +10,181 @@
     <logo>https://AndyLuoJJ.github.io/images/avatar.png</logo>
     <icon>https://AndyLuoJJ.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Andy的小书架</rights>
+    <entry>
+        <title type="html"><![CDATA[Apple File System Guide 学习笔记]]></title>
+        <id>https://AndyLuoJJ.github.io/post/apple-file-system-guide-xue-xi-bi-ji</id>
+        <link href="https://AndyLuoJJ.github.io/post/apple-file-system-guide-xue-xi-bi-ji">
+        </link>
+        <updated>2019-09-13T10:05:58.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="introduction">Introduction</h2>
+<p>由于 iOS 独有的沙箱机制，每一个 iOS app 都有其独立的、与系统和其他 app 隔离开的文件系统，通常来说，开发者只能够对自己 app 的文件系统进行操作，而不能随意访问和操作其他的文件系统。</p>
+<p>在iOS中，每个应用各自有着相对独立、完整的文件系统，称为应用程序沙盒，简称沙盒。</p>
+<p>任何应用程序的文件访问范围都不允许超出自身沙盒的范围，即无权访问其他应用程序沙盒中的文件。但可以通过获取用户权限来使其他沙盒中的文件发送到当前沙盒中。</p>
+<p>文件目录结构与macOS的文件目录结构相类似，通常是通过目录的名称来区分其作用。</p>
+<p>为了对文件系统有一个更加深入的了解，本篇笔记基于 Apple 官方文档的学习，总结了 File System 的使用方法。</p>
+<h2 id="file-system-basics">File System Basics</h2>
+<p>下面简要介绍一下文件系统的基本知识。</p>
+<h3 id="常用文件目录">常用文件目录</h3>
+<ol>
+<li>
+<p>Documents: 文档目录，用于存放用户生成的内容、直接与用户打交道的内容，即需要永久保存下来的内容。该目录会通过iTunes和iCloud备份。</p>
+</li>
+<li>
+<p>Documens/Inbox: 文档收件箱目录，用于存放用户允许的从外部应用中获取的文件。可以新建或删除该目录下的文件，但不允许编辑。该目录会通过iTunes和iCloud备份。</p>
+</li>
+<li>
+<p>Library: 资源库目录，用于存放非用户生成的内容，通常是程序或系统需要用到的内部文件。可以生成自己的目录。除了Caches以外的目录会通过iTunes和iCloud备份。</p>
+</li>
+<li>
+<p>tmp: 临时目录，用于存放临时文件，应用程序退出后该目录下的文件会被清空。该目录不会通过iTunes和iCloud备份。</p>
+</li>
+<li>
+<p>其他文件目录：</p>
+<ol>
+<li>iCloud文件目录，涉及CloudKit的使用</li>
+<li>查看模拟器应用沙盒：<code>~/Library/Developer/CoreSimulator/Devices/(check device number)/data/Containers/Data/Application/(check app number)</code></li>
+</ol>
+</li>
+</ol>
+<p>图解：<br>
+<img src="https://AndyLuoJJ.github.io/post-images/1568369292830.jpg" alt=""></p>
+<h3 id="tips-for-file-system">Tips for file system</h3>
+<ol>
+<li>
+<p>用户数据存放在Documents/中，允许用户新建、删除、编辑。</p>
+</li>
+<li>
+<p>应用程序需要的支持文件存放在Library/Application Support/中，对用户屏蔽，包含各种保证应用程序正常运行的文件。</p>
+</li>
+<li>
+<p>临时数据存放在tmp/中，这些文件不需要做持久化处理，使用完毕后应当删除，iOS系统会不定期清空该目录。</p>
+</li>
+<li>
+<p>缓存文件存放在Library/Caches/中，生命周期比临时文件长，但不如支持文件长，缓存文件用于提高性能及用户体验，避免资源重复加载。iOS系统同样会清空该目录，因此应用程序应能够在需要时重新生成或下载这些缓存文件并保存在同一路径下。</p>
+</li>
+</ol>
+<h2 id="accessing-files-and-directories">Accessing Files and Directories</h2>
+<p>下面简要介绍如何访问当前沙箱下的文件及目录。</p>
+<h3 id="选择合适的方式来访问文件">选择合适的方式来访问文件</h3>
+<p>对于不同类型的文件来说，选择一个合适的方式来访问它们，可以更好地发挥高层 API 的作用，使得文件访问变得更加简单。Apple 对于几种常见的、基本的文件类型提供了标准的访问方法，包括：</p>
+<ol>
+<li>资源文件，包括Nib（Storyboard）、图片、音频、本地化资源、字符串文件等。这些与代码无关的资源文件通常用来显示本地化内容。一般是使用<code>Bundle.main.path(for resource:of type:)</code>来获取文件路径。</li>
+<li>文本文件，包括txt等。文本文件是无结构的ASCII或Unicode字符，通常使用String构造器进行获取。</li>
+<li>结构化数据文件：包括XML、plist等。结构化文件通常是在字符串的基础上，使用特定字符集合的数据。XML的解析有特殊的方法。</li>
+<li>归档文件</li>
+<li>Package</li>
+<li>Bundle</li>
+<li>代码文件<br>
+在标准类型的文件无法满足需求的情况下，可以自定义文件后缀名，以字节流的方式对文件进行读写，能够对文件操作有更加自由的控制。</li>
+</ol>
+<h3 id="指定文件或目录的路径">指定文件或目录的路径</h3>
+<p>通常来说，指定文件或目录路径的方式是使用<code>URL</code>，URL 的创建可以基于 String，即把路径用 String 写出来后，作为 URL init 的参数。有三种方式的URL表示路径：</p>
+<ol>
+<li>基于路径的URL：file://localhost/Users/andy/Documents/MyFile.txt</li>
+<li>文件引用URL：file:///id=6571367.2773272/</li>
+<li>基于字符串的URL：/Users/andy/Documents/MyFile.txt<br>
+使用 URL 获取路径的另一个好处是能够方便地与 FileManager 结合使用，从而使文件管理变得更加简单有序。关于 FileManager 的使用后面会有进一步的文档学习介绍。</li>
+</ol>
+<h3 id="在文件系统中对文件进行定位">在文件系统中对文件进行定位</h3>
+<p>在访问文件或目录之前，还需要对文件进行定位，常用的方式包括：</p>
+<ol>
+<li>自己找。</li>
+<li>询问用户，可以通过 Open and Save panel 与用户进行交互。</li>
+<li>在标准的系统目录下寻找，这又可以分为：
+<ol>
+<li>在 App Bundle 中寻找：调用<code>Bundle.main.url(for resource:with extension:)</code>获得文件在 App Bundle 中的 URL。</li>
+<li>在标准目录中寻找：可以使用<code>FileManager.default.urls(for directory:in domain:)</code>来访问标准目录下的文件 URL，其中第一个参数可以搜索的范围包括 Application Support、Documents、Library 等标准沙箱路径。</li>
+</ol>
+</li>
+<li>使用书签（bookmarks），bookmark 是 URL 的一个属性，是一个定位文件的持久化方法。</li>
+</ol>
+<h3 id="管理文件和目录">管理文件和目录</h3>
+<p>对于文件和目录的管理，无非是创建、复制、移动、删除、隐藏文件等。</p>
+<h4 id="创建">创建</h4>
+<p>新建目录：使用 FileManager 的 createDirectoryAtURL 或 createDirectoryAtPath 方法在给定路径新建目录。<br>
+新建文件：使用 FileManager 的 createFileAtPath:contents:attributes 方法在给定路径新建文件。如果需要将 Data 或 String 的内容写入文件，可以使用 writeToURL:atomically 方法。</p>
+<h4 id="复制和移动">复制和移动</h4>
+<p>使用 FileManager 的 copyItemAtURL:toURL:error: 或 copyItemAtPath:toPath:error: 方法复制文件或目录；使用 FileManager 的 moveItemAtURL:toURL:error: 或 moveItemAtPath:toPath:error: 方法移动文件或目录。</p>
+<blockquote>
+<p>文件备份实际上是将文件复制到一个不让用户访问到的位置。</p>
+</blockquote>
+<p>**注意：**文件的复制和移动操作可能需要较长的时间，并且复制和移动的操作是同步执行的，因此推荐将文件复制和移动操作放到异步线程中执行，避免阻塞主线程。</p>
+<h4 id="删除">删除</h4>
+<p>使用 FileManager 的 removeItemAtURL:error: 或 removeItemAtPath:error: <strong>永久删除</strong>文件或目录。</p>
+<h4 id="隐藏文件">隐藏文件</h4>
+<p>在 macOS 中，隐藏文件是文件名以.开头的文件，默认不会显示出来，但是用户仍然有办法访问到这些文件。对于 iOS，通常来说没有必要设置隐藏文件。</p>
+<h2 id="filemanager-文档解读">FileManager 文档解读</h2>
+<p>Apple 推荐的文件管理方式是使用 FileManager 进行文件路径的获取、访问、修改等操作。下面结合 FileManager 的<a href="https://developer.apple.com/documentation/foundation/filemanager">官方文档</a>进行学习，并对一些比较重要和常用的方法与属性进行记录。</p>
+<h3 id="概要">概要</h3>
+<p>FileManager 是 Foundation 框架中的类，帮助开发者更加方便地与文件系统进行交互，其继承于 NSObject。通过 FileManager，开发者可以对文件和目录进行定位、创建、复制、移动等操作，也可以获取到文件和目录的信息并修改它们的一些属性。<br>
+定位文件可以使用 URL 或 String，更推荐 URL 是因为它可以用一种更加稳健的方式表示路径，并且 URL 提供了书签（bookmark）进一步简化文件的访问。<br>
+在使用 FileManager 对文件进行操作时，具体的操作可以由遵循 FileManagerDelegate 委托来定义，通过委托模式进行实现解耦和自定义。<strong>注意在这种情况下，在执行文件操作的时候需要创建一个新的 FileManager 实例，设置其代理，然后用这个新的实例对操作进行初始化（即避免使用 share 的 FileManager 实例）</strong><br>
+在 iOS 5.0 和 macOS 10.7 以后版本的系统中，还可以直接使用 FileManager  对 iCloud 中的文件进行管理，发挥 iCloud 强大的同步特性。<br>
+对于多线程，share 的 FileManager 实例的方法可以安全地在多个线程中调用，即耗时操作可以放在异步线程中异步执行。<br>
+对于 macOS app，FileManager 能够，这里记录的主要是在 iOS 上的使用方法，更多的使用请查阅<a href="https://developer.apple.com/documentation/foundation/filemanager">官方文档</a></p>
+<h3 id="创建-filemanager-实例">创建 FileManager 实例</h3>
+<p>有两种方法：</p>
+<ol>
+<li><code>init(authorization)</code>，初始化方法，参数为 NSWorkspace.Authorization 类型的实例，用户给予的访问文件的权限。</li>
+<li><code>class var `default`</code>：FileManager 单例，app 内共享的 FileManager</li>
+</ol>
+<h3 id="访问用户目录">访问用户目录</h3>
+<p>实际上需要访问的是用户目录和临时目录：</p>
+<ul>
+<li><code>func NSHomeDirectory() -&gt; String</code>：当前用户的主目录，全局函数</li>
+<li><code>func NSUserName() -&gt; String</code>, <code>func NSFullUserName() -&gt; String</code>：当前用户的用户名。这两个方法是全局方法，不是 FileManager 的类方法。</li>
+<li><code>var temporaryDirectory: URL</code>：当前用户的临时目录。</li>
+</ul>
+<h3 id="定位系统目录">定位系统目录</h3>
+<ul>
+<li><code>func url(for: FileManager.SearchPathDirectory, in: FileManager.SearchPathDomainMask, appropriateFor: URL?, create: Bool) -&gt; URL</code></li>
+<li><code>func urls(for: FileManager.SearchPathDirectory, in: FileManager.SearchPathDomainMask) -&gt; [URL]</code>：</li>
+<li><code>func NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory, FileManager.SearchPathDomainMask, Bool) -&gt; [String]</code><br>
+上述三个方法都能够返回给定路径枚举的路径。</li>
+</ul>
+<h3 id="列举目录内容">列举目录内容</h3>
+<ul>
+<li><code>func contentsOfDirectory(atPath:) -&gt; [String]</code>；：搜索给定的路径，并给出路径下包含的内容的路径</li>
+</ul>
+<h3 id="创建-删除-替换-移动-复制">创建、删除、替换、移动、复制</h3>
+<ul>
+<li><code>func createFile(atPath:contents:attributes:) -&gt; Bool</code>：在给定路径下、使用给定的属性键值对，利用给定的Data创建文件。</li>
+<li><code>func createDirectory(atPath:withIntermediateDirectories:attributes:)</code>, <code>func createDirectory(at:withIntermediateDirectories:attributes:)</code>：在给定路径下创建目录。</li>
+<li><code>func removeItem(at:)</code>, <code>func removeItem(atPath:)</code>：删除给定路径的文件或目录。</li>
+<li><code>func replaceItemAt(:withItemAt:backupItemName:options:)</code>： 将某个路径下的项目替换成另一路径下的项目，允许创建备份，并且可以保证没有数据丢失。</li>
+<li><code>func copyItem(at:to:)</code>, <code>func copyItem(atPath:toPath:)</code>：：将某一路径下的项目复制到另一路径。</li>
+<li><code>func moveItem(at:to:)</code>, <code>func moveItem(atPath:toPath:)</code>：将某一路径下的项目移动到另一路径。<br>
+以上就是在普通的开发任务中比较常用的文件操作方法。</li>
+</ul>
+<blockquote>
+<p>对于需要登录的 app，如果不想采用 Core Data 来进行用户数据的存储，可以考虑将用户的信息以文件的形式保存在本地。当然，如果这么做还需要考虑到文件的加密等安全措施。</p>
+</blockquote>
+<hr>
+<p><em>Example code:</em></p>
+<pre><code class="language-swift">// This code shows how to combine FileManager 
+// and NSSearchPathForDirectoriesInDomains to deal with file system.
+// create a file manager instance that manages the files in sandbox.
+let manager = FileManager.default
+// specify the location of directory, using a string-related enum.
+let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+// grasp the first element of the array, which is the path string.
+let testDir = path[0]
+print(testDir)
+// add more details to system path.
+let filePath = testDir + &quot;/folder1&quot;
+do {
+    // call the responding methods to create directories, files, or
+    // access them.
+    try manager.createDirectory(atPath: filePath, withIntermediateDirectories: false, attributes: nil)
+    print(&quot;succeed&quot;)
+} catch {
+    // deal with errors in the above operation.
+    print(&quot;error&quot;)
+}
+</code></pre>
+<hr>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[macOS 使用 pyenv 和 virtualenv 搭建 python 工作环境]]></title>
         <id>https://AndyLuoJJ.github.io/post/macos-shi-yong-pyenv-he-virtualenv-da-jian-python-gong-zuo-huan-jing</id>
