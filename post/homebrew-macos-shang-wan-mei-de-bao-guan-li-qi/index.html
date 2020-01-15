@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Homebrew - macOS 上完美的包管理器 | Andy的小书架</title>
 <meta name="description" content="这是我的个人博客，希望能够坚持写一下自己各方面的心得😃" />
-<link rel="shortcut icon" href="https://AndyLuoJJ.github.io/favicon.ico?v=1570350482054">
+<link rel="shortcut icon" href="https://AndyLuoJJ.github.io/favicon.ico?v=1579079362240">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://AndyLuoJJ.github.io/styles/main.css">
@@ -20,7 +20,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://AndyLuoJJ.github.io">
-  <img class="avatar" src="https://AndyLuoJJ.github.io/images/avatar.png?v=1570350482054" alt="">
+  <img class="avatar" src="https://AndyLuoJJ.github.io/images/avatar.png?v=1579079362240" alt="">
   </a>
   <h1 class="site-title">
     Andy的小书架
@@ -202,15 +202,15 @@
 <ol>
 <li>Mac App Store 是苹果官方的安装渠道，在 Mac App Store 上架的软件严格遵循沙盒限制，每个应用程序有自己独立的文件系统，未得到用户允许无法访问其他目录，安全性有很好的保障，但也由于沙盒的原因，在 Mac App Store 上架的应用程序有不少都是阉割版程序，缺失部分核心功能，如 QQ、QQ 音乐、Alfred 等。</li>
 </ol>
-<figure data-type="image" tabindex="1"><img src="https://cn.bing.com/th?id=OIP.aOIJ9xxpnDpIsJmHZ-_YrQHaHa&amp;pid=Api&amp;rs=1" alt="MAS"></figure>
+<figure data-type="image" tabindex="1"><img src="https://cn.bing.com/th?id=OIP.aOIJ9xxpnDpIsJmHZ-_YrQHaHa&amp;pid=Api&amp;rs=1" alt="MAS" loading="lazy"></figure>
 <ol start="2">
 <li>pkg 是早期 Mac 上非常常用的安装方式，在前面也提到过 Python 提供了官方 pkg 安装包，同样它也可以用来安装应用程序。使用 pkg 进行安装只需要双击 pkg 文件，然后按照提示一步一步进行即可，与在 Windows 上安装软件非常相似，使用起来比较方便。但是 pkg 安装存在的问题是应用程序产生的文件可能会与系统文件混在一起，卸载的时候如果不借助第三方清理工具会非常麻烦。常见的使用 pkg 安装的软件有 Adobe 全家、Microsoft Office、Teamviewer 等。有「洁癖」的用户可以使用自带的 pkgutil 或第三方的 UninstallPKG 对 pkg 安装的应用程序进行清理。</li>
 </ol>
-<figure data-type="image" tabindex="2"><img src="https://images2015.cnblogs.com/blog/996103/201607/996103-20160721150540919-1448409147.png" alt="PKG"></figure>
+<figure data-type="image" tabindex="2"><img src="https://images2015.cnblogs.com/blog/996103/201607/996103-20160721150540919-1448409147.png" alt="PKG" loading="lazy"></figure>
 <ol start="3">
 <li>dmg 是目前比较主流的安装方式，应用程序发布者将编译打包好的 .app 文件放在 dmg 文件中，用户安装时直接将 app 拖放到 /Application 目录即可，安装过程简单到令人发指。</li>
 </ol>
-<figure data-type="image" tabindex="3"><img src="https://cn.bing.com/th?id=OIP.FcEQ7YbtWC5f7LAV269smQHaD-&amp;pid=Api&amp;rs=1" alt="DMG"></figure>
+<figure data-type="image" tabindex="3"><img src="https://cn.bing.com/th?id=OIP.FcEQ7YbtWC5f7LAV269smQHaD-&amp;pid=Api&amp;rs=1" alt="DMG" loading="lazy"></figure>
 <p>Homebrew Cask 在 dmg 安装的基础上简化了操作，直接通过命令行方便地管理已安装的应用，并且在一定程度上解决了卸载不完全的问题。</p>
 <h3 id="软件的查找-安装-更新-删除">软件的查找、安装、更新、删除</h3>
 <p>在已经安装好 Homebrew 的前提下，先安装 Homebrew Cask，实际上就是把Homebrew Cask 添加到tap的列表中</p>
