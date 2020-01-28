@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://AndyLuoJJ.github.io</id>
     <title>Andy的小书架</title>
-    <updated>2020-01-28T09:44:05.428Z</updated>
+    <updated>2020-01-28T09:51:14.066Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://AndyLuoJJ.github.io"/>
     <link rel="self" href="https://AndyLuoJJ.github.io/atom.xml"/>
@@ -289,6 +289,8 @@
 <p>本文介绍了如何在 Apple 设备上使用 iWork 办公套件满足日常的文档编辑需求。相比于 Microsoft Office 来说，iWork 在功能及兼容性上都存在一定的限制，无法像 Microsoft Office 那样成为「事实上的行业标准」。但是，大而全所付出的代价是运行速度较慢、需要一定的经济成本，对于一些普通的文档编辑任务来说，使用 iWork 已经能够满足要求了，如果需要在不同平台上进行兼容，导出为 PDF 才是最好的选择。</p>
 <p>那么，你准备好打开 iWork 完成你下一个编辑任务了吗😊</p>
 <hr>
+<hr>
+<p>本文为原创文章，转载请注明。</p>
 <hr class="footnotes-sep">
 <section class="footnotes">
 <ol class="footnotes-list">
@@ -553,6 +555,8 @@ fi
 <p>同样是删除 workspace-directory 即可删除工作环境。</p>
 <h2 id="总结">总结</h2>
 <p>说了这么多，使用这种办法来安装和管理无非是为了能够更好地掌控安装过程，并且安装、卸载也非常干净简洁。在搭建好 python 工作环境以后，马上开始着手干活才是最重要的，不能为了使用工具而使用工具，这样就本末倒置了。</p>
+<hr>
+<p>本文为原创文章，转载请注明。</p>
 ]]></content>
     </entry>
     <entry>
@@ -728,6 +732,8 @@ print(prediction)
 <blockquote>
 <p>如果项目中存在多个可执行文件，需要在<code>swift run</code>命令后增加对应的可执行文件的名称。利用这一特性可以将多个独立的工程汇总在一个package下面，便于管理，但是一个不好的地方是如果修改了一个地方就必须把当前package下的所有swift源文件编译一遍。目前的解决方法是当package规模扩大后，将其中一部分相对独立的功能打包成新的swift package，然后导入进来，这样就不用重新编译导入进来的源码了。</p>
 </blockquote>
+<hr>
+<p>本文为原创文章，转载请注明。</p>
 ]]></content>
     </entry>
     <entry>
@@ -882,6 +888,8 @@ print(prediction)
 <p>作为一款优秀的程序，Homebrew 使用起来非常简单，其使用教程都可以在<a href="https://docs.brew.sh">官方文档</a>中查到。Homebrew 的诞生极大提高了开发者们的效率，让他们不再为第三方库的繁琐安装步骤而烦恼。</p>
 <p>本文只是简单介绍了Homebrew最简单的应用，更加进阶的使用方法可以自行搜索或查阅官方文档。</p>
 <p>另外，除了开发者以外，普通用户有时候也能从中获益。例如，macOS 上的 PSP 模拟器程序 PPSSPP 需要两个库的支持，分别是 sdl2 和 libzip，在官方安装教程中就建议用户使用 Homebrew 安装这两个库，才能够正常运行 PPSSPP。</p>
+<hr>
+<p>本文为原创文章，转载请注明。</p>
 ]]></content>
     </entry>
     <entry>
@@ -940,6 +948,8 @@ print(prediction)
 <blockquote>
 <p>注：图片摘自<a href="https://www.apple.com/cn/"> Apple 中国官网 </a></p>
 </blockquote>
+<hr>
+<p>本文为原创文章，转载请注明。</p>
 ]]></content>
     </entry>
 </feed>
