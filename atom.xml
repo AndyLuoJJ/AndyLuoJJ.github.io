@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://AndyLuoJJ.github.io</id>
     <title>Andy的小书架</title>
-    <updated>2020-01-28T10:32:49.730Z</updated>
+    <updated>2020-01-28T10:55:28.337Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://AndyLuoJJ.github.io"/>
     <link rel="self" href="https://AndyLuoJJ.github.io/atom.xml"/>
@@ -73,7 +73,7 @@
 <h3 id="笔记与学习">笔记与学习</h3>
 <p>在对书本内容进行标注后，可以对标注的内容添加笔记，在移动端和桌面端都能够进行添加笔记的操作。</p>
 <figure data-type="image" tabindex="8"><img src="https://AndyLuoJJ.github.io/post-images/1580206739961.png" alt="" loading="lazy"></figure>
-<p>在 iPad 上，选择标记好的内容，弹出框的第三个、像一个便签纸的图标就是添加和编辑笔记的按钮，添加完的笔记可以进行查看。</p>
+<p>在 iPad 上，选择标记好的内容，弹出框的第三个、像一个便签纸的图标就是添加和编辑笔记的按钮，添加完的笔记可以在「查看目录」中选择相应的选项卡进行查看。</p>
 <figure data-type="image" tabindex="9"><img src="https://AndyLuoJJ.github.io/post-images/1580206757083.png" alt="" loading="lazy"></figure>
 <p>在 iBooks 中点击放大镜能够对书本内容和笔记内容进行检索，输入关键字就能够查找到与之相关的内容了。笔记的内容会通过 iCloud 自动同步到不同的设备上，这进一步提升了不同设备之间的协作性。</p>
 <p>在笔记功能的基础上，macOS 端的 iBooks 还提供了一个非常实用的学习功能——学习卡。在笔记面板中，点击左上方的「学习」就可以对笔记内容进行学习。学习卡的正面是在书本中标记的内容或者 .ibooks 中提供的「词汇表词汇」，背面是对标记内容的笔记或者 .ibooks 中提供的对「词汇表词汇」的解释。<br>
