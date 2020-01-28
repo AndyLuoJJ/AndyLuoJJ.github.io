@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://AndyLuoJJ.github.io</id>
     <title>Andy的小书架</title>
-    <updated>2020-01-28T10:25:51.442Z</updated>
+    <updated>2020-01-28T10:27:21.545Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://AndyLuoJJ.github.io"/>
     <link rel="self" href="https://AndyLuoJJ.github.io/atom.xml"/>
@@ -81,7 +81,7 @@
 <figure data-type="image" tabindex="10"><img src="https://AndyLuoJJ.github.io/post-images/1580206768505.png" alt="" loading="lazy"></figure>
 <p>在学习卡界面的右上方可以设置「打乱学习卡」和「筛选学习卡」，可以选择不同是否显示「词汇表词汇」和显示哪些标注样式的内容。结合前面介绍的不同标注样式，在对不同的标注样式有自己的一套定义之后，就能够针对自己的实际情况——是对「定义」不熟悉还是「怎么做」不熟悉——通过学习卡筛选出自己薄弱的部分，并有针对性地进行二次复习，</p>
 <p>通过「学习」功能，我们能够对书本内容进行更进一步的学习，以学习卡的形式来检验自己对书籍内容的掌握程度。比较遗憾的是，学习功能仅适用于 macOS 端的 iBooks，iOS / iPadOS 的 iBooks 暂时没有这个功能，希望 Apple 能够在后续版本中提供对学习卡功能的支持吧。</p>
-<h3 id="ios-13-新引入的功能阅读目标">iOS 13 新引入的功能，阅读目标</h3>
+<h3 id="ios-13-新引入的功能阅读目标">iOS 13 新引入的功能——阅读目标</h3>
 <p>在 iOS 13 / iPadOS 中，iBooks 添加了「阅读目标」的功能，可以设置每天的阅读时间，督促自己进行阅读。要启用这个功能，首先需要在「设置」-&gt;「图书」中开启「阅读目标」；如果希望阅读 PDF 的时间也计入其中的话，还需要开启下面的「包括 PDF」。</p>
 <p>设置完成后，iBooks 就能够帮助我们记录阅读时长了。可以在 iBooks 中调整每天的阅读时长，也可以分享自己的每天的阅读进度。阅读目标在多个设备上是累积统计的，即总的阅读时长等于在各个设备上的阅读时长的总和。坚持记录自己的阅读时间，在下一次年度总结的时候也可以用来衡量一下自己年初定下的目标是不是实现了呢。</p>
 <figure data-type="image" tabindex="11"><img src="https://AndyLuoJJ.github.io/post-images/1580206784321.png" alt="" loading="lazy"></figure>
