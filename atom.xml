@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://AndyLuoJJ.github.io</id>
     <title>Andy的小书架</title>
-    <updated>2020-03-13T09:12:28.749Z</updated>
+    <updated>2020-03-13T09:17:53.137Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://AndyLuoJJ.github.io"/>
     <link rel="self" href="https://AndyLuoJJ.github.io/atom.xml"/>
@@ -10,6 +10,68 @@
     <logo>https://AndyLuoJJ.github.io/images/avatar.png</logo>
     <icon>https://AndyLuoJJ.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Andy的小书架</rights>
+    <entry>
+        <title type="html"><![CDATA[2020年，我「还」在用哪些数码产品？]]></title>
+        <id>https://AndyLuoJJ.github.io/post/2020-nian-wo-huan-zai-yong-na-xie-shu-ma-chan-pin/</id>
+        <link href="https://AndyLuoJJ.github.io/post/2020-nian-wo-huan-zai-yong-na-xie-shu-ma-chan-pin/">
+        </link>
+        <updated>2020-03-13T07:58:03.000Z</updated>
+        <summary type="html"><![CDATA[<p>老设备也有春天</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>老设备也有春天</p>
+<!-- more -->
+<p>作为一名勤（口）俭（袋）持（没）家（钱）的在校学生，我对比数码产品之类的比较贵重的东西都有着一种强烈的爱惜之情，希望能够在充分发挥物品的功能的同时，尽可能地延长物品的使用年限，让它们能够陪伴我更久一些。对于数码产品，我一向是抱着「喜新不厌旧」的心态，有新的设备能够使用自然是非常开心的，但是对于一些比较旧的设备我也不会嫌弃。我相信男生都是喜欢捣鼓数码设备的吧，就像小孩子拿到新玩具一样，我在拿到新设备的时候就会有一种非常开心的感觉。随着科技的发展，数码设备的成本将会越来越低，功能越来越丰富，普通人也能够享受到科技发展带来的便利。</p>
+<p>正如标题所描述的那样，我想在这篇文章中分享一下在 2020 年的今天，我「仍然」在使用哪些数码产品呢？</p>
+<h2 id="2015-年-early-retina-macbook-pro-133-寸">2015 年 Early Retina MacBook Pro 13.3 寸</h2>
+<p>在进入大学之前，爸妈为我添置了我的第一台笔记本电脑——2015年款的13.3寸Retina MacBook Pro，那个时候这台笔记本刚刚上市，售价 8k+，让当时的我着实吃了一惊，没有想到爸妈会给我买一台这么贵的电脑（谢谢爸妈😊）。那时候的我对电脑系统接触得不多，也不知道 MacBook 的系统和其他电脑的系统是不一样的，因此也没有对 Windows 系统有强烈的依赖，很顺利地就过渡到了 Mac 的系统中（当时还是 OS X Yosemite）。爸妈的同事还贴心地帮我用 Boot Camp 安装了双系统 Windows，这为我后面的学校课程学习提供了不小的帮助。</p>
+<figure data-type="image" tabindex="1"><img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-76d5c80bf699ad558eea02c1cbec7d23_1440w.jpg" alt="接口最多的最后一代 MacBook Pro" loading="lazy"></figure>
+<p>MacBook 给我的第一印象就是轻、薄、好看，摸上去的感觉很舒服。也许是上天的安排吧，这台 Mac 打开了我学习计算机和软件开发知识的大门，走进了 iOS 开发的世界（虽然仍然是个菜鸟）。直到今天，这台笔记本依旧是我不二的主力设备，Xcode、PyCharm、Typora、MarginNote 等一众优秀的软件让这台 MacBook Pro 依然不愧为生产力工具，丰富的接口也免除了新款 MacBook 特有的需要多个转接口的麻烦。唯一一个小遗憾就是，笔记本的内置硬盘只有 128 G，用来存储数据实在是不够用，于是乎，我增加了两块移动硬盘作为数据存储的解决方案，一块是 Seagate 的 1T 移动硬盘，另一块是 Toshiba 的 2T 移动硬盘，加上 5G 的 iCloud 免费空间和 5G 的 OneDrive 免费空间，数据存储和同步的问题基本得到解决。</p>
+<p>众所周知，2015 年的 MacBook Pro 的视网膜屏存在涂层脱落的问题，在我得知这个消息的时候电脑已经使用了三年了，于是抱着试一试的心态，预约前往广州天环广场的 Apple Store 咨询了一下这个问题。Genius Bar 的小哥很爽快地就直接给我换了，大概只花了半天的时间就换好了屏幕，看上去就跟换了一台新的电脑一样。虽然现在好像又出现了涂层脱落的问题，但是影响不算特别大，将就着用了。换完屏幕后，我又为我的爱机贴上了贴纸，贴完之后简直就是一台新机器了有！没！有！</p>
+<figure data-type="image" tabindex="2"><img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-ea2ddaf6d6410b7e2f442b86de587a4e_1440w.jpg" alt="A 面和 D 面的贴纸" loading="lazy"></figure>
+<p>当然啦，毕竟是四年前的机器了，这台电脑也存在一定的问小毛病包括电池状况不佳、键盘磨损等，打算在疫情结束之后去 Apple Store 看看能不能解决，让这台笔记本继续发光发热吧！</p>
+<figure data-type="image" tabindex="3"><img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-1c460135d9d332871a0e77783f106b6c_1440w.jpg" alt="高频率使用 command 键和空格键导致的磨损" loading="lazy"></figure>
+<h2 id="iphone-6s">iPhone 6s</h2>
+<p>2016年的时候，打着学习 iOS 开发的名义、同时也为了能够更加完整地体验 Apple 的产品，我入手了一代神机 iPhone 6s，当时恰逢 iPhone 7 上市、6s 价格下调，为了避免手机出现空间不足的尴尬，我直接就入手了一台 128G 的 iPhone 6s，导致的结果就是我的手机容量和电脑是一样的哈哈。平心而论，iPhone 6s 确实是一台十分优秀的机器，A9 处理器在 2020 年的今天依旧坚挺，处理各种任务都游刃有余，据说还有望撑到 iOS 14 升级...? 128G 的容量也让这台手机变成了一台游戏机，装一堆游戏、存一堆照片、看一堆视频眼都不眨，从来没有担心过空间不够用的问题。</p>
+<p>作为我的第二台 Apple 设备，iPhone 的加入使得 MacBook Pro 和 iPhone 两者之间的生态链更加完整，两台设备之间可以进行更加紧密的协作，包括 iCloud、Handoff、AirDrop 等技术都极大地提高了我的工作学习效率。感兴趣的朋友可以关注一下我的<a href="https://zhuanlan.zhihu.com/c_1212789517444648960">知乎专栏</a>。</p>
+<p>和 MacBook 一样，手机用久了也会有不少的毛病。2019 年的时候我在 Apple Store 为手机更换了电池后，明显感觉到手机的流畅度有一定程度的提升，续航时间也得到了保证。希望这台手机也能够陪伴我走完研究生的生涯吧！</p>
+<h2 id="apple-watch-series-3">Apple Watch Series 3</h2>
+<p>Apple Watch 对我来说是个意外的收获——朋友送的。在对 Apple 的产品有了一定的使用经验后，我对 Apple Watch 也有了一定的期待。这只 Apple Watch Series 3 是GPS 版的，需要配合手机才能有更好的使用体验，但是这对我来说并不是一个问题，毕竟手机是 24 小时都在身边的。我对于 Apple Watch 的使用主要包括：</p>
+<ul>
+<li>看时间，这是一只手表的基本素养。</li>
+<li>记录自己每天的运动消耗和锻炼时间。</li>
+<li>当作闹钟和计时器。</li>
+<li>转发 iPhone 上的通知，可以不用拿出手机扫一眼是不是重要的事情。</li>
+<li>实在腾不出手的情况下可以接电话。</li>
+<li>提醒自己每隔一段时间进行一次深呼吸和站立。</li>
+<li>找不到手机的时候，可以通过 Apple Watch 使手机发出声音，对于我这种大头虾来说是一个非常实用的功能。</li>
+</ul>
+<p>在我看来，Apple Watch 更多地扮演的是「辅助手机」的角色，能够方便快捷地执行一些简单的日常操作，而不需要掏出手机。除此之外，Apple Watch 还是一个专属的「健康管家」，提醒我每天保持运动、保持健康的心态，才能够以更好的状态去面对生活中的种种困难。</p>
+<figure data-type="image" tabindex="4"><img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-34304844f373233758cd1466087ac904_1440w.jpg" alt="Apple Watch——it tells time" loading="lazy"></figure>
+<h2 id="ipad-2019">iPad 2019</h2>
+<p>作为一件奖励自己 2019 年表现的礼物，iPad 2019 是真正意义上自己花钱买的第一台 Apple 设备。自从进了 Apple 的坑以后，就愈发想凑齐 Apple 的不同设备，体验到更加完美的苹果生态圈。由于是花自己的钱买的设备，极其有限的预算让我把目光瞄向了最便宜的 iPad —— iPad 2019。</p>
+<figure data-type="image" tabindex="5"><img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-692bfdaacad416b148c2f7c2a561d763_1440w.jpg" alt="被不少人诟病的 iPad 2019" loading="lazy"></figure>
+<p>在确定购买哪一款 iPad 之前，我也经历过一段非常纠结的时光，在 iPad Air 3 和 iPad 2019 之间举棋不定。不少人觉得 iPad 2019 是一台「智商机」，但是我认为，对于预算确实非常有限的消费者来说，iPad 2019 在实际的使用体验上已经足够好了：足够大的 10.2 寸屏幕、对于学习来说足够能打的 A10 芯片、能够使用 Apple Pencil，种种因素都令我对手上的这台机器心满意足。使用 Apple Pencil 在 iPad 上写字的时候，其实并不会感觉到非全贴合屏带来的影响，虽然反光比较严重，但是调整角度后还是能够克服的。当然我还是觉得如果预算不是决定购买 iPad 的第一要素、或者不介意小屏幕的话，iPad Air 3 和 iPad mini 5 绝对是性价比更高的选择。</p>
+<p>为了让 Apple Pencil 更加好用，我为它加上了防滑笔尖和防滑套：</p>
+<figure data-type="image" tabindex="6"><img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-6813b18ba99f51079a741dc910b39f1f_1440w.jpg" alt="Apple Pencil 改造" loading="lazy"></figure>
+<p>对于 iPad 的使用，我写了几篇文章分享一下自己的经验：</p>
+<p><a href="https://andyluojj.github.io/post/zotero-kua-she-bei-wen-xian-guan-li/">Zotero 跨设备文献管理</a></p>
+<p><a href="https://andyluojj.github.io/post/iwork-ru-he-chong-fen-li-yong-icloud-he-zi-dai-app-shi-xian-apple-she-bei-zhi-jian-de-hu-tong/">iWork - 如何充分利用 iCloud 和自带 App 实现 Apple 设备之间的互通</a></p>
+<p><a href="https://andyluojj.github.io/post/numbers-biao-ge-mei-ge-ren-du-neng-zuo-zi-ji-de-tong-ji-xue-jia/">Numbers 表格——每个人都能做自己的统计学家</a></p>
+<p>唯一需要注意的是...看视频真的太舒服了希望不要变成爱奇艺专属设备吧😂</p>
+<h2 id="当当阅读器">当当阅读器</h2>
+<p>当当阅读器是我用自己的钱买的第一台设备，在拿到学校奖学金之后就用了一部分的钱给父母和自己买了点小礼物。作为一个喜爱阅读的人，我觉得选择合适的阅读媒介对于获得良好的阅读体验是非常重要的。事实证明，购买一个电子阅读器是一个非常划算的选择，对于小说、传记、科普等不需要进行深度阅读的书籍，电子阅读器能够更加真实地还原纸质书的感觉，并且克服了纸质书笨重的缺点，阅读体验也比手机更好。</p>
+<p>至于为什么买的是当当阅读器而不是 Kindle，没错还是💰的问题（我太难了）。当当阅读器作为国产阅读器，较低的售价、丰富的功能、非常方便的书籍文件传输功能以及当当书城的支持，使得当当阅读器成为了我心目中的性价比之王。当当书城的书籍数量应该是目前国内唯一能够与亚马逊抗衡的吧，书籍的种类、价格都非常接地气。当然也能够自己在网上搜索书籍资源，再导入到阅读器中进行阅读。值得一提的是，可以尝试一下用电子阅读器看漫画，你会打开新世界的大门的。</p>
+<figure data-type="image" tabindex="7"><img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-9ffc50362686e327423907c24bdbc618_1440w.jpg" alt="阅读体验不输 Kindle 的当当阅读器" loading="lazy"></figure>
+<p>当当阅读器是在入手 iPad 之前买的，但是我觉得阅读器是能够与 iPad 共存的，不会说买了 iPad 以后阅读器就吃灰了。在 iPad 上我使用 iBooks 阅读一些在阅读器上打不开的 epub 文件，并且 iBooks 在标注和笔记上面还是比阅读器要方便一些的。关于 iBooks 的使用感兴趣的读者可以看一下我的文章：</p>
+<p><a href="https://andyluojj.github.io/post/ibooks-ru-he-chong-fen-li-yong-icloud-he-zi-dai-app-shi-xian-apple-she-bei-zhi-jian-de-hu-tong/">iBooks - 如何充分利用 iCloud 和自带 App 实现 Apple 设备之间的互通</a></p>
+<p>总的来说，对于原本就喜欢阅读的小伙伴来说，电子阅读器确实是一个非常实用的工具，能够减轻随身携带书籍的负担；但是对于原来就不怎么阅读，或者以为买了阅读器就能够倒逼自己多读书的朋友来说，电子阅读器是最好的压泡面神器。</p>
+<h2 id="小米-4">小米 4</h2>
+<p>大一时候使用的古董手机，「为发烧而生」的小米在小米 4 上做的确实不错，很容易就热了。年少无知的我也不知道心疼手机，换了两次屏后就换成了 iPhone，没想到四年后找回来依然能用，GBA模拟器、PSP模拟器、微信完美运行，除了有点担心电池会不会爆炸之外几乎完美，当作备用机也是一个不错的选择。</p>
+<figure data-type="image" tabindex="8"><img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-105fa0bd5e0b69406fe1026b40ed2453_1440w.jpg" alt="真·钉子户" loading="lazy"></figure>
+<h2 id="one-more-thing">One More Thing...</h2>
+<p>最后许个愿望吧，希望自己以后能每年添一部新的设备hhh</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Numbers 表格——每个人都能做自己的统计学家]]></title>
         <id>https://AndyLuoJJ.github.io/post/numbers-biao-ge-mei-ge-ren-du-neng-zuo-zi-ji-de-tong-ji-xue-jia/</id>
@@ -1141,66 +1203,6 @@ print(prediction)
 <p>作为一款优秀的程序，Homebrew 使用起来非常简单，其使用教程都可以在<a href="https://docs.brew.sh">官方文档</a>中查到。Homebrew 的诞生极大提高了开发者们的效率，让他们不再为第三方库的繁琐安装步骤而烦恼。</p>
 <p>本文只是简单介绍了Homebrew最简单的应用，更加进阶的使用方法可以自行搜索或查阅官方文档。</p>
 <p>另外，除了开发者以外，普通用户有时候也能从中获益。例如，macOS 上的 PSP 模拟器程序 PPSSPP 需要两个库的支持，分别是 sdl2 和 libzip，在官方安装教程中就建议用户使用 Homebrew 安装这两个库，才能够正常运行 PPSSPP。</p>
-<hr>
-<p>本文为原创文章，转载请注明。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[绪论 - 如何充分利用 iCloud 和自带 App 实现 Apple 设备之间的互通]]></title>
-        <id>https://AndyLuoJJ.github.io/post/xu-lun-ru-he-chong-fen-li-yong-icloud-he-zi-dai-app-shi-xian-apple-she-bei-zhi-jian-de-hu-tong/</id>
-        <link href="https://AndyLuoJJ.github.io/post/xu-lun-ru-he-chong-fen-li-yong-icloud-he-zi-dai-app-shi-xian-apple-she-bei-zhi-jian-de-hu-tong/">
-        </link>
-        <updated>2019-09-11T08:18:05.000Z</updated>
-        <summary type="html"><![CDATA[<p>第一个专题定位为「如何充分利用 iCloud 和自带 App 实现 Apple 设备之间的互通」。本篇是该系列主题的第一篇文章。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>第一个专题定位为「如何充分利用 iCloud 和自带 App 实现 Apple 设备之间的互通」。本篇是该系列主题的第一篇文章。</p>
-<!-- more -->
-<blockquote>
-<h3 id="目录">目录</h3>
-<ul>
-<li>总起</li>
-<li>写作动机</li>
-<li>拟介绍的内容</li>
-<li>结束语</li>
-</ul>
-</blockquote>
-<hr>
-<h4 id="总起">总起</h4>
-<p>随着苹果公司不断开发出新的硬件设备、推行<s>利于圈钱并</s>迎合中国消费者的营销策略，如今在高校学生的群体里，Apple 设备的占有率可谓是节节攀升，在校园里随处可见 iPhone、iPad、MacBook 的身影。特别是近年来苹果为了抢占教育市场，投入了大量的努力，其中的重头戏自然是 new iPad 对 Apple Pencil 的支持、以及面向开发者开放 <code>ClassKit</code> 框架，以期通过硬件和软件的配合，打造一个专属于 Apple 的教育平台。</p>
-<figure data-type="image" tabindex="1"><img src="http://upload-images.jianshu.io/upload_images/12329372-309b46e843eab9e7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Apple 的「人人能创造」课程" loading="lazy"></figure>
-<p>另外，在 WWDC19 闪亮登场的 iPadOS 同样值得期待，得益于 iOS 的基础，iPadOS 想必能够为用户带来更进一步的生产力，令用户能够在 iPad 上实现轻量办公。对于学生党来说，全新登场的 iPadOS 能够充分发挥他们手上的设备的作用，帮助他们在学习、生活中游刃有余地应对各种不同的使用场景。</p>
-<p>然而，抛开 Apple 针对教育市场的一系列措施不说，如今在日常使用中，能够做到充分利用 Apple 生态的人似乎不多——这可能是由于拥有复数台 Apple 设备的人不多，大多数人都仅使用一台 Apple 设备，如 iPhone 或 iPad，而并没有考虑过完全投入到 Apple 的生态环境中。可能对于不少人来说，iPhone、iPad 和 Mac 更多扮演的是轻度办公和休闲娱乐的角色，并不能承担需要高生产力的任务。（想想你买 iPad 真的是为了看课件吗😊）</p>
-<p>实际上，iOS 和 macOS 两个平台都自带了许多实用的 App，如果充分利用起来，能够很好地提高我们工作生活的效率，配合 iCloud 能够胜任日常生活中的许多任务。同时，对系统自带 App 的充分利用也能避免安装过多的第三方应用，一方面，为手机存储空间较小的用户带来福音，减缓了空间不足的紧迫感；另一方面，在<strong>信任 Apple 和云上贵州</strong>的前提下，能够在一定程度上更好地保护用户的隐私，避免在无意中向自己不信任的第三方泄漏隐私数据和信息。</p>
-<h4 id="写作动机">写作动机</h4>
-<p>在笔者所处的校园环境中，手持 iPhone 人很多，拥有 iPad 的人也不少，但是 Mac 的普及率就呈指数下降了，更别提拥有复数 Apple 设备的究竟有多少人了。在拥有一台 Apple 设备的同学们中，有不少都是把 iPhone 看作是一台比较好用的智能手机、iPad 是不错的追剧神器，而并没有把自己的设备看作是提高工作生活效率的工具。对于拥有多台 Apple 设备的同学们来说，能够协调使用自己设备的人似乎也不多，大多数都是将设备的工作范围划出明确的界限，互不干扰的同时自然也失去了相互合作的可能。</p>
-<p>至于 iCloud，作为 Apple 开发的一款优秀的云盘，它的功能和独特之处得到了许多人的认可，可惜的是，似乎有不少人只是将 iCloud 作为照片存储和系统备份的「备份盘」，而没有看到 iCloud 最本质的功能——「同步盘」。作为「同步盘」，iCloud 最核心的功能是使不同的 Apple 设备之间能够共享数据，正是由于「同步盘」的特点，才使得「移动办公」成为可能。</p>
-<p>在笔者看来，工具是为人服务的，只有合理地使用自己的设备和资源，才能使它们的功能最大化，最大程度地服务于我们的学习和日常生活。因此，笔者希望能够分享一下自己在学习、工作和日常生活中充分利用 iCloud、自带 App 和相关优秀第三方应用的经验，让其他人也能够感受到通过 Apple 设备之间的协作来提升效率、提升幸福感的魅力所在。</p>
-<p>笔者自己原本是 MacBook + Android 的配置，自从换了 iPhone，感觉放着 iCloud 这个神奇的工具不用，有点可惜，于是就开始研究如何充分利用手里设备的互通性来提高自己的工作和学习效率。虽然没办法用准确的数字来量化自己效率的提升程度，但是在这个过程中我确实感受到了 iCloud、系统自带 App 和优秀第三方应用带给我的幸福感。</p>
-<p>随着在 2019 年底购入了 iPad 2019 和收了二手的 Apple Watch 3 后，笔者实现了一个小小的 Apple 全家桶，因此希望针对 iPhone、iPad、MacBook 和 Apple Watch 的互通谈一谈自己的看法。</p>
-<h4 id="拟介绍的内容">拟介绍的内容</h4>
-<p>在这一专题中，笔者将介绍在自己的学习和日常生活中，如何通过系统自带 App 和优质第三方应用，提升 Apple 设备之间的互通性，进而提升工作效率。iOS 和 macOS 之间的互通依赖于iCloud，因此介绍的应用可能需要登录 iCloud 以实现各自的功能，建议在安全的网络环境下使用。如果在蜂窝移动网络下使用 iCloud 进行同步，需要注意数据的使用情况。</p>
-<p>当然，介绍的应用中有部分自带 App 并不需要使用 iCloud，但却给我的使用带来了更好的体验，这些我也会一并介绍。</p>
-<p>说个题外话，Apple 选择云上贵州作为中国的云端服务提供者的举措虽然带来了不少的争议，但经个人亲身体验，确实为中国用户提供了更快的访问速度，也不失为一个方便大众的举措。</p>
-<p>拟介绍的自带应用包括但不限于：</p>
-<ul>
-<li>iBooks</li>
-<li>备忘录、提醒事项、照片、日历</li>
-<li>Podcast、iTunes、Apple Music</li>
-<li>iWork</li>
-<li>Safari</li>
-</ul>
-<p>拟介绍的第三方应用包括但不限于：</p>
-<ul>
-<li>MarginNote</li>
-<li>印象笔记</li>
-<li>Xmind Zen</li>
-</ul>
-<p>注：专题内只介绍笔者使用过的 App，除此之外还有很多其他优秀的应用程序，但由于笔者没有使用过，所以不敢妄加评论，大家可以亲自下载其他的 App 试用，找到适合自己的应用。</p>
-<h4 id="结束语">结束语</h4>
-<p>「提高工作效率」是一个老生常谈的话题了，然而很少人能够关注电子设备自身的优势，而是转向第三方服务，这本无可厚非，笔者再次也只是分享一下自己使用电子设备的一些经验而已。Anyway，电子设备和技术的进步只是提升了我们的工作效率和生产力，并不能从根本上解决拖延症的问题🙃。</p>
-<blockquote>
-<p>注：图片摘自<a href="https://www.apple.com/cn/"> Apple 中国官网 </a></p>
-</blockquote>
 <hr>
 <p>本文为原创文章，转载请注明。</p>
 ]]></content>
