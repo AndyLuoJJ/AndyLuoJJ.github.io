@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://AndyLuoJJ.github.io</id>
     <title>Andy的小书架</title>
-    <updated>2020-03-13T02:17:08.865Z</updated>
+    <updated>2020-03-13T06:36:18.136Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://AndyLuoJJ.github.io"/>
     <link rel="self" href="https://AndyLuoJJ.github.io/atom.xml"/>
@@ -47,44 +47,44 @@
 <p>在完成了 iBooks 的初步设置后，就能够愉快地利用 iPhone、iPad 或者 MacBook 来进行书籍的阅读。下面的讨论基于 iPad 和 MacBook 两个设备上的 iBooks 应用。</p>
 <h3 id="书籍管理">书籍管理</h3>
 <p>由于 iBooks 商店在国区不可用，电子书籍的添加无法在移动端进行，需要在桌面端手动进行。将下载好的 PDF 或 EPUB 文件直接拖进 macOS 端的 iBooks 应用中就能够将书籍添加到书库中，书籍文件会被复制到 iCloud 云盘中 iBooks 的对应位置，查看方法为：依次点选「系统偏好设置」-&gt;「Apple ID」-&gt;「管理...」-&gt;选择「Apple Books」-&gt;「在“访达”中显示」，就能够在 Finder 中看到 iBooks 存放文件的目录。</p>
-<figure data-type="image" tabindex="1"><img src="https://AndyLuoJJ.github.io/post-images/1580205549159.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1580205549159.png" alt="" loading="lazy"></figure>
 <p>需要注意的是，在 Finder 的「iCloud 云盘」中没有办法直接看到这个目录，必须通过上述方法才能够进入该目录。书籍文件名旁边的小云朵表示该文件只保存在云端而没有保存在本地，通过右键单击书籍文件，选择「现在下载」可以将云端文件下载到本地，或者选择「移除下载项」将本地文件删除而仅保留在云端。在 macOS 端的 iBooks 应用中打开书籍，会自动将云端的书籍文件下载到本地。至于移动端，暂时没有办法手动释放占用的空间。</p>
 <p>iBooks 以「书库」和「精选集」的形式来对书籍进行管理，「书库」中的书籍就是你拥有的所有书籍。「精选集」则是自己对分类，一本书籍可以被归类到不同的「精选集」中。这种分类方式类似于 Apple Music 中「资料库」和「播放列表」的关系。在「书库」中，iBooks 还会自动将书籍按照「图书」、「有声书」、「PDF」、「作者」、「类别」等几种不同的方式进行一个简单的分类。</p>
-<figure data-type="image" tabindex="2"><img src="https://AndyLuoJJ.github.io/post-images/1580205571927.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1580205571927.png" alt="" loading="lazy"></figure>
 <p>iOS / iPadOS 端的 iBooks 应用界面经过了全新的设计，与其他 Apple 自带的 App 设计风格相近，可以方便地实现书籍的排序、切换视图、编辑等操作。</p>
-<figure data-type="image" tabindex="3"><img src="https://AndyLuoJJ.github.io/post-images/1580205592463.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1580205592463.png" alt="" loading="lazy"></figure>
 <p>在桌面端和移动端的 iBooks 中都能够直接看到书籍是被保存在云端还是保存在本地，有一朵云的书籍就是仅保存在云端上的，没有的就是保存在本地。</p>
 <h3 id="书籍阅读">书籍阅读</h3>
 <p>iBooks 能够识别到的书籍文件格式包括 .pdf、.epub 和 .ibooks，其中 .ibooks 是 Apple 自己设计的书籍文件格式，可以包含除了文本和图片以外的多媒体内容，例如视频、音频等，Apple 自家的教程绝大多数都是这个格式的。.ibooks 格式的电子书非常适合用来制作教学材料，能够让读者从多方面对要学习的内容有更加深刻的印象，例如 Apple Teacher 中的学习资料都是 .ibooks 格式的文件，在教程中包含大量文本以外的信息，使得学习的过程更加生动有趣。.pdf 和 .epub 则是目前比较主流的电子书格式，在 macOS 上默认使用「预览.app」打开 PDF 文件，使用内置的阅读器打开 EPUB 文件，而在移动端则都是用内置的阅读器打开 PDF 和 EPUB 文件。</p>
 <p>在 iBooks 中打开书籍，就进入到书籍的阅读界面。移动端和桌面端的 iBooks 阅读界面都非常的清爽、简洁，最大限度地保留了书籍的内容，其他的功能则是缩到角落的位置，在需要的时候可以使用。常规的设置包括调整背景色、改变字体字号、调整亮度等。</p>
-<figure data-type="image" tabindex="4"><img src="https://AndyLuoJJ.github.io/post-images/1580206483990.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1580206483990.png" alt="" loading="lazy"></figure>
 <p>macOS 端点击「显示」可以选择单页或双页阅读。</p>
-<figure data-type="image" tabindex="5"><img src="https://AndyLuoJJ.github.io/post-images/1580206708812.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1580206708812.png" alt="" loading="lazy"></figure>
 <p>iPad 上可以选择滚动显示或翻页显示，如果是翻页显示的话，iPad 竖屏时为单页阅读，横屏时为双页阅读。</p>
 <p>iBooks 的阅读器与其他大多数的阅读软件差别并不大（毕竟这是一个阅读器的基本素质），在较小尺寸的 iPhone 上进行阅读可能会觉得屏幕有点小，适当增大字号会看的没那么累；在 iPad 和 MacBook 就非常舒服了，「大屏幕 + 良好的屏幕素质」使读书这件事在 iPad 和 MacBook 上有着非常好的体验。</p>
 <h3 id="阅读记录同步">阅读记录同步</h3>
 <p>有时候，我们在电脑上阅读一本书籍，但是希望在通勤的路上能够用手机或平板继续阅读。iBooks 能够自动同步不同设备对同一本书籍的阅读进度，让用户的阅读体验更加一直、连贯。这一功能的启用不需要其他的设置，在完成了前面的基本设置后就能够享受到 iBooks 自动同步阅读进度的便利了。这一点相比于其他的阅读器来说不失为一个亮点，就我所知，第三方阅读器在跨设备同步阅读进度上的表现远没有 iBooks 好，大部分只能通过添加书签的方式来间接同步阅读进度。</p>
 <h3 id="标注系统">标注系统</h3>
 <p>俗话说「好记性不如烂笔头」，在阅读的时候往往需要对书上有感而发的内容进行标注，在下次翻开书籍的时候能够提醒自己。macOS 端的 iBooks 能够对 .epub 和 .ibooks 格式的文件进行比较丰富的标注，而 PDF 则可以利用「预览」打开进行标注。对于 .epub 和 .ibooks，在 macOS 端选中文本就会弹出标注框，能够添加 5 种颜色的标记和下划线标记。除了标记以外，还能够对标记的内容添加笔记，方便记录自己的想法。</p>
-<figure data-type="image" tabindex="6"><img src="https://AndyLuoJJ.github.io/post-images/1580206721423.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1580206721423.png" alt="" loading="lazy"></figure>
 <p>在 iPadOS 端，用手指长按选中文本，选择「重点」就能够对文本内容进行标记，基本操作与 macOS 端的相同。如果是使用 Apple Pencil 的话，直接用笔在文本上面拖移就能够进行标注，后续可以修改标注的样式，非常方便。</p>
-<figure data-type="image" tabindex="7"><img src="https://AndyLuoJJ.github.io/post-images/1580206731767.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1580206731767.png" alt="" loading="lazy"></figure>
 <p>在标注系统方面，iBooks 为我们提供了多种标注样式，能够对书籍进行丰富的标注，并且能够。在本文后续的讨论中会进一步介绍 iBooks 的笔记系统。值得注意的是，标注的目的是帮助我们对书的内容进行更加清晰的分类，因此最好有一套属于自己的标注系统，例如橙色表示「定义」、绿色表示「做法」、红色表示「重点」等，这样标注后的内容才不会显得很乱。</p>
 <h3 id="笔记与学习">笔记与学习</h3>
 <p>在对书本内容进行标注后，可以对标注的内容添加笔记，在移动端和桌面端都能够进行添加笔记的操作。</p>
-<figure data-type="image" tabindex="8"><img src="https://AndyLuoJJ.github.io/post-images/1580206739961.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="8"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1580206739961.png" alt="" loading="lazy"></figure>
 <p>在 iPad 上，选择标记好的内容，弹出框的第三个、像一个便签纸的图标就是添加和编辑笔记的按钮，添加完的笔记可以在「查看目录」中选择相应的选项卡进行查看。</p>
-<figure data-type="image" tabindex="9"><img src="https://AndyLuoJJ.github.io/post-images/1580206757083.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="9"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1580206757083.png" alt="" loading="lazy"></figure>
 <p>在 iBooks 中点击放大镜能够对书本内容和笔记内容进行检索，输入关键字就能够查找到与之相关的内容了。笔记的内容会通过 iCloud 自动同步到不同的设备上，这进一步提升了不同设备之间的协作性。</p>
 <p>在笔记功能的基础上，macOS 端的 iBooks 还提供了一个非常实用的学习功能——学习卡。在笔记面板中，点击左上方的「学习」就可以对笔记内容进行学习。学习卡的正面是在书本中标记的内容或者 .ibooks 中提供的「词汇表词汇」，背面是对标记内容的笔记或者 .ibooks 中提供的对「词汇表词汇」的解释。<br>
-<img src="https://AndyLuoJJ.github.io/post-images/1580206777433.png" alt="" loading="lazy"></p>
-<figure data-type="image" tabindex="10"><img src="https://AndyLuoJJ.github.io/post-images/1580206768505.png" alt="" loading="lazy"></figure>
+<img src="https://andy_luo.gitee.io/blog_image_bed/img/1580206777433.png" alt="" loading="lazy"></p>
+<figure data-type="image" tabindex="10"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1580206768505.png" alt="" loading="lazy"></figure>
 <p>在学习卡界面的右上方可以设置「打乱学习卡」和「筛选学习卡」，可以选择不同是否显示「词汇表词汇」和显示哪些标注样式的内容。结合前面介绍的不同标注样式，在对不同的标注样式有自己的一套定义之后，就能够针对自己的实际情况——是对「定义」不熟悉还是「怎么做」不熟悉——通过学习卡筛选出自己薄弱的部分，并有针对性地进行二次复习，</p>
 <p>通过「学习」功能，我们能够对书本内容进行更进一步的学习，以学习卡的形式来检验自己对书籍内容的掌握程度。比较遗憾的是，学习功能仅适用于 macOS 端的 iBooks，iOS / iPadOS 的 iBooks 暂时没有这个功能，希望 Apple 能够在后续版本中提供对学习卡功能的支持吧。</p>
 <h3 id="ios-13-新引入的功能阅读目标">iOS 13 新引入的功能——阅读目标</h3>
 <p>在 iOS 13 / iPadOS 中，iBooks 添加了「阅读目标」的功能，可以设置每天的阅读时间，督促自己进行阅读。要启用这个功能，首先需要在「设置」-&gt;「图书」中开启「阅读目标」；如果希望阅读 PDF 的时间也计入其中的话，还需要开启下面的「包括 PDF」。</p>
 <p>设置完成后，iBooks 就能够帮助我们记录阅读时长。可以在 iBooks 中调整每天的阅读时长，也可以分享自己的每天的阅读进度。阅读目标在多个设备上是累积统计的，即总的阅读时长等于在各个设备上的阅读时长的总和。坚持记录自己的阅读时间，在下一次年度总结的时候也可以用来衡量一下自己年初定下的目标是不是实现了呢。</p>
-<figure data-type="image" tabindex="11"><img src="https://AndyLuoJJ.github.io/post-images/1580206784321.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="11"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1580206784321.png" alt="" loading="lazy"></figure>
 <h2 id="与其他阅读方式的对比">与其他阅读方式的对比</h2>
 <p>如今，纸质书和电子阅读二分天下，分别有各自的拥护者。下面我对几种目前常见的阅读方式进行一个简单的对比，仅代表我自己的主观感受。</p>
 <h3 id="ibooks-vs-纸质书">「iBooks」 V.S. 「纸质书」</h3>
@@ -219,7 +219,7 @@
 </table>
 <h2 id="软件特色">软件特色</h2>
 <p>Zotero 是一款免费开源的全平台文献管理软件，提供 Windows、macOS、Linux 三大操作系统的客户端下载，并且兼容 macOS Catalina。比较可惜的是 Zotero 没有官方的移动端应用，也没有内置 PDF 阅读器，但是换来的是更加轻便和自由的体验。</p>
-<figure data-type="image" tabindex="1"><img src="https://AndyLuoJJ.github.io/post-images/1579152052654.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1579152052654.png" alt="" loading="lazy"></figure>
 <p>作为一款开源软件，Zotero 的 UI 设计只能说是中规中矩吧，通过图标来表示不同的功能选项，简单明了。</p>
 <h2 id="安装与使用方法">安装与使用方法</h2>
 <p>软件安装非常简单，直接在 <a href="https://www.zotero.org">Zotero 官网</a>下载对应版本的安装包即可。Mac 端下载的是常见的 DMG 文件，双击加载后将应用拖拽到「应用程序」目录下即可。</p>
@@ -229,7 +229,7 @@
 <p>值得注意的是，<em>分类并不对应硬盘中的实际目录</em>。一份文献可以同时存在于多个不同分类中，但是它们都是对应于同一个 PDF 文件的。对于已经存在于某个分类中的文献，如果将它拖拽到另一个分类中，就会在新的分类下把这个文献添加进去。也就是说，Zotero 的分类系统并不是单纯的树形关系，更像是在给文献打标签，一篇文献可以有多个标签，即一份文献可以存在于多个分类中。</p>
 <h3 id="创建文献引用">创建文献引用</h3>
 <p>在引用参考文献的时候，需要根据一定的格式对参考文献进行引用标注。手动一个一个输入的效率非常低，并且极易出错，而 Zotero 能够帮助你创建符合规范的引用格式。右键单击想要创建引用的文献，选择「由所选条目创建引文目录」，就会弹出对话框：</p>
-<figure data-type="image" tabindex="2"><img src="https://AndyLuoJJ.github.io/post-images/1579152091981.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1579152091981.png" alt="" loading="lazy"></figure>
 <p>Zotero 内置了不少的引用样式，可以点击「管理样式...」添加新的样式，并且支持自定义样式，通过编辑 XML 文件模板就能够创建自己想要的样式了。选择好想要用的样式后，可以选择将样式导出为 RTF、HTML 或复制到剪贴板。经实测，Zotero 自带的样式管理功能还是比较弱，但是相信在开源社区有功能更加丰富的插件可以选择。</p>
 <blockquote>
 <p>当然，Google 学术也提供了类似的功能。</p>
@@ -243,27 +243,27 @@
 <li>部分 PDF 文件无法导入元数据，大部分原因是 PDF 自身没有元数据，PDF 以外的格式的文件通常也是无法被 Zotero 识别到的。</li>
 <li>无法通过文献所在的文件夹来区分文献的类别。Zotero 储存 PDF 文件的路径是 ~/Zotero/storage，在该目录下的文件夹名称都是有数字和字母组成的字符串，而并不是我们在 Zotero 中创建的分类的名字，因此想要在这个目录下面找到自己想要的文献几乎是不可能的。</li>
 </ol>
-<figure data-type="image" tabindex="3"><img src="https://AndyLuoJJ.github.io/post-images/1579152126827.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1579152126827.png" alt="" loading="lazy"></figure>
 <p>第一个问题能够通过手动添加文献信息勉强解决，但是第二个问题，对于想要在 iPad 上阅读文献的我来说，着实是一个不好解决的问题。好在，我发现了一个强大的插件——ZotFile。</p>
 <h1 id="zotfile强大的-zotero-文件管理插件">ZotFile——强大的 Zotero 文件管理插件</h1>
 <h2 id="功能与特点">功能与特点</h2>
 <p>ZotFile 是一个 Zotero 的插件，能够实现文件夹/文件重命名、将文件发送到另一个位置等功能。它解决了上面提到的 Zotero 文件夹名称无法辨识的问题，使得我们的文件能够按照我们的分类进行重命名，并发送到另外一个位置上。这样，在 iPad 中就可以通过新的位置来读取到文献的 PDF 文件，在标注完成后，可以通过 ZotFile 取回标注后的 PDF 文件，覆盖电脑上的文件，从而实现桌面端和移动端的联动。</p>
 <h2 id="安装与设置">安装与设置</h2>
 <p>在 <a href="http://zotfile.com">ZotFile 官网</a>下载插件后，打开 Zotero，在「工具」-&gt;「插件」中，点击右上角的齿轮，选择「Install Add-on From File...」，选择下载好的插件压缩包，即可完成 ZotFile 的安装。</p>
-<figure data-type="image" tabindex="4"><img src="https://AndyLuoJJ.github.io/post-images/1579152159604.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1579152159604.png" alt="" loading="lazy"></figure>
 <p>安装完成后，在「工具」中可以看到多了一个「ZotFile Preferences...」的选项，点击可以对 ZotFile 进行设置，总共有四个选项卡：</p>
 <ul>
 <li>General Settings：ZotFile 可以在一个指定的目录内容发生变化的时候，将新的文件自动导入到 Zotero 中。可以专门设置一个文件夹作为中转站，将要导入的文献放进去，ZotFile 就会自动将文献导入到 Zotero 中。</li>
 </ul>
-<figure data-type="image" tabindex="5"><img src="https://AndyLuoJJ.github.io/post-images/1579152150228.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1579152150228.png" alt="" loading="lazy"></figure>
 <ul>
 <li>Tablet Settings：ZotFile 可以将文献发送到一个指定的目录中，同时还可以将文献取回来。我们需要勾选「Use ZotFile to send and get files from tablet」，并在「Base Folder」处选择一个文件夹，这个文件夹就是 ZotFile 发送文献的目标位置。为了让这个位置能够被 iPad 读取到，我将它设置成了 iCloud 中的一个目录。最后需要选择的选项是「Create subfolders from zotero collections」，在发送到目标位置后根据文献在 Zotero 分类中的位置创建子文件夹，方便根据自己在 Zotero 中的分类情况来管理文献；「Rename files when they are sent to the tablet」，对原 PDF 进行重命名；「Automatically extract annotations when getting PDFs back from tablet」，自动提取在 iPad 上对文献的标注内容。</li>
 </ul>
-<figure data-type="image" tabindex="6"><img src="https://AndyLuoJJ.github.io/post-images/1579152172620.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1579152172620.png" alt="" loading="lazy"></figure>
 <ul>
 <li>Renaming Rules：设置 ZotFile 在发送至目标位置时对原 PDF 文件进行重命名的规则。在网上下载到的 PDF 文件名往往凌乱不堪（尤其是从 arXiv 上下载到的文献），如果有需要的话，可以通过 ZotFile 对文件名进行自动重命名。ZotFile 可以针对专利和专利以外的文件区分不同的命名方式，具体的占位符格式需要参考 ZotFile 的文档。这里我设置的是「文献题目 - 作者」的格式，这样比较方便在同一分类下快速找到自己想要看的文献。</li>
 </ul>
-<figure data-type="image" tabindex="7"><img src="https://AndyLuoJJ.github.io/post-images/1579152177782.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1579152177782.png" alt="" loading="lazy"></figure>
 <ul>
 <li>Advanced Settings：高级设置，普通使用下一般无需理会。</li>
 </ul>
@@ -271,16 +271,16 @@
 <p>下面简单介绍一下我是如何利用「Zotero + ZotFile + iCloud」的组合来实现文献阅读任务在 iPad 与 Mac 之间的联动的。</p>
 <h2 id="桌面端进行文献保存和管理">桌面端进行文献保存和管理</h2>
 <p>桌面端负责的是文献收集、保存与管理，在网络上搜索并下载文献后，拖拽到 Zotero 中保存，并创建自定义分类进行分类管理。我自己的习惯是按照文献的主题进行分类，具体方向再进行二次分类，另外在 arXiv 上看到但是没有正式发表的文献单独创建一个新的分类。在文献的备份方面，我将 Zotero 的默认文件保存路径修改为 OneDrive 上的目录，通过云盘进行备份，手动修改 Zotero 默认的文件存储路径的方式为：「首选项」-&gt;「高级」-&gt;「文件和文件夹」-&gt;「数据存储位置」。这里建议的操作是将原来的默认文件夹复制一份到想要切换的目录，然后在首选项中更改路径就可以了，原来的默认文件夹可以删除。</p>
-<figure data-type="image" tabindex="8"><img src="https://AndyLuoJJ.github.io/post-images/1579152239572.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="8"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1579152239572.png" alt="" loading="lazy"></figure>
 <p>实测 OneDrive 的传输速度还是可以的，Zotero 的数据库会时常发生变动，通过 OneDrive 就能够对文献进行实时备份了，再也不用担心电脑故障导致辛苦收集的文献全部丢失的问题了。</p>
 <h2 id="移动端进行文献阅读">移动端进行文献阅读</h2>
 <p>移动端负责的是文献阅读与标注，在 Zotero 完成文献的管理后，将想看的文献发送到 iPad 上进行阅读，完成 ZotFile 的设置后，对于我们想要发送到 iPad 上的文献，右键单击，依次选择「Manage Attachments 」-&gt;「Send to subfolders on tablet」，就能够将文献按照其在 Zotero 自定义分类中的情况，创建相应的子文件夹，发送到先前设定到的目标位置。</p>
-<figure data-type="image" tabindex="9"><img src="https://AndyLuoJJ.github.io/post-images/1579152321819.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="9"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1579152321819.png" alt="" loading="lazy"></figure>
 <p>这里其实还有一个选项，直接就是「Send to tablet」，这个选项只会将 PDF 文件发送过去，而不会创建子文件夹，对于一些临时看的文献可以选择该选项。我选择将文献发送到 iCloud 的一个文件夹中，便于在 iPad 上进行访问。发送完成后，可以在 Zotero 的侧边栏发现新增了两个分类，分别为「Tablet Files」和「Tablet Files (modified) 」，前者里面放的就是我们发送到平板上的所有文件（其实这也是类似于打标签）。</p>
 <p>发送到 iPad 后，就可以利用各种 PDF 阅读器对文献进行标注。自带的「文件」能够进行简单的批注，实际上手时也发现足够自己使用了，但是有一个我个人不太喜欢的问题，就是「文件」会挡住文献的右边缘，不利于充分利用空间。为了尽可能模拟在纸张上阅读文献的感觉，我找到了一个叫做「PDF Viewer」的免费软件，解决了边缘空白无法利用的问题。</p>
 <p>在 iPad 上完成文献的阅读后，进入 Zotero，在「Tablet Files」分类中找到想要取回的文献，右键单击，依次选择「Manage Attachments 」-&gt;「Get from Tablet」，就可以将标注后的 PDF 文件重新取回到 Zotero 的文件存储位置，并覆盖原来的文件，使得标注的内容得以同步。标注后的 PDF 文件体积通常会变大不少。</p>
 <p>软件设置好了以后，硬件也得设置好。Apple Pencil 抓着容易打滑，并且书写还是有一定的声音的，于是我就加了两个笔套：</p>
-<figure data-type="image" tabindex="10"><img src="https://AndyLuoJJ.github.io/post-images/1579152284034.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="10"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1579152284034.jpg" alt="" loading="lazy"></figure>
 <p>笔尖套是淘宝上十几块钱十个的，防滑套是从晨光笔上弄下来的😂。</p>
 <h1 id="one-more-thing关于-marginnote">One More Thing——关于 MarginNote</h1>
 <h2 id="对-marginnote-的评价">对 MarginNote 的评价</h2>
@@ -306,15 +306,15 @@
         <content type="html"><![CDATA[<p>Unexpected 2019</p>
 <p>这是我在 2018 年底完全不会预想到的一年</p>
 <p>还算顺利地完成本科毕设，熬过了线性系统，开始了研究生阶段的学习。本科的小伙伴们都各自为了自己的梦想在努力拼搏，希望大家以后能保持联系😊</p>
-<figure data-type="image" tabindex="1"><img src="https://AndyLuoJJ.github.io/post-images/1579079123441.JPG" alt="最帅的时刻估计就是停留在毕业照了" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1579079123441.JPG" alt="最帅的时刻估计就是停留在毕业照了" loading="lazy"></figure>
 <p>很幸运地获得了 WWDC Scholarship，认识来自世界各地的开发者们，在 San Jose 共度全球 iOS 开发者的“春晚”🎉还认识了很多志同道合的伙伴，WWDC 结束之后也还有联系，大家一起加油😄，各位大佬们带带小弟（主要还是自己菜）</p>
-<figure data-type="image" tabindex="2"><img src="https://AndyLuoJJ.github.io/post-images/1579079143541.JPG" alt="大中华区的Scholars" loading="lazy"></figure>
-<figure data-type="image" tabindex="3"><img src="https://AndyLuoJJ.github.io/post-images/1579079164087.JPG" alt="大家一起加油哇" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1579079143541.JPG" alt="大中华区的Scholars" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1579079164087.JPG" alt="大家一起加油哇" loading="lazy"></figure>
 <p>非常高兴能够有机会参加各个高校的 iOS Club 学生沙龙活动，和同学们分享一下自己的经历。其实吧我感觉好像也没有什么好分享的😂自己也是个普普通通的大学生（主要还是自己菜x2），也很羡慕能够奖项和 paper 拿到手软的各种大神，希望自己在接下来的一年也能做出能让自己满意的成果吧🤗</p>
-<figure data-type="image" tabindex="4"><img src="https://AndyLuoJJ.github.io/post-images/1579079193603.JPG" alt="第一次参加的iOS Club沙龙活动" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1579079193603.JPG" alt="第一次参加的iOS Club沙龙活动" loading="lazy"></figure>
 <p>在江门市中心医院认识了宝哥、业航、昌林还有医院的师兄师姐，一起度过了一段很开心很有意义的研究生活。两位桂林片王有空去找你们玩或者你们来广州我好好招待你们😃还有机会见面的😎</p>
 <p>下图就当作是今年给自己的奖励啦😝穷苦学生觉得 iPad 2019 已经足够满足自己要求了，吃性能和屏幕的任务还是交给 MacBook 和 iPhone 处理比较合适，iPad 就安安静静地做好一个深度阅读器吧！</p>
-<figure data-type="image" tabindex="5"><img src="https://AndyLuoJJ.github.io/post-images/1579079200141.JPG" alt="心心念的iPad" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1579079200141.JPG" alt="心心念的iPad" loading="lazy"></figure>
 <p>可能算今年是一个人生的关键点吧。2020加油啦💪</p>
 ]]></content>
     </entry>
@@ -366,19 +366,19 @@
 <p>「办公套件」已经不是办公人员的专属了——无论是财务人员、行政人员、办公室白领，抑或是在校学生，都有「制作一份不错的文档<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>」这一需求。在这个计算机如此普及的时代，掌握制作文档的能力可以说是一个不可或缺的技能：一份结构清楚的报告能够向你的上级展现出自己的工作态度，同时也能帮助自己对手头上的工作有一个清晰的认识和规划；一份图文并茂的表格或许能够直观地反映出大数据中蕴藏的商机，从而挖掘出新的用户痛点；一份生动的演示文稿能够向客户展现出产品的特色与优势，为公司在客户中留下一个良好的印象。对于学生来说，完成课程论文、分析实验数据、做好自我介绍等，这些任务不但要求他们对自己「要做什么」有一个清晰的认识，还要求他们知道「要怎么做」才能够达到事半功倍的效果。可以说，制作文档的需求存在于每一个使用计算机的用户上。</p>
 <p>俗话说「工欲善其事，必先利其器」，要想制作出令人赏心悦目的文档，一套趁手的办公套件是必不可少的——你总不能指望自己能够通过记事本和图片浏览器就能够在规定的时间里完成一份合格的文档吧。目前市面上常见的办公套件选择主要包括以下几种：Microsoft Office、金山 WPS、Apple iWork、开源解决方案、其他。</p>
 <h3 id="microsoft-office">Microsoft Office<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></h3>
-<figure data-type="image" tabindex="1"><img src="https://AndyLuoJJ.github.io/post-images/1570350292703.jpg" alt="Microsoft Office" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1570350292703.jpg" alt="Microsoft Office" loading="lazy"></figure>
 <p>大名鼎鼎的微软 Office，办公套件一把手，旗下的 Word、Excel 和 PowerPoint 三件套已经成为了事实上的行业标准，其余所有的办公套件都需要兼容其格式。除了三件套以外，Outlook 是一款不错的邮件客户端，OneNote 是数字笔记本的翘楚，OneDrive 为广大用户带来了云盘的新选择。随着 Office 365 的推出，其平易近人的价格和得天独厚的多平台同步优势，使其受欢迎程度只增不减。</p>
 <p>macOS 下同样有对应版本的 Microsoft Office，并且随着版本的更迭，Windows 和 macOS 下制作出来的 Office 文档的兼容性在逐步提高，旧版本中可能存在的一些排版问题，在新版本中或许已经不复存在了。当然排版问题在不同版本之间的 Office 之间就已经存在了的，如果对于格式有一定要求的话，建议采用 PDF 格式在不同平台之间传输。</p>
 <h3 id="金山-wps">金山 WPS<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup></h3>
-<figure data-type="image" tabindex="2"><img src="https://AndyLuoJJ.github.io/post-images/1570350266253.jpg" alt="金山 WPS" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1570350266253.jpg" alt="金山 WPS" loading="lazy"></figure>
 <p>同样大名鼎鼎的金山 WPS~~（虽然更多的是因为它的广告）~~，据闻在微软进入中国市场之前垄断了中国的办公套件，并且拥有雷总的技术加持，金山 WPS 在今天依然受到不少人的青睐。可以说，除了 Microsoft Office 本身以外，金山 WPS 是对微软文档格式兼容得最好的一个办公套件，基本上在文本内容和格式上都不会有太大的差异，并且得益于会员制度，金山为用户提供了大量的模板，使得软件的易用程度又上升了一个台阶。</p>
 <p>macOS 版本的 WPS 在 2019 年推出了正式版并上架 Mac App Store，在未登录金山账号的情况下对文档只读，并且会经常提示「登录账号以使用更多功能」，登录账号及加入会员计划后能够解锁更多功能。</p>
 <h3 id="iwork">iWork<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup></h3>
-<figure data-type="image" tabindex="3"><img src="https://AndyLuoJJ.github.io/post-images/1570350232646.jpg" alt="iWork" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1570350232646.jpg" alt="iWork" loading="lazy"></figure>
 <p>为了能够在自家平台上吸引更多的用户，与竞争（微）对手（软）形成对峙的局面，Apple 开发了自家的 iWork 套件，旗下的 Pages、Numbers 和 Keynote 分别对标 Microsoft Office 的 Word、Excel 和 PowerPoint。在 2013 年 9 月 11 日 iPhone 5s、5c 发布会上，苹果表示 iWork 套件将针对新购买苹果设备的用户开放免费下载，这对于用户来说不失为一个天大的好消息。对于不少关注 Apple 的人来说，Keynote 是其中名气最大的一款软件，毕竟这是 Apple 开发布会的御用幻灯片制作软件，黑白渐变的主题也成为了苹果的一个标志。随着版本的更迭，iWork 的使用体验在逐步上升，对于一些并不过于复杂的任务已经是足够使用的了。</p>
 <p>iWork 套件拥有在线版本，可以在 iCloud 网页版中对文档进行查看、编辑操作，就算没有 Mac 也能够在浏览器中体验到 iWork 套件的魅力啦。</p>
 <h3 id="开源解决方案">开源解决方案<sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup></h3>
-<figure data-type="image" tabindex="4"><img src="https://AndyLuoJJ.github.io/post-images/1570350312916.jpg" alt="LibreOffice" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1570350312916.jpg" alt="LibreOffice" loading="lazy"></figure>
 <p>如果想要使用正版办公套件，又苦于经济成本或平台限制，抑或者希望能够自己对软件的功能作出代码级别的修改，那么开源方案是一个不错的选择。在众多的开源办公套件中，LibreOffice 是笔者认为做得比较不错的，这也是内置在 Ubuntu 系统中的一个默认办公套件。在对标 Microsoft Office 上，LibreOffice 拥有 Writer、Calc、Impress，对于一般的文档编辑任务还是能够胜任的，但是在文件格式的兼容上面还有进步的空间。并且，LibreOffice 还加入了 Draw、Base 和 Math 三个新的功能，能够完成绘图、数据库管理和公式编辑的工作，对于有这方面简单需求的用户来说还是一个不错的选择。</p>
 <h3 id="其他">其他</h3>
 <p>当然，除了前面介绍的办公套件以外，还可以自行寻找满足需求的软件，构成属于自己的工作流。由于可能涉及到比较多小众的软件，在这里就不多介绍了，读者可以自行在各大搜索引擎中进行搜索相关领域的软件。</p>
@@ -387,28 +387,28 @@
 <h3 id="pages">Pages</h3>
 <p>Pages 对标 Microsoft Office Word，是 iWork 办公套件中的富文本编辑软件。</p>
 <p>和大多数的文字处理软件一样，Pages 是一款「所见即所得」的软件，用户在文档中对文字内容、格式作出的任何改变都会直接影响到文档的最终效果，例如对文字的加粗、下划线等。Pages 在操作上与 Word 相差不多，用户可以方便地在右边的格式面板中对文档的格式、布局等作出修改，并在主编辑面板进行文字的编辑。</p>
-<figure data-type="image" tabindex="5"><img src="https://AndyLuoJJ.github.io/post-images/1570350338244.jpg" alt="Pages 界面" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1570350338244.jpg" alt="Pages 界面" loading="lazy"></figure>
 <p>除了文字以外，在 Pages 中还能插入各种各样的对象，例如图片、视频、形状、表格等，使文档不仅仅是文字的堆砌，增加文档的可读性。除了传统的文字输入外，Pages 还支持插入文本框，改变文本的线性排列结构。得益于这一点，Pages 甚至能够完成海报的制作，结合内置的模板，能够帮助用户快速完成文档的制作。</p>
 <p>对于不依赖于模板的文档编辑任务，Pages 能够非常方便、快速地制作出一份符合要求的文档。在我的研究生学习生活中，曾经用 Pages 完成了「线性系统理论」课程的所有书面作业，由于这门课的作业对格式并没有太多的要求，因此使用 Pages 能够帮助我快速完成格式排版，包括列表、图片插入、公式编辑等。使用「段落格式」功能能够快速设置文本的段落层次，使文章的结构一目了然，同时有利于文章目录的制作，在这一点上我认为 Pages 的易用性和用户友好度是高于 Word 的。</p>
-<figure data-type="image" tabindex="6"><img src="https://AndyLuoJJ.github.io/post-images/1570350378242.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1570350378242.jpg" alt="" loading="lazy"></figure>
 <p>在写作业的过程中，不可避免地会遇到需要插入公式的场合。在 Word 中有内置的公式编辑器及第三方的 MathType 可以辅助公式编辑的任务，MathType 也有对应的 Mac 版本。然而，使用 Pages 内置的 LaTeX 公式编辑器同样能够编辑出非常漂亮的公式。选择「插入」-&gt;「方程」即可开始一条公式的编辑，Pages 使用 LaTeX 的语法对公式进行渲染，并且<strong>不需要</strong>额外安装 LaTeX 编译器，一切的渲染任务在 Pages 内部就能够完成。</p>
-<figure data-type="image" tabindex="7"><img src="https://AndyLuoJJ.github.io/post-images/1570350388245.jpg" alt="Pages 公式编辑" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1570350388245.jpg" alt="Pages 公式编辑" loading="lazy"></figure>
 <p>在移动端上，Pages 与桌面端的差异不大，但为了适配移动端的屏幕大小，不少的功能都被隐藏在了二级菜单中，并且是以图标的形式展现出来的，不熟悉图标的话可能需要多尝试几次才能够知道图标所对应的功能。总体来说，在移动端更适合完成简单的文本编辑和浏览的任务，对于文字格式和布局的调整工作还是建议在桌面端上进行，比较方便。</p>
 <h3 id="numbers">Numbers</h3>
 <p>Numbers 对标 Microsoft Office Excel，是 iWork 办公套件中的数据处理软件。</p>
 <p>相比于 Excel，Numbers 在使用上更加符合普通用户的习惯，常用的功能都已经有相应的实现，只需要。与 Pages 相同，Numbers 同样支持在表格文档中插入其他类型的对象，如文本框、形状、媒体文件等，使表格能够包含更多的信息，这一点在 Excel 中实现元没有 Numbers 简单易用。</p>
 <p>尤其是在公式编辑的时候，在单元格中输入 = 号就能开始公式的编辑，并且在右边的面板中会显示内置的常用公式及对应的说明、注释与示例，帮助用户根据自己的需求选择合适的公式。当然，你也能够编写自己的公式来适应实际的工作需求。在单元格的引用方面，Numbers 同样支持工作表<strong>内</strong>及工作表<strong>间</strong>的数据引用，方便用户对数据作进一步的处理。</p>
-<figure data-type="image" tabindex="8"><img src="https://AndyLuoJJ.github.io/post-images/1570350408904.jpg" alt="Numbers 公式编辑界面" loading="lazy"></figure>
+<figure data-type="image" tabindex="8"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1570350408904.jpg" alt="Numbers 公式编辑界面" loading="lazy"></figure>
 <p>为了充分发挥 iCloud 的同步优势<s>并且懒得多装一个 App</s>，我选择使用 Numbers 对每月的开支情况进行记录。在 Numbers 的内置模板中有一个「个人预算」的模板，能够对支出的种类、金额和时间进行记录，并用图表的方式统计各个类别的支出情况，并且可以设置预算，从而对自己的支出情况进行管理和控制。在这个记账本中就利用了工作表间的数据引用，「预算」工作表引用了「交易」工作表的数据，将每个类别的支出金额进行合计，并在「预算」工作表中绘制饼图反映各类别的支出占比，提醒自己可以在哪些方面减少自己的开支。</p>
-<figure data-type="image" tabindex="9"><img src="https://AndyLuoJJ.github.io/post-images/1570350424912.jpg" alt="Numbers 记账本" loading="lazy"></figure>
+<figure data-type="image" tabindex="9"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1570350424912.jpg" alt="Numbers 记账本" loading="lazy"></figure>
 <p>对于「记账」这一应用场景，我习惯每当自己花钱的时候，就在手机上记录下这一笔交易，然后在电脑上查看当天的消费 情况，并对自己接下来的开支有一个初步的规划。虽然暂时还没能通过记账发现自己不合理的消费情况，但是养成记账的习惯起码能够知道「自己的钱有没有花在刀刃上」，帮助自己逐渐养成理财的意识和习惯。</p>
 <p>相比于 Excel 来说，Numbers 确实还存在很多可以提升的地方，对于专业的数据处理任务来说 Numbers 还是难以胜任的，但是对于普通的任务来说，Numbers 已经游刃有余了。</p>
 <h3 id="keynote">Keynote</h3>
 <p>Keynote 对标 Microsoft Office PowerPoint，是 iWork 办公套件中的演示文稿软件。</p>
 <p>幻灯片的制作可不是简单的「文字 + 图片」的机械组合，而是需要将各个元素有机地结合在一起，设计出具有美感的幻灯片。Keynote 希望用户更关注幻灯片元素之间的美妙组合，而不是把时间浪费在「寻找某个功能的按钮」上。Keynote 强大的对齐工具能够帮助用户快速对文本、图片等内容进行对齐，而在这一点上 PowerPoint 的表现就差一点了。除此之外，Keynote 的模板比 PowerPoint 更加人性化，如果只是进行一个简单的工作汇报，使用 Keynote 不仅省时省力，出来的效果还好，何乐而不为呢？</p>
-<figure data-type="image" tabindex="10"><img src="https://AndyLuoJJ.github.io/post-images/1570350438980.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="10"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1570350438980.jpg" alt="" loading="lazy"></figure>
 <p>Keynote 以其出色的动画效果而闻名，其中最强大的莫过于「神奇移动」这一动画效果，它能够平滑地移动前后两张幻灯片中的<strong>同一元素</strong>，对于文字，还可以选择「按字符」进行过渡的效果。Microsoft Office PowerPoint 直到 2016 的版本才出现了类似的动画效果，并且使用起来远没有 Keynote 简单，这应该是 iWork 办公套件中打赢的唯一一场对决吧。</p>
-<figure data-type="image" tabindex="11"><img src="https://AndyLuoJJ.github.io/post-images/1570350449629.jpg" alt="Keynote 动画效果选择" loading="lazy"></figure>
+<figure data-type="image" tabindex="11"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1570350449629.jpg" alt="Keynote 动画效果选择" loading="lazy"></figure>
 <p>在移动端上，当 iPhone 和 Mac 处在同一局域网连接下时，可以将 iPhone 当作翻页笔来使用，控制幻灯片的播放，以后再也不用担心演示现场没有翻页笔的问题啦。除了翻页以外，在 iPhone 上还能够显示激光、笔画等工具，比翻页笔的功能强大的多，在演示的时候能够让用户更加专注于演讲本身而不是幻灯片。毕竟，听众是来听你演讲的，不是来看你做的幻灯片的。</p>
 <h2 id="办公套件之外的">办公套件之外的</h2>
 <p>工具的使用最终取决于任务的需要。实际上，除了办公套件以外，还有很多优秀的软件能够满足我们对于文档编辑的要求，将这些软件组合起来，何尝不是一个属于自己的「办公套件」呢？</p>
@@ -485,7 +485,7 @@
 </li>
 </ol>
 <p>图解：<br>
-<img src="https://AndyLuoJJ.github.io/post-images/1568369292830.jpg" alt="" loading="lazy"></p>
+<img src="https://andy_luo.gitee.io/blog_image_bed/img/1568369292830.jpg" alt="" loading="lazy"></p>
 <h3 id="tips-for-file-system">Tips for file system</h3>
 <ol>
 <li>
