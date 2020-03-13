@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://AndyLuoJJ.github.io</id>
     <title>Andy的小书架</title>
-    <updated>2020-03-13T06:39:26.973Z</updated>
+    <updated>2020-03-13T09:12:28.749Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://AndyLuoJJ.github.io"/>
     <link rel="self" href="https://AndyLuoJJ.github.io/atom.xml"/>
@@ -10,6 +10,119 @@
     <logo>https://AndyLuoJJ.github.io/images/avatar.png</logo>
     <icon>https://AndyLuoJJ.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Andy的小书架</rights>
+    <entry>
+        <title type="html"><![CDATA[Numbers 表格——每个人都能做自己的统计学家]]></title>
+        <id>https://AndyLuoJJ.github.io/post/numbers-biao-ge-mei-ge-ren-du-neng-zuo-zi-ji-de-tong-ji-xue-jia/</id>
+        <link href="https://AndyLuoJJ.github.io/post/numbers-biao-ge-mei-ge-ren-du-neng-zuo-zi-ji-de-tong-ji-xue-jia/">
+        </link>
+        <updated>2020-02-17T04:05:31.000Z</updated>
+        <summary type="html"><![CDATA[<p>长文、多图预警。<br>
+知乎小透明一枚，居然有人翻牌让我深入写写 iWork 软件的使用教程🤣那么我就分三篇文章来写写 Pages、Numbers 和 Keynote 三款 Apple 平台办公软件的基础和进阶使用教程吧！</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>长文、多图预警。<br>
+知乎小透明一枚，居然有人翻牌让我深入写写 iWork 软件的使用教程🤣那么我就分三篇文章来写写 Pages、Numbers 和 Keynote 三款 Apple 平台办公软件的基础和进阶使用教程吧！</p>
+<!-- more -->
+<h2 id="我为什么把目光投向了-numbers">我为什么把目光投向了 Numbers</h2>
+<p>作为一名手持 Apple 全家桶的（伪）果粉，我认为 Apple 自家软件都有着不错的设计，抱着一种「能用自带的就避免下载第三方软件」的心态，我尝试着将 Apple 平台的自带软件充分利用起来。在 iPhone、iPad 和 Mac 上，Apple 已经为消费者提供了许多优秀的应用软件，使消费者在机器到手的时候就已经能够应付日常生活的各种任务了。</p>
+<p>回到文档制作这一主题上来，Microsoft Office 凭借着强大的功能，已然成为了业界标准，以至于现在大家已经把「给我一份文稿 / 表格 / 演示文稿」的说法变成了「给我一份 Word / Excel / PPT」了，可见 Office 的巨大影响力。然而，Office 为用户提供了功能非常强大的办公软件，却似乎并没有得到最充分的利用——大多数普通用户对于办公软件的需求并没有那么高，就像某个说法「80% 的用户用着软件 20% 的功能」。这么一来，有时候 Office 的高级功能对于轻度用户来说就比较复杂了，掌握它们也是一个时间成本比较高的事情。</p>
+<p>与微软相反，Apple 的 iWorks 办公套件更注重的是普通用户的使用体验，虽然在功能上可能不如 Microsoft Office 那么丰富和全面，但是对于日常使用和简单的进阶使用场景来说，我认为 iWorks 在使用上会比 Office 更加合理和人性化。本篇文章，我就和大家分享一下 iWorks 办公套件中的一员——「Numbers 表格」的一些使用心得。</p>
+<blockquote>
+<p>关于 Numbers 的官方指南和帮助，可以在应用的菜单栏「帮助」-&gt;「Numbers 表格帮助」处获得。另外，在 <a href="https://appleteacher.apple.com">Apple Teacher</a> 的学习资源网站中，也有关于 Numbers 的官方教程电子书，大家可以自行前往下载。</p>
+</blockquote>
+<h2 id="numbers-基础使用">Numbers 基础使用</h2>
+<p>本节介绍「Numbers 表格」的基础使用方法。</p>
+<h3 id="简单操作">简单操作</h3>
+<p>打开 Numbers，应用会显示对话框，让用户选择希望用 Numbers 打开哪个文件。点击左下角的「新建文稿」，会显示 Numbers 的模板选取器，里面包含了 Numbers 自带的多种内置模板，包括空白表格、核对清单、个人预算等常用的个人表格，甚至还包括了食谱、成绩簿、相关性项目等不同应用场景下的进阶模板，用户可以根据自己的需要选择合适的模板，就能够快速创建一份适合自己的表格。</p>
+<figure data-type="image" tabindex="1"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1581912400645.png" alt="Numbers 内置模板" loading="lazy"></figure>
+<p>此外，用户还能够自行设计表格，创建自己的表格模板。在完成模板的设计后，点击菜单栏「文件」-&gt;「存储为模板...」可以选择将当前文件保存为 Numbers 模板文件或者直接添加到模板选取器中，方便下次直接使用。</p>
+<figure data-type="image" tabindex="2"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1581912432169.png" alt="自定义 Numbers 模板" loading="lazy"></figure>
+<p>Numbers 的主界面比较简洁。最大的一块区域是表格的编辑区域，在此处进行表格文本内容的输入和编辑；上方是标题栏和工具栏，包括了一些快速操作的按钮，在工具栏空白处右键单击可以选择工具栏图表的显示方式和自定义工具栏，可以将自己比较常用的功能添加到工具栏中，提高工作效率；左侧是检查器面板，在选择了表格的内容后才会显示可用选项，主要包括对表格样式、文本样式、单元格样式的修改以及对表格数据的处理等。</p>
+<figure data-type="image" tabindex="3"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1581912451979.png" alt="Numbers 主界面" loading="lazy"></figure>
+<p>在需要对表格整列或整行进行操作的时候，可以直接选中列号（ABCDEFG...）或行号（1234567...），将鼠标指针放在列号或行号上，会显示出下拉菜单，并显示可以进行的操作；也可以在整列或整行上单击鼠标右键打开该功能。每行和每列的后面有一个「圆形 + 等号」的按钮，点击可以直接添加新的一行或一列。</p>
+<p>为了加快有规律性内容的输入，Numbers 提供了自动填充单元格的功能。选中某一个或某几个单元格后，选中区域的上下左右边框中间各有一个黄色的圆点，对圆点进行拖拽能够自动进行单元格的填充，填充的规律由 Numbers 自动确定，如果无法确定填充规律，Numbers 会对选中的内容进行复制。并且，可以自动填充的内容并不局限于数字，还可以是日期、字母等。</p>
+<figure data-type="image" tabindex="4"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1581912812238.png" alt="自动填充单元格" loading="lazy"></figure>
+<p>在录入了表格的内容后，选中需要修改样式的单元格，在右侧检查器面板中可以对选中的单元格进行修改，修改的内容包括表格边框、表格名称、单元格数据格式、单元格条件填充、文本样式等，具体的调整效果可以自己多试试，一个工作表中可以包含多个表格，同一工作表的多个表格通过其名称进行区分。</p>
+<p>在完成了表格的编辑和样式修改后，可以将文件以 .numbers 的格式保存在自己喜欢的路径，也可以另存为其他格式。点击菜单栏「文件」-&gt;「另存为...」，可以看到支持导出的格式包括 PDF、Excel、CSV 以及旧版本的 Numbers 文件格式，其中 PDF、Excel 和 CSV 都能够在 Windows 平台下打开，但是 Excel 和 CSV 都<strong>极有可能</strong>出现格式乱掉的情况。如果仅仅是希望在 Windows 下查看文件的话，建议使用 PDF 格式；如果需要修改但对格式要求不高的话，也可以仅在 Numbers 中编辑内容而不对格式进行任何修改，这样用 Excel 打开后的格式问题可能会稍有缓解。</p>
+<blockquote>
+<p>除了导出为 Excel 文件以外，Numbers 也能够打开 .xls、.xlsx 的文件，但是同样会存在格式不兼容的问题。</p>
+</blockquote>
+<h3 id="使用文本框-形状-多媒体-批注">使用文本框、形状、多媒体、批注</h3>
+<p>在 Numbers 中，除了普通的表格以外，还能够在表格中添加各种不同的「对象」，以丰富表格的视觉效果，可以插入的「对象」包括独立文本框、形状、多媒体文件等。插入不同「对象」的按钮可以在工具栏中找到，并且插入的图形是矢量图，可以对其进行混合、交叉、减少和排除的矢量计算，从而创建出属于你自己的图形。</p>
+<figure data-type="image" tabindex="5"><img src="https://andy_luo.gitee.io/blog_image_bed/img/1581912865039.png" alt="工具栏选择插入内容" loading="lazy"></figure>
+<p>需要注意的是，采用「插入对象」的方式为表格添加图片和音频的时候，默认来源为「照片.app」和「音乐.app」中的内容，如果需要插入硬盘上的文件，可以依次点选工具栏的「媒体」-&gt;「选取」按钮，就能够选择硬盘上任意位置的文件添加到当前表格中，当然需要是 Numbers 能够支持的文件格式，具体可用的格式大家可以自行尝试。</p>
+<figure data-type="image" tabindex="6"><img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-76756d8522faecff11cbb1b9ac2c6c20_1440w.jpg" alt="选取硬盘上的文件" loading="lazy"></figure>
+<p>得益于 Apple 生态的高度整合性，Numbers 支持「从 iPhone 或 iPad 导入」的功能，点击工具栏的「媒体」按钮，可以看到该选项，可以导入的内容包括「拍照」「扫描文稿」「添加速绘」，点击对应的选项后，在 iPhone 或 iPad 上进行操作就能够直接将 iPhone 或 iPad 上得到的内容直接导入到 Numbers 表格中，而无需重新寻找，这一功能对于全家桶用户来说是又一提高效率的利器。</p>
+<p>借助内置模板和插入对象的功能，用户能够用 Numbers 制作出样式精美的表格，可以像做 PPT 一样做出一份非常好看的报表了。</p>
+<h3 id="icloud-同步">iCloud 同步</h3>
+<p>对于 Apple 全家桶用户来说，Numbers 是 iOS 和 macOS 上都有的应用程序，可以通过 iCloud 实现不同设备下的数据同步。Numbers 会在「iCloud 云盘」中会创建一个专属的目录来作为默认的保存位置，不同设备之间的数据会进行实时同步，包括新建表格、删除表格、编辑表格等。如果因为网络中断等问题造成两份表格的内容不一致，Numbers 会提示用户选择一份保留下来的记录，然后重新将所有设备上的内容变成相同的。</p>
+<p>要想开启 Numbers 的 iCloud 同步功能，iOS 端在「设置」-&gt;「Apple ID」-&gt;「iCloud」中勾选「iCloud 云盘」和「Numbers 表格」即可，macOS 端在「系统偏好设置」「Apple ID」「iCloud」中勾选「iCloud 云盘」，并在 iCloud 云盘的选项中勾选「Numbers 表格」即可。有关 iWork 和 iCloud 的使用，可以参考我的<a href="https://andyluojj.github.io/post/iwork-ru-he-chong-fen-li-yong-icloud-he-zi-dai-app-shi-xian-apple-she-bei-zhi-jian-de-hu-tong/">其他文章</a>。</p>
+<h3 id="共享与多人协作">共享与多人协作</h3>
+<p>Numbers 内置共享和多人协作功能。点击菜单栏的「共享」-&gt;「发送副本」可以将当前表格文件的副本以邮件、AirDrop 等方式发送出去。点击菜单栏的「共享」-&gt;「与其他人协作...」或点击工具栏的「协作按钮」可以将邀请其他用户共同参与当前表格的编辑，发送者可以设置文件的访问权限，以防被不具有修改权限的访问者意外修改了文件内容。这一功能在其他的 Apple 自带软件中都有，在文件协作者也是使用 Apple 设备的情况下可以非常方便地进行多人协作。</p>
+<figure data-type="image" tabindex="7"><img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-61bd3c4c5a1b38fb0d6350b73946761a_1440w.jpg" alt="多人协作" loading="lazy"></figure>
+<h2 id="numbers-进阶使用">Numbers 进阶使用</h2>
+<p>本节介绍「Numbers 表格」的一些进阶使用方法。</p>
+<h3 id="公式">公式</h3>
+<p>有时候我们还需要根据已有的表格数据，按照某条公式进行计算，从而进一步挖掘数据中的信息。Numbers 提供了一定数量的内置公式供用户使用，可以点击工具栏中的「插入」新建公式或选择一些常用的公式。如果在只选中了一个单元格的情况下添加了内置的公式，Numbers 会自动选择它认为正确的单元格来进行计算。</p>
+<figure data-type="image" tabindex="8"><img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-a7938a693cf51fdcacd5b3c2bd97a5df_1440w.jpg" alt="插入公式" loading="lazy"></figure>
+<p>比较有意思的是，Numbers 还提供了一个插入「股票报价」的功能，点击工具栏的「插入」-&gt;「股票报价」，输入上市公司的名称或代码就可以在当前单元格中插入该公司的股票报价。有了这个功能后，用户甚至能够用 Numbers 打造一个股价监视器😂由于我并不了解股价市场，这个功能没有用过，有需要的朋友可以尝试一下好不好用。</p>
+<figure data-type="image" tabindex="9"><img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-3821b4ceafd909b9af637149d7b4919e_1440w.jpg" alt="「股票报价」功能" loading="lazy"></figure>
+<p>在内置在空白单元格中输入「=」同样会呼出公式编辑的界面，右侧的检查器栏会显示出 Numbers 自带的函数列表，并且已经进行了一定程度的分类，包括三角函数、工程函数、统计函数、财务函数等。选中某条函数之后，在其下方会显示出该函数的介绍、输入参数、注释、示例等内容，能够帮助用户快速了解一个函数的使用方法。在检查器栏的上方还能够对内置的公式进行搜索。</p>
+<figure data-type="image" tabindex="10"><img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-21b8dd7448eb833b9d597a93497ac578_1440w.jpg" alt="公式检查器" loading="lazy"></figure>
+<p>在使用公式的时候，公式的输入可以看作是对表格数据的「引用」，而由于一个 Numbers 表格中可以包含多个工作表（参考 Excel 中「工作簿」和「工作表」的概念），根据数据存在位置的不同，可以分为「表内引用」与「表间引用」。「表内引用」是指公式需要一个存在与当前工作表的数据作为输入，而「表间引用」是指公式需要一个存在与另一个工作表中的数据作为输入。</p>
+<p>下面通过一个简单的例子来说表内引用和表间引用的使用方法。为方便起见，示例表格文件中仅包含「苹果」和「微软」两个工作表，它们的内容是完全相同的。</p>
+<figure data-type="image" tabindex="11"><img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-5e7641c32372cdedd136dc1da68a4321_1440w.jpg" alt="一个🌰" loading="lazy"></figure>
+<p>Numbers 采用符号「::」来区分不同工作表的引用范围，例如假设当前工作表为「苹果」，则「微软::表格 1::工资 Michael」表示「“微软”工作表中名称为“表格 1”的表格中，“工资”列“Michael”行的数值」；对于当前工作表的数据，则不需要第一个「::」前面的工作表范围，即「工资 Michael」表示「“苹果”工作表中“工资”列“Michael”行的数值」（当然如果当前工作表下有多个表格的话还是需要区分开的）。通过简单的点击，Numbers 就能够自动使用正确的表内引用和表间引用格式。在公式需要输入数据的地方，点击当前工作表的数据就是表内引用，点击其他工作表的数据就是表间引用。下面用一个动图来显示一下具体的操作</p>
+<figure data-type="image" tabindex="12"><img src="https://andy_luo.gitee.io/blog_image_bed/img/reference.gif" alt="表内引用和表间引用" loading="lazy"></figure>
+<blockquote>
+<p>关于 Numbers 公式的更多帮助，可以点击菜单栏的「帮助」-&gt;「公式与函数帮助」查看更加详尽的<a href="https://support.apple.com/zh-cn/guide/functions/welcome/web">官方文档</a></p>
+</blockquote>
+<h3 id="数据整理与分析">数据整理与分析</h3>
+<p>除了使表格看上去更加赏心悦目以外，表格的一个重要功能就是对数据进行整理。下面介绍一下 Numbers 的数据整理方法。</p>
+<p>在选定了有内容的单元格后，Numbers 会自动对选中内容进行一个简单的统计，并显示在软件下方，默认显示的内容是。可以点击右方的齿轮更改成自己最常用的统计功能。</p>
+<figure data-type="image" tabindex="13"><img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-c02533233c77b1b99a1e65b50741375c_1440w.png" alt="对单元格内容进行自动统计" loading="lazy"></figure>
+<p>在选定了需要进行整理的单元格后，在 Numbers 的右侧检查器面板中可以选择「整理」，即可对选中的单元格内容进行整理，可用的操作包括分类、排序和过滤。</p>
+<ol>
+<li>
+<p>分类：Numbers 会将每一列的表头看作为一个「类别」。点击「添加类别」的下拉菜单，可以将表格按照各个类别的值进行分类显示。可以选择多个类别对表格内容进行分类显示。其中，「隐藏列」可以使该类别的数据在表格中隐藏起来（因为已经按照这个类别进行分类了，同一个分类下的值时相同的，略显多余）。一个例子如下图：</p>
+<p><img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-2e9d487b7bc14f17a25f3380683d4199_1440w.jpg" alt="分类前" loading="lazy"><br>
+<img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-c98b6f04cd2f038ceb8127637a658a3e_1440w.jpg" alt="分类后" loading="lazy"></p>
+<p>例如，我想要查看表格中的男女员工在不同部门中的分布情况，则可以依次选择「性别」和「部门」两个分类，就能够看到男员工的部门分布和女员工的部门分布。点击右侧的垃圾桶图标可以删除该分类显示，拖拽左侧的横线可以对分类显示的先后顺序进行排序，表格中的显示会即时进行更新。</p>
+<p>利用分类功能，可以快速地将表格数据按照一定的分类标准分离开，从而更加直观地获知数据的分布情况。</p>
+</li>
+<li>
+<p>排序：Numbers 能够根据给定列的值，对整个表格或选定的行进行排序。在「整理」检查器的「排序」页中，可以通过下拉菜单选择「对整个表格排序」和「对所选行排序」。通过「添加列...」下拉菜单可以添加需要排序的列。一个例子如下图：</p>
+<p><img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-2e9d487b7bc14f17a25f3380683d4199_1440w-2.jpg" alt="排序前" loading="lazy"><br>
+<img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-b336b02263f12e4ec6e2d0dda4e3ce05_1440w.jpg" alt="排序后" loading="lazy"></p>
+<p>例如，我想要在不同部门的分类基础上，将员工的工资按照降序排列，则可以在按「部门」分类的基础上，添加「工资」列进行排序，并选择「降序」。和分类一样，可以选择多个列对表格内容进行排序，点击右侧的垃圾桶图标可以删除该排序显示，拖拽左侧的横线可以对排序显示的先后顺序进行排序，表格中的显示会即时进行更新。<br>
+利用排序功能，可以快速将表格数据按照一定的规律进行重新排列。</p>
+</li>
+<li>
+<p>过滤：Numbers 能够根据给定的条件，筛选出符合条件的数据。借助条件表达式的概念，可以选择「匹配所有过滤条件」和「匹配任意过滤条件」，这两个分别是「与」和「或」的逻辑关系。一个例子如下图：</p>
+<p><img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-2e9d487b7bc14f17a25f3380683d4199_1440w-3.jpg" alt="过滤前" loading="lazy"><br>
+<img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-45dab25fc7265c246965c3c8a76df0b8_1440w.jpg" alt="过滤后" loading="lazy"></p>
+<p>例如，我想要在不同部门的分类基础上，查找等级为 A 的员工，则可以在按「部门」分类的基础上，选择「员工等级」「是」「A」的过滤条件。过滤功能同样可以选择多个过滤条件对表格内容进行过滤，点击右侧的垃圾桶图标可以删除该过滤条件，拖拽左侧的横线可以对过滤条件的先后顺序进行排序，表格中的显示会即时进行更新。除此之外，点击「添加规则」还可以对已有的过滤条件追加新的规则，以实现更加复杂的逻辑关系。</p>
+<blockquote>
+<p>过滤与分类在功能上有一定的重叠之处——分类是「将原数据按照一定的类别进行重新排列」，而过滤则是「仅显示满足某些条件的数据」。</p>
+</blockquote>
+</li>
+</ol>
+<p>除了对表格数据进行分类、排序和过滤之外，Numbers 还提供了多种图标绘制的选项。点击工具栏的图标，即可选择插入不同类型的图表。图表类型包括「二维」、「三维」和「交互式」三种，前两种图表又可继续划分为柱状图、饼图、折线图等不同类型的图表，「交互式」则可以对图表进行操作，并对选中的数据进行动态的显示。</p>
+<figure data-type="image" tabindex="14"><img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-2c4426da8793ba77fa3f1d04b3d05e67_1440w.jpg" alt="插入图表" loading="lazy"></figure>
+<p>创建图表后，点击「添加图表数据」即可选择图表的数据来源，在左下角可以选择「根据列绘制序列」或「根据行绘制序列」，前者以各行的值作为横坐标、各列的值作为纵坐标，后者以各列的值作为横坐标、各行的值作为纵坐标，在使用的时候注意区分。选中图表后，右侧检查器栏会显示对当前选中图表的样式设置：「图表」页包含对图表本身的设置，例如图表选项（标题、图例、边框等）、图表字体、图表颜色等；「坐标轴」页包含对柱状图 X 轴和 Y 轴的标签、刻度线、标度等内容的设置；「扇区」页包含对饼图每一块分区的标签、位置等内容的设置；「序列」页包含对图表一维数据的设置，还可以添加趋势线和误差线等。检查器栏的页签会根据图表类型的不同而发生相应的变化，具体的设置可以自行尝试。</p>
+<p>二维和三维图表是平时我们最常见的图表，能够对某一类数据的进行可视化。例如，我想利用饼图对 Marketing 部门的工资分布情况进行可视化，则可以先对表格按「部门」进行分类，然后插入一个二维饼图，选择「根据行绘制序列」，并选择「Marketing」分类下的员工工资作为饼图数据即可。</p>
+<figure data-type="image" tabindex="15"><img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-bfb1f0048c0be87145fcc1ed0b59c33d_1440w.jpg" alt="二维饼图示例" loading="lazy"></figure>
+<p>交互式图表允许使用者对图表进行操作，查看在一定范围或一定时间段内，某类数据的动态变化情况。交互式图表的数据添加方式和二维、三维图表相同。由于我没有使用过这个表格，仅仅是试着看了一下效果，因此没有办法给出使用教程，有兴趣的可以参阅「Numbers 表格帮助」的内容。</p>
+<figure data-type="image" tabindex="16"><img src="https://andy_luo.gitee.io/blog_image_bed/img/interactive_chart.gif" alt="交互式图表" loading="lazy"></figure>
+<p>可以看到，Numbers 提供了简单易用的数据分析和可视化工具，帮助我们对手头上的数据进行分析和处理，对于一般场合足够使用，对于难度比较大的数据分析任务可能需要在熟悉 Numbers 使用的基础上，花点脑筋想想如何达到自己的目的了。</p>
+<h3 id="其他">其他</h3>
+<p>Numbers 支持以文本方式插入并显示 LaTeX 公式。点击菜单栏「插入」-&gt;「方程」，或使用快捷键 command + option + E 即可唤出 LaTeX 编辑器界面。在编辑框内输入 LaTeX 或 MathML 公式，点击插入即可。在方程编辑区域下方有一个「方程预览」区域，可以预览 LaTeX 代码的运行结果，检查 LaTeX 代码是否有误。</p>
+<figure data-type="image" tabindex="17"><img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-5b1f87778827128b65c76b83dd4ff71d_1440w.jpg" alt="LaTeX 公式编辑" loading="lazy"></figure>
+<p>Numbers 还提供了一个类似「Time Machine」的版本复原功能，它会定期对文件的快照进行备份，供用户回到文件过去的状态。依次点击菜单栏「文件」-&gt;「复原到」-&gt;「浏览所有版本...」，可以看到当前的表格文件以类似于 Time machine 的方式呈现出来，点击上下箭头或右方的时间轴可以选择回退的时间。这一功能相当于给了用户一颗“后悔药”，即使在改错内容的情况下，也能够还原到出错之前的版本。</p>
+<figure data-type="image" tabindex="18"><img src="https://andy_luo.gitee.io/blog_image_bed/img/v2-6b7dff7cd6bc91ebdb64fbdcedf99b35_1440w.jpg" alt="Numbers 版本复原功能" loading="lazy"></figure>
+<h2 id="总结">总结</h2>
+<p>Numbers 作为 Apple 自家的办公软件，能够满足日常生活的绝大多数场景，甚至在稍微专业一点的领域都能够游刃有余地完成数据处理与分析的任务。当然，与 Excel 这种几乎已经成为业界标准的软件比较的话，Numbers 还有很长的路要走。然而，我还是十分推荐普通的用户可以尝试一下 Numbers，因为它给了每一个人「做自己的统计学家」的机会，其内置的丰富功能能够帮助我们对自己的数据有一个更加清晰和直观的认识。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[iBooks - 如何充分利用 iCloud 和自带 App 实现 Apple 设备之间的互通]]></title>
         <id>https://AndyLuoJJ.github.io/post/ibooks-ru-he-chong-fen-li-yong-icloud-he-zi-dai-app-shi-xian-apple-she-bei-zhi-jian-de-hu-tong/</id>
