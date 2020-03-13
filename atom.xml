@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://AndyLuoJJ.github.io</id>
     <title>Andy的小书架</title>
-    <updated>2020-01-28T10:55:28.337Z</updated>
+    <updated>2020-03-13T01:52:17.613Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://AndyLuoJJ.github.io"/>
     <link rel="self" href="https://AndyLuoJJ.github.io/atom.xml"/>
@@ -12,8 +12,8 @@
     <rights>All rights reserved 2020, Andy的小书架</rights>
     <entry>
         <title type="html"><![CDATA[iBooks - 如何充分利用 iCloud 和自带 App 实现 Apple 设备之间的互通]]></title>
-        <id>https://AndyLuoJJ.github.io/post/ibooks-ru-he-chong-fen-li-yong-icloud-he-zi-dai-app-shi-xian-apple-she-bei-zhi-jian-de-hu-tong</id>
-        <link href="https://AndyLuoJJ.github.io/post/ibooks-ru-he-chong-fen-li-yong-icloud-he-zi-dai-app-shi-xian-apple-she-bei-zhi-jian-de-hu-tong">
+        <id>https://AndyLuoJJ.github.io/post/ibooks-ru-he-chong-fen-li-yong-icloud-he-zi-dai-app-shi-xian-apple-she-bei-zhi-jian-de-hu-tong/</id>
+        <link href="https://AndyLuoJJ.github.io/post/ibooks-ru-he-chong-fen-li-yong-icloud-he-zi-dai-app-shi-xian-apple-she-bei-zhi-jian-de-hu-tong/">
         </link>
         <updated>2020-01-28T08:55:46.000Z</updated>
         <summary type="html"><![CDATA[<p>本篇是专题「如何充分利用 iCloud 和自带 App 实现 Apple 设备之间的互通」的第三篇文章，主要介绍如何在 Apple 平台上使用 iBooks 对电子书籍进行不失深度的阅读，同时与我拥有的另一个电子设备——「当当阅读器」进行对比。</p>
@@ -152,8 +152,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[Zotero 跨设备文献管理]]></title>
-        <id>https://AndyLuoJJ.github.io/post/zotero-kua-she-bei-wen-xian-guan-li</id>
-        <link href="https://AndyLuoJJ.github.io/post/zotero-kua-she-bei-wen-xian-guan-li">
+        <id>https://AndyLuoJJ.github.io/post/zotero-kua-she-bei-wen-xian-guan-li/</id>
+        <link href="https://AndyLuoJJ.github.io/post/zotero-kua-she-bei-wen-xian-guan-li/">
         </link>
         <updated>2020-01-15T11:43:04.000Z</updated>
         <summary type="html"><![CDATA[<p>听说 iPad 除了用来盖泡面和吃灰，还能够用来看文献呢。</p>
@@ -299,8 +299,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[我的2019年度总结]]></title>
-        <id>https://AndyLuoJJ.github.io/post/wo-de-2019-nian-du-zong-jie</id>
-        <link href="https://AndyLuoJJ.github.io/post/wo-de-2019-nian-du-zong-jie">
+        <id>https://AndyLuoJJ.github.io/post/wo-de-2019-nian-du-zong-jie/</id>
+        <link href="https://AndyLuoJJ.github.io/post/wo-de-2019-nian-du-zong-jie/">
         </link>
         <updated>2020-01-02T04:00:32.000Z</updated>
         <content type="html"><![CDATA[<p>Unexpected 2019</p>
@@ -320,8 +320,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[iWork - 如何充分利用 iCloud 和自带 App 实现 Apple 设备之间的互通]]></title>
-        <id>https://AndyLuoJJ.github.io/post/iwork-ru-he-chong-fen-li-yong-icloud-he-zi-dai-app-shi-xian-apple-she-bei-zhi-jian-de-hu-tong</id>
-        <link href="https://AndyLuoJJ.github.io/post/iwork-ru-he-chong-fen-li-yong-icloud-he-zi-dai-app-shi-xian-apple-she-bei-zhi-jian-de-hu-tong">
+        <id>https://AndyLuoJJ.github.io/post/iwork-ru-he-chong-fen-li-yong-icloud-he-zi-dai-app-shi-xian-apple-she-bei-zhi-jian-de-hu-tong/</id>
+        <link href="https://AndyLuoJJ.github.io/post/iwork-ru-he-chong-fen-li-yong-icloud-he-zi-dai-app-shi-xian-apple-she-bei-zhi-jian-de-hu-tong/">
         </link>
         <updated>2019-10-06T08:20:19.000Z</updated>
         <summary type="html"><![CDATA[<p>本篇是专题「如何充分利用 iCloud 和自带 App 实现 Apple 设备之间的互通」的第二篇文章，主要介绍如何在 Apple 平台上使用 iWork 办公套件完成不过于复杂的日常任务。</p>
@@ -450,8 +450,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[Apple File System Guide 学习笔记]]></title>
-        <id>https://AndyLuoJJ.github.io/post/apple-file-system-guide-xue-xi-bi-ji</id>
-        <link href="https://AndyLuoJJ.github.io/post/apple-file-system-guide-xue-xi-bi-ji">
+        <id>https://AndyLuoJJ.github.io/post/apple-file-system-guide-xue-xi-bi-ji/</id>
+        <link href="https://AndyLuoJJ.github.io/post/apple-file-system-guide-xue-xi-bi-ji/">
         </link>
         <updated>2019-09-13T10:05:58.000Z</updated>
         <content type="html"><![CDATA[<h2 id="introduction">Introduction</h2>
@@ -625,8 +625,8 @@ do {
     </entry>
     <entry>
         <title type="html"><![CDATA[macOS 使用 pyenv 和 virtualenv 搭建 python 工作环境]]></title>
-        <id>https://AndyLuoJJ.github.io/post/macos-shi-yong-pyenv-he-virtualenv-da-jian-python-gong-zuo-huan-jing</id>
-        <link href="https://AndyLuoJJ.github.io/post/macos-shi-yong-pyenv-he-virtualenv-da-jian-python-gong-zuo-huan-jing">
+        <id>https://AndyLuoJJ.github.io/post/macos-shi-yong-pyenv-he-virtualenv-da-jian-python-gong-zuo-huan-jing/</id>
+        <link href="https://AndyLuoJJ.github.io/post/macos-shi-yong-pyenv-he-virtualenv-da-jian-python-gong-zuo-huan-jing/">
         </link>
         <updated>2019-09-13T09:53:13.000Z</updated>
         <summary type="html"><![CDATA[<p>人生苦短，我在 Mac 上用 python。</p>
@@ -701,8 +701,8 @@ fi
     </entry>
     <entry>
         <title type="html"><![CDATA[Swift Package Manager - Swift自带的包管理器]]></title>
-        <id>https://AndyLuoJJ.github.io/post/swift-package-manager-swift-zi-dai-de-bao-guan-li-qi</id>
-        <link href="https://AndyLuoJJ.github.io/post/swift-package-manager-swift-zi-dai-de-bao-guan-li-qi">
+        <id>https://AndyLuoJJ.github.io/post/swift-package-manager-swift-zi-dai-de-bao-guan-li-qi/</id>
+        <link href="https://AndyLuoJJ.github.io/post/swift-package-manager-swift-zi-dai-de-bao-guan-li-qi/">
         </link>
         <updated>2019-09-13T09:41:12.000Z</updated>
         <summary type="html"><![CDATA[<p>WWDC19 为 Swift 带来了新的活力 - Swift Package Manager 将促使 Swift 向其他领域的发展迈出重要的一步。</p>
@@ -878,8 +878,8 @@ print(prediction)
     </entry>
     <entry>
         <title type="html"><![CDATA[Homebrew - macOS 上完美的包管理器]]></title>
-        <id>https://AndyLuoJJ.github.io/post/homebrew-macos-shang-wan-mei-de-bao-guan-li-qi</id>
-        <link href="https://AndyLuoJJ.github.io/post/homebrew-macos-shang-wan-mei-de-bao-guan-li-qi">
+        <id>https://AndyLuoJJ.github.io/post/homebrew-macos-shang-wan-mei-de-bao-guan-li-qi/</id>
+        <link href="https://AndyLuoJJ.github.io/post/homebrew-macos-shang-wan-mei-de-bao-guan-li-qi/">
         </link>
         <updated>2019-09-13T09:15:33.000Z</updated>
         <summary type="html"><![CDATA[<p>你需要几个好的「管家」来管理你的电脑 - Homebrew 就是其中一个。</p>
@@ -1034,8 +1034,8 @@ print(prediction)
     </entry>
     <entry>
         <title type="html"><![CDATA[绪论 - 如何充分利用 iCloud 和自带 App 实现 Apple 设备之间的互通]]></title>
-        <id>https://AndyLuoJJ.github.io/post/xu-lun-ru-he-chong-fen-li-yong-icloud-he-zi-dai-app-shi-xian-apple-she-bei-zhi-jian-de-hu-tong</id>
-        <link href="https://AndyLuoJJ.github.io/post/xu-lun-ru-he-chong-fen-li-yong-icloud-he-zi-dai-app-shi-xian-apple-she-bei-zhi-jian-de-hu-tong">
+        <id>https://AndyLuoJJ.github.io/post/xu-lun-ru-he-chong-fen-li-yong-icloud-he-zi-dai-app-shi-xian-apple-she-bei-zhi-jian-de-hu-tong/</id>
+        <link href="https://AndyLuoJJ.github.io/post/xu-lun-ru-he-chong-fen-li-yong-icloud-he-zi-dai-app-shi-xian-apple-she-bei-zhi-jian-de-hu-tong/">
         </link>
         <updated>2019-09-11T08:18:05.000Z</updated>
         <summary type="html"><![CDATA[<p>第一个专题定位为「如何充分利用 iCloud 和自带 App 实现 Apple 设备之间的互通」。本篇是该系列主题的第一篇文章。</p>
