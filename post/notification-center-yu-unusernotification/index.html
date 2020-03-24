@@ -1,0 +1,801 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Notification Center 与 UNUserNotification | Andy的小书架</title>
+<meta name="description" content="这是我的个人博客，希望能够坚持写一下自己各方面的心得😃" />
+<link rel="shortcut icon" href="https://AndyLuoJJ.github.io/favicon.ico?v=1585061940520">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://AndyLuoJJ.github.io/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://AndyLuoJJ.github.io">
+  <img class="avatar" src="https://AndyLuoJJ.github.io/images/avatar.png?v=1585061940520" alt="">
+  </a>
+  <h1 class="site-title">
+    Andy的小书架
+  </h1>
+  <p class="site-description">
+    这是我的个人博客，希望能够坚持写一下自己各方面的心得😃
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="https://AndyLuoJJ.github.io" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="https://AndyLuoJJ.github.io/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="https://AndyLuoJJ.github.io/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="https://andy_luo.gitee.io/personal_resume/" class="menu" target="_blank">
+          个人简历
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Notification Center 与 UNUserNotification
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-03-24
+              </span>
+              <span>
+                24 min read
+              </span>
+              
+                <a href="https://AndyLuoJJ.github.io/tag/Iy1uCjZ3x/" class="post-tag">
+                  # 官方文档
+                </a>
+              
+                <a href="https://AndyLuoJJ.github.io/tag/gbkj8_IZA/" class="post-tag">
+                  # iOS
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>重新温习一下两个截然不同的 notification——用于内部消息传递的 Notification Center 和 iOS 应用推送 User Notification。</p>
+<!-- more -->
+<h2 id="一-介绍">一、介绍</h2>
+<p>“notification”意为“通知”，即由一方向另一方发出一个提醒，告诉对方某些事情已经完成，或者已经达到某个状态等。在实际生活中，这种消息通知的模式随处可见：快递小哥发短信说有快递到楼下了、外卖小哥打电话说有外卖到楼下了、老板通知你下午要开会，等等。我们的大脑在接收并处理这些通知之后，又会发出“通知”协调我们的身体执行相应的动作：大脑通知脚要下楼了、大脑通知脚要下楼了、大脑通知手要开始写报告了，等等。最终，这些通知可能会到达某一个终端，并触发其执行相应的动作。</p>
+<p>在 iOS 开发中，根据通知的发送方和接收方的不同，大致有两种不同类型的通知：</p>
+<ol>
+<li>应用发给用户的通知</li>
+<li>系统发给开发者的通知</li>
+</ol>
+<p>第一种通知是所有智能手机用户都非常熟悉的<strong>推送</strong>，例如在特定的时间 App 会弹出推送框向用户推送消息；第二种通知是在开发过程中使用的，开发者可以向一个“通知管理者”注册某个通知，告诉“管理者”「我需要向哪些对象发送通知」，然后在必要的时候向“管理者”发送相应的通知即可，“通知管理者”会向注册时登记的对象发送相应的通知。</p>
+<h2 id="二-用于开发的通知">二、用于开发的通知</h2>
+<p>本节讨论用于开发的通知。</p>
+<p>Notification 是 iOS 系统下重要的消息传递机制之一，来自系统的通知封装了不同的事件信息，而自定义的通知的内容可以根据实际需要来设定。</p>
+<h3 id="notification-介绍">Notification 介绍</h3>
+<p>系统内部进行消息传递的通知，实现了观察者模式。iOS 的实现方式是需要在通知中心（NotificationCenter）中注册通知，告诉通知中心需要向哪些对象发送通知，然后在需要的时候 post 相应的通知即可。对于接收通知的对象，可以选择仅接收自己感兴趣的通知。区分不同通知的方法是采用字符串或枚举作为通知的 id。</p>
+<h3 id="notificationcenter">NotificationCenter</h3>
+<p>NotificationCenter 是一种通知的分发机制，可以向已注册的观察者进行信息的广播（A notification dispatch mechanism that enables the broadcast of information to registered observers）。</p>
+<h4 id="官方文档解读">官方文档解读</h4>
+<p>Apple Developer 介绍了几个 NotificationCenter 类的基础用法。</p>
+<ul>
+<li>（1）获得默认的通知中心：</li>
+</ul>
+<pre><code class="language-swift">NotificationCenter.default
+</code></pre>
+<p>NotificationCenter 类有一个名为 default 的类属性，用于获取进程默认的通知中心。每个线程有一个独立的 Notification Center。</p>
+<p>⚠️注意点：</p>
+<ol>
+<li>通知中心分发给观察者处理采用<strong>同步机制</strong>，也就是说，当某一对象发送一个通知时，会一直阻塞在发送方法内，直到通知中心将该通知分发给所有观察者并且全部成功处理返回后，发送者才能执行其所在线程内的后续代码。如果需要异步发送通知，可以使用 NotificationQueue（后面提及）。</li>
+<li>在多线程的应用程序中，通知总是在发送的线程中传送，这个线程可能不同于观察者注册所在的线程。</li>
+</ol>
+<ul>
+<li>（2）添加与移除观察者（接收通知的对象）：</li>
+</ul>
+<pre><code class="language-swift">func addObserver(_ observer: Any, selector aSelector: Selector, name aName: NSNotification.Name?, object anObject: Any?)
+
+func addObserver(forName name: NSNotification.Name?, object obj: Any?, queue: OperationQueue?, using block: @escaping (Notification) -&gt; Void) -&gt; NSObjectProtocol
+
+func removeObserver(_ observer: Any)
+
+func removeObserver(_ observer: Any, name aName: NSNotification.Name?, object anObject: Any?)
+</code></pre>
+<p>参数说明：</p>
+<ol>
+<li>observer：消息的接收对象</li>
+<li>selector：接收对象接收到通知后执行的方法，需要使用@objc进行修饰。如果需要在通知的时候进行数据通信，selector 需要有一个 Notification 类型的参数。</li>
+<li>name：通知名称，用于区分不同的通知，接收者仅接收这个名字的通知。实际上是一个关联值为 String 的 enum，通过 <code>Notification.Name.init()</code>创建。</li>
+<li>object：消息的来源，接收者只接受从这个发送者发出来的消息。设置为 nil 表明接收对象接收所有来源的某个通知。</li>
+<li>queue：将 block 参数添加到哪一个 OperationQueue 上，如果为 nil，block 会在 post 的线程上<strong>同步执行</strong>。</li>
+<li>block：接收对象接收到通知后执行的闭包，<strong>逃逸闭包</strong>，基本上和 selector 相同，但是更加 Swifty 一些。该 block 会被复制到到通知中心，直至 observer 被移除。</li>
+</ol>
+<ul>
+<li>（3）发送通知：</li>
+</ul>
+<pre><code class="language-swift">func post(Notification)
+
+func post(name: NSNotification.Name, object: Any?, userInfo: [AnyHashable : Any]?)
+
+func post(name: NSNotification.Name, object: Any?)
+
+</code></pre>
+<p>参数含义与 addObserver 基本相同，多出来的 userInfo 是用过数据通信的参数，在接受者的 selector/block 会有一个 Notification 类型的参数，通过参数的 userInfo 属性获取到通知发过来的参数。</p>
+<p>注意：在 post 的时候并没有显示指明哪些对象接收通知，所有存在的 MyObserver 实例都会收到这个通知。因此示例代码会引发一个 warning，提示 observers 变量被写入（置空）但未被读取。</p>
+<h4 id="自定义通知的注册和响应">自定义通知的注册和响应</h4>
+<p>通知类型其实就是一个字符串，我们也可以使用自己定义的通知，同时也可以通过 userInfo 参数传递用户自定义数据。</p>
+<p>Example code：</p>
+<pre><code class="language-swift">class MyObserver {
+  
+  var name: String = &quot;&quot;
+  
+  init(name: String) {
+    self.name = name
+    // 设置通知名称
+    let notificationName = NSNotification.Name(rawValue: &quot;DownloadImageNotification&quot;)
+    // 添加观察者
+    NotificationCenter.default.addObserver(self, selector: #selector(downloadImage(notification:)), name: notificationName, object: nil)
+  }
+
+  @objc private func downloadImage(notification: Notification) {
+    // 使用 notification 参数进行数据通信
+    let userInfo = notification.userInfo as! [String:Any]
+    let value1 = userInfo[&quot;value1&quot;] as! String
+    let value2 = userInfo[&quot;value2&quot;] as! Int
+    print(&quot;\(name)获取到通知，用户数据是[\(value1), \(value2)]&quot;)
+    sleep(3)
+    print(&quot;\(name)执行完毕&quot;)
+  }
+
+  deinit {
+    // 移除观察者
+    NotificationCenter.default.removeObserver(self)
+    print(&quot;删除\(name)&quot;)
+  }
+  
+}
+
+class ViewController: UIViewController {
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    // create custom observers
+  	var observers = [MyObserver(name: &quot;观察器1&quot;)]
+    print(&quot;发送通知&quot;)
+    let notificationName = Notification.Name(rawValue: &quot;DownloadImageNotification&quot;)
+    // 发送同名通知
+    NotificationCenter.default.post(name: notificationName, object: self, userInfo: [&quot;value1&quot;:&quot;用户名&quot;, &quot;value2&quot;:12345])
+    print(&quot;通知完毕&quot;)
+    observers = []
+  }
+
+}
+
+</code></pre>
+<p>运行结果：</p>
+<figure data-type="image" tabindex="1"><img src="https://andy_luo.gitee.io/blog_image_bed/img/notification_center_output.jpg" alt="普通 post 运行结果" loading="lazy"></figure>
+<p>可以看到，在主线程调用 post 发出通知后，会立即在 post 的线程上同步执行 selector。如果在主线程上发出通知后执行的操作比较耗费时间，需要将耗时任务分到异步线程中执行，例如：</p>
+<pre><code class="language-swift">@objc private func downloadImage(notification: Notification) {
+  // 使用 GCD 将任务放入全局异步线程中
+  DispatchQueue.global().async {
+    // userInfo is used to transfer user defined data
+    let userInfo = notification.userInfo as! [String:Any]
+    let value1 = userInfo[&quot;username&quot;] as! String
+    let value2 = userInfo[&quot;id&quot;] as! Int
+    print(&quot;\(self.name)获取到通知，用户名：\(value1), 密码：\(value2)&quot;)
+    sleep(3)
+    print(&quot;\(self.name)执行完毕&quot;)
+  }
+}
+</code></pre>
+<p>运行结果变为下图，此时主线程没有被阻塞。：</p>
+<figure data-type="image" tabindex="2"><img src="https://andy_luo.gitee.io/blog_image_bed/img/notification_center_output_concurrent.jpg" alt="将耗时任务分到全局异步线程中执行" loading="lazy"></figure>
+<h4 id="系统通知的注册和响应">系统通知的注册和响应</h4>
+<p>除了自定义的通知以外，还可以使对象接收 iOS 系统发来的通知。系统通知实际上是一个有着特殊名字的通知，Notification.Name 的枚举值包含了一系列系统通知，具体可用选项比较多，请参考<a href="https://developer.apple.com/documentation/foundation/nsnotification/name">官方文档</a></p>
+<p>Example code:</p>
+<pre><code class="language-swift">// create an instance of notification center
+let nc = NotificationCenter.default
+
+// fetch the main queue
+let queue = OperationQueue.main
+
+// add an observer which listens to the UIApplicationDidEnterBackground notification.
+let observer = nc.addObserver(forName: .UIApplicationDidEnterBackground, object: nil, queue: queue) {
+  noti in
+  print(&quot;Entering background...&quot;)
+}
+</code></pre>
+<p>可以看到接收系统通知和接收自定义通知基本上是一样的。</p>
+<h3 id="notificationqueue">NotificationQueue</h3>
+<p>在 NotificationCenter 中，post 出去的通知会马上到达 observer 手中。如果我们需要使通知延迟一段时间后再进行广播，可以使用 NotificationQueue 对 Notification 进行管理。NotificationQueue 维护一个队列，enqueue 的通知不会立刻发送到 observer，而是在 dequeue 的时候将满足条件的 Notification 按先进先出的顺序逐个进行发送。</p>
+<h4 id="官方文档解读-2">官方文档解读</h4>
+<ul>
+<li>（1）创建队列：</li>
+</ul>
+<pre><code class="language-swift">NotificationQueue.init(notificationCenter: NotificationCenter)
+</code></pre>
+<p>可以将当前线程的通知发送到另一个线程上。</p>
+<ul>
+<li>（2）获得默认队列：</li>
+</ul>
+<pre><code class="language-swift">NotificationQueue.default
+</code></pre>
+<p>获得当前线程的默认通知队列。一般来说一个线程拥有一个通知中心、维护一个通知队列。</p>
+<ul>
+<li>（3）通知入列与出列：</li>
+</ul>
+<pre><code class="language-swift">func enqueue(Notification, postingStyle: NotificationQueue.PostingStyle, coalesceMask: NotificationQueue.NotificationCoalescing, forModes: [RunLoop.Mode]?)
+
+func enqueue(Notification, postingStyle: NotificationQueue.PostingStyle)
+
+func dequeueNotifications(matching: Notification, coalesceMask: Int)
+</code></pre>
+<p>参数说明：</p>
+<ol>
+<li>matching：用于进行判断的“模板”通知。</li>
+<li>postingStyle：枚举值，指明发送通知的时间，可以是 asap、whenIdle、now 三者之一，分别表示当前通知回调结束时、线程空闲时、立刻发送。</li>
+<li>coalesceMask：屏蔽位，指明屏蔽通知的方式。0 表示不屏蔽，奇数表示屏蔽与 matching 同名的通知，偶数表示屏蔽与 matching 同发送者的通知。</li>
+<li>forModes：规定只能在 RunLoop 处于哪些模式中的时候才能发送通知。</li>
+</ol>
+<p>在 dequeue 的时候，通知是按照 enqueue 的顺序出来的，如果需要屏蔽的话，通知中心就不会将被屏蔽的通知广播出去。</p>
+<h4 id="示例代码">示例代码</h4>
+<pre><code class="language-swift">import UIKit
+import NotificationCenter
+
+class MyObserver {
+    var name: String = &quot;&quot;
+    init(name: String) {
+        self.name = name
+        // 设置通知名称
+        let notiName1 = Notification.Name(rawValue: &quot;StatusNotification&quot;)
+        let notiName2 = Notification.Name(rawValue: &quot;DownloadImageNotification&quot;)
+        let notiName3 = Notification.Name(rawValue: &quot;AlertNotification&quot;)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(statusCheck(notification:)), name: notiName1, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(downloadImage(notification:)), name: notiName2, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleAlert(notification:)), name: notiName3, object: nil)
+    }
+    
+    @objc private func statusCheck(notification: Notification) {
+        // userInfo is used to transfer user defined data
+        let userInfo = notification.userInfo as! [String:Any]
+        guard let type = userInfo[&quot;type&quot;] as? String, let username = userInfo[&quot;username&quot;] as? String, let userID = userInfo[&quot;id&quot;] as? Int else {
+            print(&quot;Error in parsing parameters&quot;)
+            return
+        }
+        print(&quot;\(self.name)获取到通知\(notification.name)&quot;)
+        print(&quot;类型：\(type), 用户名：\(username), ID：\(userID)&quot;)
+        print(&quot;\(self.name)执行完毕\(notification.name)&quot;)
+        print(&quot;--------------------&quot;)
+        sleep(2)
+    }
+    
+    @objc private func downloadImage(notification: Notification) {
+        // userInfo is used to transfer user defined data
+        let userInfo = notification.userInfo as! [String:Any]
+        guard let imageName = userInfo[&quot;imageName&quot;] as? String, let url = userInfo[&quot;url&quot;] as? String else {
+            print(&quot;Error in parsing parameters&quot;)
+            return
+        }
+        print(&quot;\(self.name)获取到通知\(notification.name)&quot;)
+        print(&quot;图片名：\(imageName), 链接：\(url)&quot;)
+        print(&quot;\(self.name)执行完毕\(notification.name)&quot;)
+        print(&quot;--------------------&quot;)
+        sleep(2)
+    }
+    
+    @objc private func handleAlert(notification: Notification) {
+        // userInfo is used to transfer user defined data
+        let userInfo = notification.userInfo as! [String:Any]
+        guard let reason = userInfo[&quot;reason&quot;] as? String, let code = userInfo[&quot;code&quot;] as? Int else {
+            print(&quot;Error in parsing parameters&quot;)
+            return
+        }
+        print(&quot;\(self.name)获取到通知\(notification.name)&quot;)
+        print(&quot;原因：\(reason), 错误代码：\(code)&quot;)
+        print(&quot;\(self.name)执行完毕\(notification.name)&quot;)
+        print(&quot;--------------------&quot;)
+        sleep(2)
+    }
+    
+    deinit {
+        // 在 deinit 中移除观察者
+        NotificationCenter.default.removeObserver(self)
+        print(&quot;删除\(name)&quot;)
+    }
+    
+}
+
+class ViewController: UIViewController {
+    // create custom observers
+    let observers = [MyObserver(name: &quot;观察器1&quot;)]
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print(&quot;发送通知&quot;)
+        
+        let notiName1 = Notification.Name(rawValue: &quot;StatusNotification&quot;)
+        let notiName2 = Notification.Name(rawValue: &quot;DownloadImageNotification&quot;)
+        let notiName3 = Notification.Name(rawValue: &quot;AlertNotification&quot;)
+        
+        let noti1 = Notification(name: notiName1, object: self, userInfo: [&quot;type&quot;:&quot;log in&quot;, &quot;username&quot;:&quot;Andy&quot;, &quot;id&quot;:12345])
+        let noti2 = Notification(name: notiName2, object: self, userInfo: [&quot;imageName&quot;:&quot;Apple&quot;, &quot;url&quot;:&quot;https://www.apple.com&quot;])
+        let noti3 = Notification(name: notiName3, object: self, userInfo: [&quot;reason&quot;:&quot;Page Not Found&quot;, &quot;code&quot;:404])
+        let noti4 = Notification(name: notiName1, object: self, userInfo: [&quot;type&quot;:&quot;log out&quot;, &quot;username&quot;:&quot;Andy&quot;, &quot;id&quot;:12345])
+        
+        print(&quot;入列三个通知&quot;)
+        let queue = NotificationQueue.default
+        queue.enqueue(noti1, postingStyle: .whenIdle)
+        queue.enqueue(noti2, postingStyle: .whenIdle)
+        queue.enqueue(noti3, postingStyle: .whenIdle)
+        print(&quot;入列完毕&quot;)
+        
+        print(&quot;出列三个通知&quot;)
+        queue.dequeueNotifications(matching: noti1, coalesceMask: 0)
+        queue.dequeueNotifications(matching: noti2, coalesceMask: 0)
+        queue.dequeueNotifications(matching: noti3, coalesceMask: 0)
+        print(&quot;出列完毕&quot;)
+        
+        // 对比同步 post
+        NotificationCenter.default.post(noti4)
+        
+        print(&quot;通知完毕&quot;)
+    }
+    
+}
+</code></pre>
+<p>为方便起见，在代码中仅设置了一个 observer 对多个通知进行监听，将三个不同名的通知入列，规定在线程空闲的时候才发送通知，并且全部不屏蔽地发送。为进行对比，在出列完毕后增加了一个普通的同步 post。</p>
+<p>运行结果如下：</p>
+<figure data-type="image" tabindex="3"><img src="https://andy_luo.gitee.io/blog_image_bed/img/noti_queue.jpg" alt="NotificationQueue 运行结果" loading="lazy"></figure>
+<p>可以看到，在 enqueue 通知后，接收者没有马上收到消息，而是在 dequeue 通知后并且达到 postingStyle 设置的时机才会统一发送通知，而作为对比的同步 post 是马上阻塞当前线程发送通知。如果将 postingStyle 设置为 .now 的话，会跟普通的 post 一样马上发送通知。coalesceMask 设置为 0 时不会进行屏蔽；如果将任意一个 coalesceMask 改成 1，对应的通知就不会发送；如果将任意一个 coalesceMask 改成 2，由于三个通知的发送者都是 self，因此 noti1、noti2、noti3 全部被屏蔽。</p>
+<h3 id="distributednotificationcenter">DistributedNotificationCenter</h3>
+<p>前面提到的 NotificationCenter 是在应用进程内向对象发送通知。Apple 提供了 DistributedNotificationCenter 类来实现不同的应用进程之间的通信。每一个应用进程都有一个默认的 DistributedNotificationCenter，用来接收其他进程发过来的通知，同时负责将本进程的通知广播到其他进程的 DistributedNotificationCenter 中。</p>
+<p>在使用上，DistributedNotificationCenter 和进程内的 NotificationCenter 差别不大，同样是通过一个名为 <code>default</code> 的类实例获得默认的通知中心，通过 <code>addObserver</code> 和 <code>removeObserver</code> 添加、移除观察者，通过 <code>post</code> 发送通知。增加了一个 Bool 类型的 <code>suspend</code> 属性来设置是否挂起通知中心，不接收和发送进程间的通知。</p>
+<h2 id="三-向用户发送的通知">三、向用户发送的通知</h2>
+<p>本节讨论 iOS 推送。</p>
+<h3 id="usernotifications用户通知">UserNotifications——用户通知</h3>
+<p>从 iOS 10 起，用户通知（即呈现给用户的消息推送）发生了较大变化，Apple 的目的是为了进一步简化用户通知的使用，并向开发者提供更加强大的功能，使用户通知能够呈现更多的内容。</p>
+<p>使用 UserNotifications 创建用户推送主要包括以下几个步骤：</p>
+<ol>
+<li>Create a trigger. Depending on the situation that triggers a notification, select a different constructor.</li>
+<li>Create the content of the notification, using UNMutableNotificationContent.</li>
+<li>Create the request, using the trigger and content above.</li>
+<li>Add the request to the notification center, using UNUserNotificationCenter.current().add()</li>
+<li>Remember to ask the user for permission to show notification.</li>
+<li>To provide attachment, use the UNNotificationAttachment class to add attachment to the notification.</li>
+<li>To add an action in the notification, use UNNotificationAction and UNNotificationCategory
+<ol>
+<li>Create the action for the notification</li>
+<li>Defines the category of the action</li>
+</ol>
+</li>
+</ol>
+<p>Just to remind: the majority of notification needs an identifier. Do not mess them up! It is recommended to use enum or at least constants to manage these identifiers.</p>
+<p>整个过程可以用一个简单的图来说明：</p>
+<figure data-type="image" tabindex="4"><img src="https://andy_luo.gitee.io/blog_image_bed/img/user_notification_process.jpg" alt="创建用户推送的流程" loading="lazy"></figure>
+<h3 id="获得默认通知中心">获得默认通知中心</h3>
+<p>和 NotificationCenter 相同，UserNotifications 同样有一个通知中心对整个 App 的消息推送进行管理。可以用 <code>UNUserNotificationCenter.current()</code> 获得默认的用户通知中心。</p>
+<h3 id="获取用户权限">获取用户权限</h3>
+<p>需要弹出推送的 App 需要申请获得用户权限，也就是下面这个 Alert 框：</p>
+<figure data-type="image" tabindex="5"><img src="https://andy_luo.gitee.io/blog_image_bed/img/user_noti_request_permission.png" alt="用户权限弹窗" loading="lazy"></figure>
+<p>这个框不是由开发者自己写的，而是由 iOS 系统弹出来的。可以使用通知中心的 <code>requestAuthorization(options:completionHandler:)</code> 申请不同的权限，包括推送弹窗、提示音、角标等，并且在回调的 handler 中处理用户的选择。</p>
+<pre><code class="language-swift">let center = UNUserNotificationCenter.current()
+center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+    
+    if let error = error {
+        // Handle the error here.
+    }
+    
+    // Enable or disable features based on the authorization.
+    if granted {
+      // user permit
+    } else {
+      // user deny
+    }
+}
+</code></pre>
+<p>通常是在应用第一次打开的时候向用户请求权限，因此通常是在 AppDelegate 的方法中调用。</p>
+<h3 id="检查当前的提醒设置">检查当前的提醒设置</h3>
+<p>用户可能会随时更改提醒的权限，比如突然不想接收 App 的提醒了，这时再进行推送时无效的。可以使用通知中心的 <code>getNotificationSettings(completionHandler:)</code> 获得当前的提醒设置，例如用户是否允许弹窗等。</p>
+<pre><code class="language-swift">let center = UNUserNotificationCenter.current()
+center.getNotificationSettings { settings in
+    guard (settings.authorizationStatus == .authorized) ||
+          (settings.authorizationStatus == .provisional) else { return }
+
+    if settings.alertSetting == .enabled {
+        // Schedule an alert-only notification.
+    } else {
+        // Schedule a notification with a badge and sound.
+    }
+}
+</code></pre>
+<h3 id="设置推送触发器">设置推送触发器</h3>
+<p>本地推送可以设置在某个时间或满足某些条件时向用户发送通知，这是通过设置触发器 <code>UNNotificationTrigger</code> 来实现的，包括四种不同的触发器：</p>
+<ul>
+<li>UNCalendarNotificationTrigger</li>
+<li>UNTimeIntervalNotificationTrigger</li>
+<li>UNLocationNotificationTrigger</li>
+<li>UNPushNotificationTrigger</li>
+</ul>
+<p>从它们的名字可以知道，分别是在给定日期、给定时间间隔、给定位置进行推送，最后一个是手动进行推送。不同的 trigger 有不同的初始化方法，按照要求进行设置即可。</p>
+<h3 id="设置推送内容">设置推送内容</h3>
+<p>通过 UNMutableNotificationContent 来设置推送显示的内容，包括标题（title）、副标题（subtitle）、主体（body）、角标数字（badge）、提示音（sound）、自定义内容（userInfo）、附件（attachments）等，其中附件可以包含文本文件、图片甚至视频，但是有一定的条件限制，详情需要查阅<a href="https://developer.apple.com/documentation/usernotifications/unnotificationattachment">官方文档</a>。</p>
+<pre><code class="language-swift">let content = UNMutableNotificationContent()
+content.title = NSString.localizedUserNotificationStringForKey(&quot;Hello!&quot;, arguments: nil)
+content.body = NSString.localizedUserNotificationStringForKey(&quot;Hello_message_body&quot;, arguments: nil)
+content.sound = UNNotificationSound.default()
+</code></pre>
+<blockquote>
+<p>附带一提，在 Assets.xcassets 中，有两栏用来设置 iPhone 和 iPad 上的提醒图标。</p>
+</blockquote>
+<h3 id="创建推送请求">创建推送请求</h3>
+<p>设置好触发器 trigger 和推送的内容 content 后，就可以通过 UNNotificatonRequest 来创建推送请求了。不同的推送请求通过 String 类型的 identifier 来进行区分，最后将 request 添加到用户通知中心即可。</p>
+<pre><code class="language-swift">// Create the request
+let uuidString = UUID().uuidString
+let request = UNNotificationRequest(identifier: uuidString, 
+            content: content, trigger: trigger)
+
+// Schedule the request with the system.
+let notificationCenter = UNUserNotificationCenter.current()
+notificationCenter.add(request) { (error) in
+   if error != nil {
+      // Handle any errors.
+   }
+}
+</code></pre>
+<p>可以通过 <code>func getPendingNotificationRequests(completionHandler: ([UNNotificationRequest]) -&gt; Void)</code> 获得所有还没触发的用户通知。</p>
+<p>推送请求一旦创建，在满足触发条件之前都会保持 active 的状态。如果在创建 trigger 的时候设置了 repeats 为 true 的话。可以根据 identifier 来取消某个推送或者取消所有推送。</p>
+<pre><code class="language-swift">func removePendingNotificationRequests(withIdentifiers: [String])
+
+func removeAllPendingNotificationRequests()
+</code></pre>
+<h3 id="设置代理">设置代理</h3>
+<p>遵循 UNUserNotificationDelegate 协议的类可以作为 UserNotification 的代理，接收并处理用户输入、如何处理推送等。<strong>Apple 提示我们需要在 App 完成启动之前完成代理的设置</strong>，令 AppDelegate 遵遁 UNUserNotificationDelegate 即可，并在 <code>application(_:didFinishLaunchingWithOptions:)</code> 中设置代理为 self。</p>
+<p>UNUserNotificationDelegate 定义了三个方法：</p>
+<pre><code class="language-swift">// 用户行为响应
+func userNotificationCenter(UNUserNotificationCenter, didReceive: UNNotificationResponse, withCompletionHandler: () -&gt; Void)
+
+// 显示本地推送
+func userNotificationCenter(UNUserNotificationCenter, willPresent: UNNotification, withCompletionHandler: (UNNotificationPresentationOptions) -&gt; Void)
+
+func userNotificationCenter(UNUserNotificationCenter, openSettingsFor: UNNotification?)
+</code></pre>
+<p><strong>必须设置代理之后，本地推送才能生效。</strong></p>
+<h3 id="处理用户输入">处理用户输入</h3>
+<p>有时候，我们需要让推送具有与用户交互的功能，用户在看到推送之后，只需要点按可用的选项就能够向 App 发出指令，而不需要真正进入到 App 中。通过 UNNotificationAction 和 UNNotificationCategory 相结合来声明一个能够响应用户输入的 action。</p>
+<ul>
+<li>UNNotificationAction</li>
+</ul>
+<p>可以理解为通知附带的按钮，用户可以点击按钮进行交互。</p>
+<pre><code class="language-swift">// Define the custom actions.
+let acceptAction = UNNotificationAction(identifier: &quot;ACCEPT_ACTION&quot;,
+      title: &quot;Accept&quot;, 
+      options: UNNotificationActionOptions(rawValue: 0))
+let declineAction = UNNotificationAction(identifier: &quot;DECLINE_ACTION&quot;,
+      title: &quot;Decline&quot;, 
+      options: UNNotificationActionOptions(rawValue: 0))
+</code></pre>
+<p>不同的 action 通过 identifier 来进行区分；title 为按钮的标签；option 为 action 的选项，包括 authenticationRequired（仅在设备解锁的时候可以交互）、destructive（该行为可能导致不可逆的后果）、foreground（用户需要打开 App 作进一步的交互）。</p>
+<ul>
+<li>UNNotificationCategory</li>
+</ul>
+<p>Category 将 action 进行分类，在创建 content 的时候设置 categoryIdentifier，可以规定哪些推送支持怎么样的行为。</p>
+<pre><code class="language-swift">// Define the notification type
+let meetingInviteCategory = 
+      UNNotificationCategory(identifier: &quot;MEETING_INVITATION&quot;,
+      actions: [acceptAction, declineAction], 
+      intentIdentifiers: [], 
+      hiddenPreviewsBodyPlaceholder: &quot;&quot;,
+      options: .customDismissAction)
+// Register the notification type.
+let notificationCenter = UNUserNotificationCenter.current()
+notificationCenter.setNotificationCategories([meetingInviteCategory])
+
+// set content's category identifier
+content.categoryIdentifier = &quot;MEETING_INVITATION&quot;
+</code></pre>
+<p>处理用户输入则是在代理方法 <code>func userNotificationCenter(UNUserNotificationCenter, didReceive: UNNotificationResponse, withCompletionHandler: () -&gt; Void)</code> 中进行的，通过 response 参数的 actionIdentifier 属性来区分不同的 action，需要和创建 action 的时候定义的 identifier 完全相同才能正确识别。</p>
+<pre><code class="language-swift">func userNotificationCenter(_ center: UNUserNotificationCenter,
+       didReceive response: UNNotificationResponse,
+       withCompletionHandler completionHandler: 
+         @escaping () -&gt; Void) {
+       
+   // Get the meeting ID from the original notification.
+   let userInfo = response.notification.request.content.userInfo
+   let meetingID = userInfo[&quot;MEETING_ID&quot;] as! String
+   let userID = userInfo[&quot;USER_ID&quot;] as! String
+        
+   // Perform the task associated with the action.
+   switch response.actionIdentifier {
+   case &quot;ACCEPT_ACTION&quot;:
+      sharedMeetingManager.acceptMeeting(user: userID, 
+                                    meetingID: meetingID)
+      break
+        
+   case &quot;DECLINE_ACTION&quot;:
+      sharedMeetingManager.declineMeeting(user: userID, 
+                                     meetingID: meetingID)
+      break
+        
+   // Handle other actions…
+ 
+   default:
+      break
+   }
+    
+   // Always call the completion handler when done.    
+   completionHandler()
+}
+</code></pre>
+<h3 id="示例代码-2">示例代码</h3>
+<p>最后贴一段示例代码吧（部分来源 Apple Developer 官网）：</p>
+<ul>
+<li>AppDelegate.swift</li>
+</ul>
+<pre><code class="language-swift">import UIKit
+import UserNotifications
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -&gt; Bool {
+        // Override point for customization after application launch.
+        
+        // 设置 UserNotifications 代理
+        UNUserNotificationCenter.current().delegate = self
+        
+        // 请求本地推送的权限
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+            if let error = error {
+                print(&quot;Oops, we've met an error: \(error)&quot;)
+            }
+            
+            if granted {
+                print(&quot;The user grants us the permission to push notifications😃&quot;)
+            } else {
+                print(&quot;The user denies our permission😣&quot;)
+            }
+        }
+        return true
+    }
+  
+}
+
+// 代理方法
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    public func userNotificationCenter(
+      _ center: UNUserNotificationCenter, 
+      didReceive response: UNNotificationResponse, 
+      withCompletionHandler completionHandler: @escaping () -&gt; Void) {
+        print(response.actionIdentifier)
+        completionHandler()
+    }
+    
+    func userNotificationCenter(
+      _ center: UNUserNotificationCenter,
+      willPresent notification: UNNotification,
+      withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -&gt; Void) {
+        // New in iOS 10, we can show notifications when app is in foreground, by calling completion handler with our desired presentation type.
+        print(&quot;something&quot;)
+        // 设置提醒的方式：.alert, .sound, etc
+        completionHandler(.alert)
+    }
+}
+
+</code></pre>
+<ul>
+<li>ViewControler.swift</li>
+</ul>
+<pre><code class="language-swift">import UIKit
+import UserNotifications
+
+class ViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // 设置推送内容
+        let content = UNMutableNotificationContent()
+        content.title = &quot;This is title&quot;
+        content.subtitle = &quot;This is subtitle&quot;
+        content.body = &quot;This is body&quot;
+        content.sound = UNNotificationSound.default
+        
+        // 定义用户交互方式
+        let acceptAction = UNNotificationAction(identifier: &quot;ACCEPT_ACTION&quot;,
+              title: &quot;Accept&quot;,
+              options: UNNotificationActionOptions(rawValue: 0))
+        let declineAction = UNNotificationAction(identifier: &quot;DECLINE_ACTION&quot;,
+              title: &quot;Decline&quot;,
+              options: UNNotificationActionOptions(rawValue: 0))
+        
+        // 定义推送能够响应的交互类别
+        let meetingInviteCategory =
+              UNNotificationCategory(identifier: &quot;MEETING_INVITATION&quot;,
+              actions: [acceptAction, declineAction],
+              intentIdentifiers: [],
+              hiddenPreviewsBodyPlaceholder: &quot;&quot;,
+              options: .customDismissAction)
+        
+        // 向通知中心注册交互类别
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.setNotificationCategories([meetingInviteCategory])
+        content.categoryIdentifier = &quot;MEETING_INVITATION&quot;
+        
+        // 设置一个 10 秒的触发器
+        // 若希望重复提醒（repeats 为 true），则两次推送的时间间隔（timeInterval）必须大于 60，否则会崩溃。
+        let tenSecondsTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: &quot;tenSeconds&quot;, content: content, trigger: tenSecondsTrigger)
+        
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print(error)
+            } else {
+                print(&quot;Notification request added.&quot;)
+            }
+        }
+    }
+    
+}
+</code></pre>
+<h2 id="五-总结">五、总结</h2>
+<p>本篇文章对 NotificationCenter 和 UNUserNotification 进行了学习，对于我来说认识了「观察者模式」，并且知道了如何根据条件对用户发起推送。需要注意的点是 NotificationCenter 和 UNUserNotification 都非常依赖于字面量的 identifier 区分不同的通知，最好将其转换成 struct 或 enum，防止手误。</p>
+<p>另外附上一个更加完整的 <a href="https://github.com/AndyLuoJJ/NotificationDemo">demo</a>，将 NotificationCenter 和 UserNotifications 的功能进行简单的整合。</p>
+<h2 id="参考链接">参考链接</h2>
+<ol>
+<li>https://www.jianshu.com/p/209ef870e131</li>
+<li>https://juejin.im/post/59422d5861ff4b006cc66be1</li>
+<li>https://developer.apple.com/documentation/foundation/notificationcenter</li>
+<li>https://developer.apple.com/documentation/usernotifications/unusernotificationcenter</li>
+</ol>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E4%B8%80-%E4%BB%8B%E7%BB%8D">一、介绍</a></li>
+<li><a href="#%E4%BA%8C-%E7%94%A8%E4%BA%8E%E5%BC%80%E5%8F%91%E7%9A%84%E9%80%9A%E7%9F%A5">二、用于开发的通知</a>
+<ul>
+<li><a href="#notification-%E4%BB%8B%E7%BB%8D">Notification 介绍</a></li>
+<li><a href="#notificationcenter">NotificationCenter</a>
+<ul>
+<li><a href="#%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E8%A7%A3%E8%AF%BB">官方文档解读</a></li>
+<li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%80%9A%E7%9F%A5%E7%9A%84%E6%B3%A8%E5%86%8C%E5%92%8C%E5%93%8D%E5%BA%94">自定义通知的注册和响应</a></li>
+<li><a href="#%E7%B3%BB%E7%BB%9F%E9%80%9A%E7%9F%A5%E7%9A%84%E6%B3%A8%E5%86%8C%E5%92%8C%E5%93%8D%E5%BA%94">系统通知的注册和响应</a></li>
+</ul>
+</li>
+<li><a href="#notificationqueue">NotificationQueue</a>
+<ul>
+<li><a href="#%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E8%A7%A3%E8%AF%BB-2">官方文档解读</a></li>
+<li><a href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81">示例代码</a></li>
+</ul>
+</li>
+<li><a href="#distributednotificationcenter">DistributedNotificationCenter</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89-%E5%90%91%E7%94%A8%E6%88%B7%E5%8F%91%E9%80%81%E7%9A%84%E9%80%9A%E7%9F%A5">三、向用户发送的通知</a>
+<ul>
+<li><a href="#usernotifications%E7%94%A8%E6%88%B7%E9%80%9A%E7%9F%A5">UserNotifications——用户通知</a></li>
+<li><a href="#%E8%8E%B7%E5%BE%97%E9%BB%98%E8%AE%A4%E9%80%9A%E7%9F%A5%E4%B8%AD%E5%BF%83">获得默认通知中心</a></li>
+<li><a href="#%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90">获取用户权限</a></li>
+<li><a href="#%E6%A3%80%E6%9F%A5%E5%BD%93%E5%89%8D%E7%9A%84%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE">检查当前的提醒设置</a></li>
+<li><a href="#%E8%AE%BE%E7%BD%AE%E6%8E%A8%E9%80%81%E8%A7%A6%E5%8F%91%E5%99%A8">设置推送触发器</a></li>
+<li><a href="#%E8%AE%BE%E7%BD%AE%E6%8E%A8%E9%80%81%E5%86%85%E5%AE%B9">设置推送内容</a></li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E6%8E%A8%E9%80%81%E8%AF%B7%E6%B1%82">创建推送请求</a></li>
+<li><a href="#%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86">设置代理</a></li>
+<li><a href="#%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5">处理用户输入</a></li>
+<li><a href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81-2">示例代码</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%94-%E6%80%BB%E7%BB%93">五、总结</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5">参考链接</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://AndyLuoJJ.github.io/post/organize-your-life-shi-yong-bei-wang-lu-ti-xing-shi-xiang-he-ri-li/">
+              <h3 class="post-title">
+                Organize your life——使用「备忘录」、「提醒事项」和「日历」
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://AndyLuoJJ.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+
+  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+  // This should probably be throttled.
+  // Especially because it triggers during smooth scrolling.
+  // https://lodash.com/docs/4.17.10#throttle
+  // You could do like...
+  // window.addEventListener("scroll", () => {
+  //    _.throttle(doThatStuff, 100);
+  // });
+  // Only not doing it here to keep this Pen dependency-free.
+
+  window.addEventListener("scroll", event => {
+    let fromTop = window.scrollY;
+
+    mainNavLinks.forEach((link, index) => {
+      let section = document.getElementById(decodeURI(link.hash).substring(1));
+      let nextSection = null
+      if (mainNavLinks[index + 1]) {
+        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+      }
+      console.log('section.offsetHeight', section.offsetHeight);
+      if (section.offsetTop <= fromTop) {
+        if (nextSection) {
+          if (nextSection.offsetTop > fromTop) {
+            link.classList.add("current");
+          } else {
+            link.classList.remove("current");    
+          }
+        } else {
+          link.classList.add("current");
+        }
+      } else {
+        link.classList.remove("current");
+      }
+    });
+  });
+
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>

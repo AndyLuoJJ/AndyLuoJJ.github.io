@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://AndyLuoJJ.github.io</id>
     <title>Andy的小书架</title>
-    <updated>2020-03-19T04:08:42.111Z</updated>
+    <updated>2020-03-24T15:06:07.975Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://AndyLuoJJ.github.io"/>
     <link rel="self" href="https://AndyLuoJJ.github.io/atom.xml"/>
@@ -10,6 +10,605 @@
     <logo>https://AndyLuoJJ.github.io/images/avatar.png</logo>
     <icon>https://AndyLuoJJ.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Andy的小书架</rights>
+    <entry>
+        <title type="html"><![CDATA[Notification Center 与 UNUserNotification]]></title>
+        <id>https://AndyLuoJJ.github.io/post/notification-center-yu-unusernotification/</id>
+        <link href="https://AndyLuoJJ.github.io/post/notification-center-yu-unusernotification/">
+        </link>
+        <updated>2020-03-24T14:48:19.000Z</updated>
+        <summary type="html"><![CDATA[<p>重新温习一下两个截然不同的 notification——用于内部消息传递的 Notification Center 和 iOS 应用推送 User Notification。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>重新温习一下两个截然不同的 notification——用于内部消息传递的 Notification Center 和 iOS 应用推送 User Notification。</p>
+<!-- more -->
+<h2 id="一-介绍">一、介绍</h2>
+<p>“notification”意为“通知”，即由一方向另一方发出一个提醒，告诉对方某些事情已经完成，或者已经达到某个状态等。在实际生活中，这种消息通知的模式随处可见：快递小哥发短信说有快递到楼下了、外卖小哥打电话说有外卖到楼下了、老板通知你下午要开会，等等。我们的大脑在接收并处理这些通知之后，又会发出“通知”协调我们的身体执行相应的动作：大脑通知脚要下楼了、大脑通知脚要下楼了、大脑通知手要开始写报告了，等等。最终，这些通知可能会到达某一个终端，并触发其执行相应的动作。</p>
+<p>在 iOS 开发中，根据通知的发送方和接收方的不同，大致有两种不同类型的通知：</p>
+<ol>
+<li>应用发给用户的通知</li>
+<li>系统发给开发者的通知</li>
+</ol>
+<p>第一种通知是所有智能手机用户都非常熟悉的<strong>推送</strong>，例如在特定的时间 App 会弹出推送框向用户推送消息；第二种通知是在开发过程中使用的，开发者可以向一个“通知管理者”注册某个通知，告诉“管理者”「我需要向哪些对象发送通知」，然后在必要的时候向“管理者”发送相应的通知即可，“通知管理者”会向注册时登记的对象发送相应的通知。</p>
+<h2 id="二-用于开发的通知">二、用于开发的通知</h2>
+<p>本节讨论用于开发的通知。</p>
+<p>Notification 是 iOS 系统下重要的消息传递机制之一，来自系统的通知封装了不同的事件信息，而自定义的通知的内容可以根据实际需要来设定。</p>
+<h3 id="notification-介绍">Notification 介绍</h3>
+<p>系统内部进行消息传递的通知，实现了观察者模式。iOS 的实现方式是需要在通知中心（NotificationCenter）中注册通知，告诉通知中心需要向哪些对象发送通知，然后在需要的时候 post 相应的通知即可。对于接收通知的对象，可以选择仅接收自己感兴趣的通知。区分不同通知的方法是采用字符串或枚举作为通知的 id。</p>
+<h3 id="notificationcenter">NotificationCenter</h3>
+<p>NotificationCenter 是一种通知的分发机制，可以向已注册的观察者进行信息的广播（A notification dispatch mechanism that enables the broadcast of information to registered observers）。</p>
+<h4 id="官方文档解读">官方文档解读</h4>
+<p>Apple Developer 介绍了几个 NotificationCenter 类的基础用法。</p>
+<ul>
+<li>（1）获得默认的通知中心：</li>
+</ul>
+<pre><code class="language-swift">NotificationCenter.default
+</code></pre>
+<p>NotificationCenter 类有一个名为 default 的类属性，用于获取进程默认的通知中心。每个线程有一个独立的 Notification Center。</p>
+<p>⚠️注意点：</p>
+<ol>
+<li>通知中心分发给观察者处理采用<strong>同步机制</strong>，也就是说，当某一对象发送一个通知时，会一直阻塞在发送方法内，直到通知中心将该通知分发给所有观察者并且全部成功处理返回后，发送者才能执行其所在线程内的后续代码。如果需要异步发送通知，可以使用 NotificationQueue（后面提及）。</li>
+<li>在多线程的应用程序中，通知总是在发送的线程中传送，这个线程可能不同于观察者注册所在的线程。</li>
+</ol>
+<ul>
+<li>（2）添加与移除观察者（接收通知的对象）：</li>
+</ul>
+<pre><code class="language-swift">func addObserver(_ observer: Any, selector aSelector: Selector, name aName: NSNotification.Name?, object anObject: Any?)
+
+func addObserver(forName name: NSNotification.Name?, object obj: Any?, queue: OperationQueue?, using block: @escaping (Notification) -&gt; Void) -&gt; NSObjectProtocol
+
+func removeObserver(_ observer: Any)
+
+func removeObserver(_ observer: Any, name aName: NSNotification.Name?, object anObject: Any?)
+</code></pre>
+<p>参数说明：</p>
+<ol>
+<li>observer：消息的接收对象</li>
+<li>selector：接收对象接收到通知后执行的方法，需要使用@objc进行修饰。如果需要在通知的时候进行数据通信，selector 需要有一个 Notification 类型的参数。</li>
+<li>name：通知名称，用于区分不同的通知，接收者仅接收这个名字的通知。实际上是一个关联值为 String 的 enum，通过 <code>Notification.Name.init()</code>创建。</li>
+<li>object：消息的来源，接收者只接受从这个发送者发出来的消息。设置为 nil 表明接收对象接收所有来源的某个通知。</li>
+<li>queue：将 block 参数添加到哪一个 OperationQueue 上，如果为 nil，block 会在 post 的线程上<strong>同步执行</strong>。</li>
+<li>block：接收对象接收到通知后执行的闭包，<strong>逃逸闭包</strong>，基本上和 selector 相同，但是更加 Swifty 一些。该 block 会被复制到到通知中心，直至 observer 被移除。</li>
+</ol>
+<ul>
+<li>（3）发送通知：</li>
+</ul>
+<pre><code class="language-swift">func post(Notification)
+
+func post(name: NSNotification.Name, object: Any?, userInfo: [AnyHashable : Any]?)
+
+func post(name: NSNotification.Name, object: Any?)
+
+</code></pre>
+<p>参数含义与 addObserver 基本相同，多出来的 userInfo 是用过数据通信的参数，在接受者的 selector/block 会有一个 Notification 类型的参数，通过参数的 userInfo 属性获取到通知发过来的参数。</p>
+<p>注意：在 post 的时候并没有显示指明哪些对象接收通知，所有存在的 MyObserver 实例都会收到这个通知。因此示例代码会引发一个 warning，提示 observers 变量被写入（置空）但未被读取。</p>
+<h4 id="自定义通知的注册和响应">自定义通知的注册和响应</h4>
+<p>通知类型其实就是一个字符串，我们也可以使用自己定义的通知，同时也可以通过 userInfo 参数传递用户自定义数据。</p>
+<p>Example code：</p>
+<pre><code class="language-swift">class MyObserver {
+  
+  var name: String = &quot;&quot;
+  
+  init(name: String) {
+    self.name = name
+    // 设置通知名称
+    let notificationName = NSNotification.Name(rawValue: &quot;DownloadImageNotification&quot;)
+    // 添加观察者
+    NotificationCenter.default.addObserver(self, selector: #selector(downloadImage(notification:)), name: notificationName, object: nil)
+  }
+
+  @objc private func downloadImage(notification: Notification) {
+    // 使用 notification 参数进行数据通信
+    let userInfo = notification.userInfo as! [String:Any]
+    let value1 = userInfo[&quot;value1&quot;] as! String
+    let value2 = userInfo[&quot;value2&quot;] as! Int
+    print(&quot;\(name)获取到通知，用户数据是[\(value1), \(value2)]&quot;)
+    sleep(3)
+    print(&quot;\(name)执行完毕&quot;)
+  }
+
+  deinit {
+    // 移除观察者
+    NotificationCenter.default.removeObserver(self)
+    print(&quot;删除\(name)&quot;)
+  }
+  
+}
+
+class ViewController: UIViewController {
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    // create custom observers
+  	var observers = [MyObserver(name: &quot;观察器1&quot;)]
+    print(&quot;发送通知&quot;)
+    let notificationName = Notification.Name(rawValue: &quot;DownloadImageNotification&quot;)
+    // 发送同名通知
+    NotificationCenter.default.post(name: notificationName, object: self, userInfo: [&quot;value1&quot;:&quot;用户名&quot;, &quot;value2&quot;:12345])
+    print(&quot;通知完毕&quot;)
+    observers = []
+  }
+
+}
+
+</code></pre>
+<p>运行结果：</p>
+<figure data-type="image" tabindex="1"><img src="https://andy_luo.gitee.io/blog_image_bed/img/notification_center_output.jpg" alt="普通 post 运行结果" loading="lazy"></figure>
+<p>可以看到，在主线程调用 post 发出通知后，会立即在 post 的线程上同步执行 selector。如果在主线程上发出通知后执行的操作比较耗费时间，需要将耗时任务分到异步线程中执行，例如：</p>
+<pre><code class="language-swift">@objc private func downloadImage(notification: Notification) {
+  // 使用 GCD 将任务放入全局异步线程中
+  DispatchQueue.global().async {
+    // userInfo is used to transfer user defined data
+    let userInfo = notification.userInfo as! [String:Any]
+    let value1 = userInfo[&quot;username&quot;] as! String
+    let value2 = userInfo[&quot;id&quot;] as! Int
+    print(&quot;\(self.name)获取到通知，用户名：\(value1), 密码：\(value2)&quot;)
+    sleep(3)
+    print(&quot;\(self.name)执行完毕&quot;)
+  }
+}
+</code></pre>
+<p>运行结果变为下图，此时主线程没有被阻塞。：</p>
+<figure data-type="image" tabindex="2"><img src="https://andy_luo.gitee.io/blog_image_bed/img/notification_center_output_concurrent.jpg" alt="将耗时任务分到全局异步线程中执行" loading="lazy"></figure>
+<h4 id="系统通知的注册和响应">系统通知的注册和响应</h4>
+<p>除了自定义的通知以外，还可以使对象接收 iOS 系统发来的通知。系统通知实际上是一个有着特殊名字的通知，Notification.Name 的枚举值包含了一系列系统通知，具体可用选项比较多，请参考<a href="https://developer.apple.com/documentation/foundation/nsnotification/name">官方文档</a></p>
+<p>Example code:</p>
+<pre><code class="language-swift">// create an instance of notification center
+let nc = NotificationCenter.default
+
+// fetch the main queue
+let queue = OperationQueue.main
+
+// add an observer which listens to the UIApplicationDidEnterBackground notification.
+let observer = nc.addObserver(forName: .UIApplicationDidEnterBackground, object: nil, queue: queue) {
+  noti in
+  print(&quot;Entering background...&quot;)
+}
+</code></pre>
+<p>可以看到接收系统通知和接收自定义通知基本上是一样的。</p>
+<h3 id="notificationqueue">NotificationQueue</h3>
+<p>在 NotificationCenter 中，post 出去的通知会马上到达 observer 手中。如果我们需要使通知延迟一段时间后再进行广播，可以使用 NotificationQueue 对 Notification 进行管理。NotificationQueue 维护一个队列，enqueue 的通知不会立刻发送到 observer，而是在 dequeue 的时候将满足条件的 Notification 按先进先出的顺序逐个进行发送。</p>
+<h4 id="官方文档解读-2">官方文档解读</h4>
+<ul>
+<li>（1）创建队列：</li>
+</ul>
+<pre><code class="language-swift">NotificationQueue.init(notificationCenter: NotificationCenter)
+</code></pre>
+<p>可以将当前线程的通知发送到另一个线程上。</p>
+<ul>
+<li>（2）获得默认队列：</li>
+</ul>
+<pre><code class="language-swift">NotificationQueue.default
+</code></pre>
+<p>获得当前线程的默认通知队列。一般来说一个线程拥有一个通知中心、维护一个通知队列。</p>
+<ul>
+<li>（3）通知入列与出列：</li>
+</ul>
+<pre><code class="language-swift">func enqueue(Notification, postingStyle: NotificationQueue.PostingStyle, coalesceMask: NotificationQueue.NotificationCoalescing, forModes: [RunLoop.Mode]?)
+
+func enqueue(Notification, postingStyle: NotificationQueue.PostingStyle)
+
+func dequeueNotifications(matching: Notification, coalesceMask: Int)
+</code></pre>
+<p>参数说明：</p>
+<ol>
+<li>matching：用于进行判断的“模板”通知。</li>
+<li>postingStyle：枚举值，指明发送通知的时间，可以是 asap、whenIdle、now 三者之一，分别表示当前通知回调结束时、线程空闲时、立刻发送。</li>
+<li>coalesceMask：屏蔽位，指明屏蔽通知的方式。0 表示不屏蔽，奇数表示屏蔽与 matching 同名的通知，偶数表示屏蔽与 matching 同发送者的通知。</li>
+<li>forModes：规定只能在 RunLoop 处于哪些模式中的时候才能发送通知。</li>
+</ol>
+<p>在 dequeue 的时候，通知是按照 enqueue 的顺序出来的，如果需要屏蔽的话，通知中心就不会将被屏蔽的通知广播出去。</p>
+<h4 id="示例代码">示例代码</h4>
+<pre><code class="language-swift">import UIKit
+import NotificationCenter
+
+class MyObserver {
+    var name: String = &quot;&quot;
+    init(name: String) {
+        self.name = name
+        // 设置通知名称
+        let notiName1 = Notification.Name(rawValue: &quot;StatusNotification&quot;)
+        let notiName2 = Notification.Name(rawValue: &quot;DownloadImageNotification&quot;)
+        let notiName3 = Notification.Name(rawValue: &quot;AlertNotification&quot;)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(statusCheck(notification:)), name: notiName1, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(downloadImage(notification:)), name: notiName2, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleAlert(notification:)), name: notiName3, object: nil)
+    }
+    
+    @objc private func statusCheck(notification: Notification) {
+        // userInfo is used to transfer user defined data
+        let userInfo = notification.userInfo as! [String:Any]
+        guard let type = userInfo[&quot;type&quot;] as? String, let username = userInfo[&quot;username&quot;] as? String, let userID = userInfo[&quot;id&quot;] as? Int else {
+            print(&quot;Error in parsing parameters&quot;)
+            return
+        }
+        print(&quot;\(self.name)获取到通知\(notification.name)&quot;)
+        print(&quot;类型：\(type), 用户名：\(username), ID：\(userID)&quot;)
+        print(&quot;\(self.name)执行完毕\(notification.name)&quot;)
+        print(&quot;--------------------&quot;)
+        sleep(2)
+    }
+    
+    @objc private func downloadImage(notification: Notification) {
+        // userInfo is used to transfer user defined data
+        let userInfo = notification.userInfo as! [String:Any]
+        guard let imageName = userInfo[&quot;imageName&quot;] as? String, let url = userInfo[&quot;url&quot;] as? String else {
+            print(&quot;Error in parsing parameters&quot;)
+            return
+        }
+        print(&quot;\(self.name)获取到通知\(notification.name)&quot;)
+        print(&quot;图片名：\(imageName), 链接：\(url)&quot;)
+        print(&quot;\(self.name)执行完毕\(notification.name)&quot;)
+        print(&quot;--------------------&quot;)
+        sleep(2)
+    }
+    
+    @objc private func handleAlert(notification: Notification) {
+        // userInfo is used to transfer user defined data
+        let userInfo = notification.userInfo as! [String:Any]
+        guard let reason = userInfo[&quot;reason&quot;] as? String, let code = userInfo[&quot;code&quot;] as? Int else {
+            print(&quot;Error in parsing parameters&quot;)
+            return
+        }
+        print(&quot;\(self.name)获取到通知\(notification.name)&quot;)
+        print(&quot;原因：\(reason), 错误代码：\(code)&quot;)
+        print(&quot;\(self.name)执行完毕\(notification.name)&quot;)
+        print(&quot;--------------------&quot;)
+        sleep(2)
+    }
+    
+    deinit {
+        // 在 deinit 中移除观察者
+        NotificationCenter.default.removeObserver(self)
+        print(&quot;删除\(name)&quot;)
+    }
+    
+}
+
+class ViewController: UIViewController {
+    // create custom observers
+    let observers = [MyObserver(name: &quot;观察器1&quot;)]
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print(&quot;发送通知&quot;)
+        
+        let notiName1 = Notification.Name(rawValue: &quot;StatusNotification&quot;)
+        let notiName2 = Notification.Name(rawValue: &quot;DownloadImageNotification&quot;)
+        let notiName3 = Notification.Name(rawValue: &quot;AlertNotification&quot;)
+        
+        let noti1 = Notification(name: notiName1, object: self, userInfo: [&quot;type&quot;:&quot;log in&quot;, &quot;username&quot;:&quot;Andy&quot;, &quot;id&quot;:12345])
+        let noti2 = Notification(name: notiName2, object: self, userInfo: [&quot;imageName&quot;:&quot;Apple&quot;, &quot;url&quot;:&quot;https://www.apple.com&quot;])
+        let noti3 = Notification(name: notiName3, object: self, userInfo: [&quot;reason&quot;:&quot;Page Not Found&quot;, &quot;code&quot;:404])
+        let noti4 = Notification(name: notiName1, object: self, userInfo: [&quot;type&quot;:&quot;log out&quot;, &quot;username&quot;:&quot;Andy&quot;, &quot;id&quot;:12345])
+        
+        print(&quot;入列三个通知&quot;)
+        let queue = NotificationQueue.default
+        queue.enqueue(noti1, postingStyle: .whenIdle)
+        queue.enqueue(noti2, postingStyle: .whenIdle)
+        queue.enqueue(noti3, postingStyle: .whenIdle)
+        print(&quot;入列完毕&quot;)
+        
+        print(&quot;出列三个通知&quot;)
+        queue.dequeueNotifications(matching: noti1, coalesceMask: 0)
+        queue.dequeueNotifications(matching: noti2, coalesceMask: 0)
+        queue.dequeueNotifications(matching: noti3, coalesceMask: 0)
+        print(&quot;出列完毕&quot;)
+        
+        // 对比同步 post
+        NotificationCenter.default.post(noti4)
+        
+        print(&quot;通知完毕&quot;)
+    }
+    
+}
+</code></pre>
+<p>为方便起见，在代码中仅设置了一个 observer 对多个通知进行监听，将三个不同名的通知入列，规定在线程空闲的时候才发送通知，并且全部不屏蔽地发送。为进行对比，在出列完毕后增加了一个普通的同步 post。</p>
+<p>运行结果如下：</p>
+<figure data-type="image" tabindex="3"><img src="https://andy_luo.gitee.io/blog_image_bed/img/noti_queue.jpg" alt="NotificationQueue 运行结果" loading="lazy"></figure>
+<p>可以看到，在 enqueue 通知后，接收者没有马上收到消息，而是在 dequeue 通知后并且达到 postingStyle 设置的时机才会统一发送通知，而作为对比的同步 post 是马上阻塞当前线程发送通知。如果将 postingStyle 设置为 .now 的话，会跟普通的 post 一样马上发送通知。coalesceMask 设置为 0 时不会进行屏蔽；如果将任意一个 coalesceMask 改成 1，对应的通知就不会发送；如果将任意一个 coalesceMask 改成 2，由于三个通知的发送者都是 self，因此 noti1、noti2、noti3 全部被屏蔽。</p>
+<h3 id="distributednotificationcenter">DistributedNotificationCenter</h3>
+<p>前面提到的 NotificationCenter 是在应用进程内向对象发送通知。Apple 提供了 DistributedNotificationCenter 类来实现不同的应用进程之间的通信。每一个应用进程都有一个默认的 DistributedNotificationCenter，用来接收其他进程发过来的通知，同时负责将本进程的通知广播到其他进程的 DistributedNotificationCenter 中。</p>
+<p>在使用上，DistributedNotificationCenter 和进程内的 NotificationCenter 差别不大，同样是通过一个名为 <code>default</code> 的类实例获得默认的通知中心，通过 <code>addObserver</code> 和 <code>removeObserver</code> 添加、移除观察者，通过 <code>post</code> 发送通知。增加了一个 Bool 类型的 <code>suspend</code> 属性来设置是否挂起通知中心，不接收和发送进程间的通知。</p>
+<h2 id="三-向用户发送的通知">三、向用户发送的通知</h2>
+<p>本节讨论 iOS 推送。</p>
+<h3 id="usernotifications用户通知">UserNotifications——用户通知</h3>
+<p>从 iOS 10 起，用户通知（即呈现给用户的消息推送）发生了较大变化，Apple 的目的是为了进一步简化用户通知的使用，并向开发者提供更加强大的功能，使用户通知能够呈现更多的内容。</p>
+<p>使用 UserNotifications 创建用户推送主要包括以下几个步骤：</p>
+<ol>
+<li>Create a trigger. Depending on the situation that triggers a notification, select a different constructor.</li>
+<li>Create the content of the notification, using UNMutableNotificationContent.</li>
+<li>Create the request, using the trigger and content above.</li>
+<li>Add the request to the notification center, using UNUserNotificationCenter.current().add()</li>
+<li>Remember to ask the user for permission to show notification.</li>
+<li>To provide attachment, use the UNNotificationAttachment class to add attachment to the notification.</li>
+<li>To add an action in the notification, use UNNotificationAction and UNNotificationCategory
+<ol>
+<li>Create the action for the notification</li>
+<li>Defines the category of the action</li>
+</ol>
+</li>
+</ol>
+<p>Just to remind: the majority of notification needs an identifier. Do not mess them up! It is recommended to use enum or at least constants to manage these identifiers.</p>
+<p>整个过程可以用一个简单的图来说明：</p>
+<figure data-type="image" tabindex="4"><img src="https://andy_luo.gitee.io/blog_image_bed/img/user_notification_process.jpg" alt="创建用户推送的流程" loading="lazy"></figure>
+<h3 id="获得默认通知中心">获得默认通知中心</h3>
+<p>和 NotificationCenter 相同，UserNotifications 同样有一个通知中心对整个 App 的消息推送进行管理。可以用 <code>UNUserNotificationCenter.current()</code> 获得默认的用户通知中心。</p>
+<h3 id="获取用户权限">获取用户权限</h3>
+<p>需要弹出推送的 App 需要申请获得用户权限，也就是下面这个 Alert 框：</p>
+<figure data-type="image" tabindex="5"><img src="https://andy_luo.gitee.io/blog_image_bed/img/user_noti_request_permission.png" alt="用户权限弹窗" loading="lazy"></figure>
+<p>这个框不是由开发者自己写的，而是由 iOS 系统弹出来的。可以使用通知中心的 <code>requestAuthorization(options:completionHandler:)</code> 申请不同的权限，包括推送弹窗、提示音、角标等，并且在回调的 handler 中处理用户的选择。</p>
+<pre><code class="language-swift">let center = UNUserNotificationCenter.current()
+center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+    
+    if let error = error {
+        // Handle the error here.
+    }
+    
+    // Enable or disable features based on the authorization.
+    if granted {
+      // user permit
+    } else {
+      // user deny
+    }
+}
+</code></pre>
+<p>通常是在应用第一次打开的时候向用户请求权限，因此通常是在 AppDelegate 的方法中调用。</p>
+<h3 id="检查当前的提醒设置">检查当前的提醒设置</h3>
+<p>用户可能会随时更改提醒的权限，比如突然不想接收 App 的提醒了，这时再进行推送时无效的。可以使用通知中心的 <code>getNotificationSettings(completionHandler:)</code> 获得当前的提醒设置，例如用户是否允许弹窗等。</p>
+<pre><code class="language-swift">let center = UNUserNotificationCenter.current()
+center.getNotificationSettings { settings in
+    guard (settings.authorizationStatus == .authorized) ||
+          (settings.authorizationStatus == .provisional) else { return }
+
+    if settings.alertSetting == .enabled {
+        // Schedule an alert-only notification.
+    } else {
+        // Schedule a notification with a badge and sound.
+    }
+}
+</code></pre>
+<h3 id="设置推送触发器">设置推送触发器</h3>
+<p>本地推送可以设置在某个时间或满足某些条件时向用户发送通知，这是通过设置触发器 <code>UNNotificationTrigger</code> 来实现的，包括四种不同的触发器：</p>
+<ul>
+<li>UNCalendarNotificationTrigger</li>
+<li>UNTimeIntervalNotificationTrigger</li>
+<li>UNLocationNotificationTrigger</li>
+<li>UNPushNotificationTrigger</li>
+</ul>
+<p>从它们的名字可以知道，分别是在给定日期、给定时间间隔、给定位置进行推送，最后一个是手动进行推送。不同的 trigger 有不同的初始化方法，按照要求进行设置即可。</p>
+<h3 id="设置推送内容">设置推送内容</h3>
+<p>通过 UNMutableNotificationContent 来设置推送显示的内容，包括标题（title）、副标题（subtitle）、主体（body）、角标数字（badge）、提示音（sound）、自定义内容（userInfo）、附件（attachments）等，其中附件可以包含文本文件、图片甚至视频，但是有一定的条件限制，详情需要查阅<a href="https://developer.apple.com/documentation/usernotifications/unnotificationattachment">官方文档</a>。</p>
+<pre><code class="language-swift">let content = UNMutableNotificationContent()
+content.title = NSString.localizedUserNotificationStringForKey(&quot;Hello!&quot;, arguments: nil)
+content.body = NSString.localizedUserNotificationStringForKey(&quot;Hello_message_body&quot;, arguments: nil)
+content.sound = UNNotificationSound.default()
+</code></pre>
+<blockquote>
+<p>附带一提，在 Assets.xcassets 中，有两栏用来设置 iPhone 和 iPad 上的提醒图标。</p>
+</blockquote>
+<h3 id="创建推送请求">创建推送请求</h3>
+<p>设置好触发器 trigger 和推送的内容 content 后，就可以通过 UNNotificatonRequest 来创建推送请求了。不同的推送请求通过 String 类型的 identifier 来进行区分，最后将 request 添加到用户通知中心即可。</p>
+<pre><code class="language-swift">// Create the request
+let uuidString = UUID().uuidString
+let request = UNNotificationRequest(identifier: uuidString, 
+            content: content, trigger: trigger)
+
+// Schedule the request with the system.
+let notificationCenter = UNUserNotificationCenter.current()
+notificationCenter.add(request) { (error) in
+   if error != nil {
+      // Handle any errors.
+   }
+}
+</code></pre>
+<p>可以通过 <code>func getPendingNotificationRequests(completionHandler: ([UNNotificationRequest]) -&gt; Void)</code> 获得所有还没触发的用户通知。</p>
+<p>推送请求一旦创建，在满足触发条件之前都会保持 active 的状态。如果在创建 trigger 的时候设置了 repeats 为 true 的话。可以根据 identifier 来取消某个推送或者取消所有推送。</p>
+<pre><code class="language-swift">func removePendingNotificationRequests(withIdentifiers: [String])
+
+func removeAllPendingNotificationRequests()
+</code></pre>
+<h3 id="设置代理">设置代理</h3>
+<p>遵循 UNUserNotificationDelegate 协议的类可以作为 UserNotification 的代理，接收并处理用户输入、如何处理推送等。<strong>Apple 提示我们需要在 App 完成启动之前完成代理的设置</strong>，令 AppDelegate 遵遁 UNUserNotificationDelegate 即可，并在 <code>application(_:didFinishLaunchingWithOptions:)</code> 中设置代理为 self。</p>
+<p>UNUserNotificationDelegate 定义了三个方法：</p>
+<pre><code class="language-swift">// 用户行为响应
+func userNotificationCenter(UNUserNotificationCenter, didReceive: UNNotificationResponse, withCompletionHandler: () -&gt; Void)
+
+// 显示本地推送
+func userNotificationCenter(UNUserNotificationCenter, willPresent: UNNotification, withCompletionHandler: (UNNotificationPresentationOptions) -&gt; Void)
+
+func userNotificationCenter(UNUserNotificationCenter, openSettingsFor: UNNotification?)
+</code></pre>
+<p><strong>必须设置代理之后，本地推送才能生效。</strong></p>
+<h3 id="处理用户输入">处理用户输入</h3>
+<p>有时候，我们需要让推送具有与用户交互的功能，用户在看到推送之后，只需要点按可用的选项就能够向 App 发出指令，而不需要真正进入到 App 中。通过 UNNotificationAction 和 UNNotificationCategory 相结合来声明一个能够响应用户输入的 action。</p>
+<ul>
+<li>UNNotificationAction</li>
+</ul>
+<p>可以理解为通知附带的按钮，用户可以点击按钮进行交互。</p>
+<pre><code class="language-swift">// Define the custom actions.
+let acceptAction = UNNotificationAction(identifier: &quot;ACCEPT_ACTION&quot;,
+      title: &quot;Accept&quot;, 
+      options: UNNotificationActionOptions(rawValue: 0))
+let declineAction = UNNotificationAction(identifier: &quot;DECLINE_ACTION&quot;,
+      title: &quot;Decline&quot;, 
+      options: UNNotificationActionOptions(rawValue: 0))
+</code></pre>
+<p>不同的 action 通过 identifier 来进行区分；title 为按钮的标签；option 为 action 的选项，包括 authenticationRequired（仅在设备解锁的时候可以交互）、destructive（该行为可能导致不可逆的后果）、foreground（用户需要打开 App 作进一步的交互）。</p>
+<ul>
+<li>UNNotificationCategory</li>
+</ul>
+<p>Category 将 action 进行分类，在创建 content 的时候设置 categoryIdentifier，可以规定哪些推送支持怎么样的行为。</p>
+<pre><code class="language-swift">// Define the notification type
+let meetingInviteCategory = 
+      UNNotificationCategory(identifier: &quot;MEETING_INVITATION&quot;,
+      actions: [acceptAction, declineAction], 
+      intentIdentifiers: [], 
+      hiddenPreviewsBodyPlaceholder: &quot;&quot;,
+      options: .customDismissAction)
+// Register the notification type.
+let notificationCenter = UNUserNotificationCenter.current()
+notificationCenter.setNotificationCategories([meetingInviteCategory])
+
+// set content's category identifier
+content.categoryIdentifier = &quot;MEETING_INVITATION&quot;
+</code></pre>
+<p>处理用户输入则是在代理方法 <code>func userNotificationCenter(UNUserNotificationCenter, didReceive: UNNotificationResponse, withCompletionHandler: () -&gt; Void)</code> 中进行的，通过 response 参数的 actionIdentifier 属性来区分不同的 action，需要和创建 action 的时候定义的 identifier 完全相同才能正确识别。</p>
+<pre><code class="language-swift">func userNotificationCenter(_ center: UNUserNotificationCenter,
+       didReceive response: UNNotificationResponse,
+       withCompletionHandler completionHandler: 
+         @escaping () -&gt; Void) {
+       
+   // Get the meeting ID from the original notification.
+   let userInfo = response.notification.request.content.userInfo
+   let meetingID = userInfo[&quot;MEETING_ID&quot;] as! String
+   let userID = userInfo[&quot;USER_ID&quot;] as! String
+        
+   // Perform the task associated with the action.
+   switch response.actionIdentifier {
+   case &quot;ACCEPT_ACTION&quot;:
+      sharedMeetingManager.acceptMeeting(user: userID, 
+                                    meetingID: meetingID)
+      break
+        
+   case &quot;DECLINE_ACTION&quot;:
+      sharedMeetingManager.declineMeeting(user: userID, 
+                                     meetingID: meetingID)
+      break
+        
+   // Handle other actions…
+ 
+   default:
+      break
+   }
+    
+   // Always call the completion handler when done.    
+   completionHandler()
+}
+</code></pre>
+<h3 id="示例代码-2">示例代码</h3>
+<p>最后贴一段示例代码吧（部分来源 Apple Developer 官网）：</p>
+<ul>
+<li>AppDelegate.swift</li>
+</ul>
+<pre><code class="language-swift">import UIKit
+import UserNotifications
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -&gt; Bool {
+        // Override point for customization after application launch.
+        
+        // 设置 UserNotifications 代理
+        UNUserNotificationCenter.current().delegate = self
+        
+        // 请求本地推送的权限
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+            if let error = error {
+                print(&quot;Oops, we've met an error: \(error)&quot;)
+            }
+            
+            if granted {
+                print(&quot;The user grants us the permission to push notifications😃&quot;)
+            } else {
+                print(&quot;The user denies our permission😣&quot;)
+            }
+        }
+        return true
+    }
+  
+}
+
+// 代理方法
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    public func userNotificationCenter(
+      _ center: UNUserNotificationCenter, 
+      didReceive response: UNNotificationResponse, 
+      withCompletionHandler completionHandler: @escaping () -&gt; Void) {
+        print(response.actionIdentifier)
+        completionHandler()
+    }
+    
+    func userNotificationCenter(
+      _ center: UNUserNotificationCenter,
+      willPresent notification: UNNotification,
+      withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -&gt; Void) {
+        // New in iOS 10, we can show notifications when app is in foreground, by calling completion handler with our desired presentation type.
+        print(&quot;something&quot;)
+        // 设置提醒的方式：.alert, .sound, etc
+        completionHandler(.alert)
+    }
+}
+
+</code></pre>
+<ul>
+<li>ViewControler.swift</li>
+</ul>
+<pre><code class="language-swift">import UIKit
+import UserNotifications
+
+class ViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // 设置推送内容
+        let content = UNMutableNotificationContent()
+        content.title = &quot;This is title&quot;
+        content.subtitle = &quot;This is subtitle&quot;
+        content.body = &quot;This is body&quot;
+        content.sound = UNNotificationSound.default
+        
+        // 定义用户交互方式
+        let acceptAction = UNNotificationAction(identifier: &quot;ACCEPT_ACTION&quot;,
+              title: &quot;Accept&quot;,
+              options: UNNotificationActionOptions(rawValue: 0))
+        let declineAction = UNNotificationAction(identifier: &quot;DECLINE_ACTION&quot;,
+              title: &quot;Decline&quot;,
+              options: UNNotificationActionOptions(rawValue: 0))
+        
+        // 定义推送能够响应的交互类别
+        let meetingInviteCategory =
+              UNNotificationCategory(identifier: &quot;MEETING_INVITATION&quot;,
+              actions: [acceptAction, declineAction],
+              intentIdentifiers: [],
+              hiddenPreviewsBodyPlaceholder: &quot;&quot;,
+              options: .customDismissAction)
+        
+        // 向通知中心注册交互类别
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.setNotificationCategories([meetingInviteCategory])
+        content.categoryIdentifier = &quot;MEETING_INVITATION&quot;
+        
+        // 设置一个 10 秒的触发器
+        // 若希望重复提醒（repeats 为 true），则两次推送的时间间隔（timeInterval）必须大于 60，否则会崩溃。
+        let tenSecondsTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: &quot;tenSeconds&quot;, content: content, trigger: tenSecondsTrigger)
+        
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print(error)
+            } else {
+                print(&quot;Notification request added.&quot;)
+            }
+        }
+    }
+    
+}
+</code></pre>
+<h2 id="五-总结">五、总结</h2>
+<p>本篇文章对 NotificationCenter 和 UNUserNotification 进行了学习，对于我来说认识了「观察者模式」，并且知道了如何根据条件对用户发起推送。需要注意的点是 NotificationCenter 和 UNUserNotification 都非常依赖于字面量的 identifier 区分不同的通知，最好将其转换成 struct 或 enum，防止手误。</p>
+<p>另外附上一个更加完整的 <a href="https://github.com/AndyLuoJJ/NotificationDemo">demo</a>，将 NotificationCenter 和 UserNotifications 的功能进行简单的整合。</p>
+<h2 id="参考链接">参考链接</h2>
+<ol>
+<li>https://www.jianshu.com/p/209ef870e131</li>
+<li>https://juejin.im/post/59422d5861ff4b006cc66be1</li>
+<li>https://developer.apple.com/documentation/foundation/notificationcenter</li>
+<li>https://developer.apple.com/documentation/usernotifications/unusernotificationcenter</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Organize your life——使用「备忘录」、「提醒事项」和「日历」]]></title>
         <id>https://AndyLuoJJ.github.io/post/organize-your-life-shi-yong-bei-wang-lu-ti-xing-shi-xiang-he-ri-li/</id>
@@ -933,183 +1532,6 @@ fi
 <p>同样是删除 workspace-directory 即可删除工作环境。</p>
 <h2 id="总结">总结</h2>
 <p>说了这么多，使用这种办法来安装和管理无非是为了能够更好地掌控安装过程，并且安装、卸载也非常干净简洁。在搭建好 python 工作环境以后，马上开始着手干活才是最重要的，不能为了使用工具而使用工具，这样就本末倒置了。</p>
-<hr>
-<p>本文为原创文章，转载请注明。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Swift Package Manager - Swift自带的包管理器]]></title>
-        <id>https://AndyLuoJJ.github.io/post/swift-package-manager-swift-zi-dai-de-bao-guan-li-qi/</id>
-        <link href="https://AndyLuoJJ.github.io/post/swift-package-manager-swift-zi-dai-de-bao-guan-li-qi/">
-        </link>
-        <updated>2019-09-13T09:41:12.000Z</updated>
-        <summary type="html"><![CDATA[<p>WWDC19 为 Swift 带来了新的活力 - Swift Package Manager 将促使 Swift 向其他领域的发展迈出重要的一步。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>WWDC19 为 Swift 带来了新的活力 - Swift Package Manager 将促使 Swift 向其他领域的发展迈出重要的一步。</p>
-<!-- more -->
-<p>为了能够更方便地通过 Swift 创建可执行文件及第三方库，Apple 提供了 Swift Package Manager 来帮助开发人员管理项目，以便复用代码及简化管理流程。</p>
-<h3 id="相关概念">相关概念</h3>
-<h4 id="package">Package</h4>
-<p>Package 包含一系列的 Swift 源文件和一个名为<code>Package.swift</code>的配置文件。配置文件中定义了Package 的名称和内容。一个 Package 可以产生多个 target，而每个 target 唯一对应一个 product 及一个或以上的 dependency。</p>
-<p>Target 是 Package 产生的目标，一个 Package 可以有多个目标。每个 Target 都产生一个输出，这个输出可以是空的、可执行文件、库、系统模块，并且每个 target 都可以是基于其他的库进行开发的，这些库就称为这个target 的依赖（dependency）。</p>
-<h4 id="module">Module</h4>
-<p>Swift 将 Package 中的文件以 module（模块）的形式进行管理，每一个 module 都规定了一个命名空间（namespace），并且通过访问控制符，可以控制 module 内部的代码是否可以被 module 外的代码所访问。</p>
-<p>每一个工程都可以将它需要用到的代码全部包含到一个 module 中，也可以将其他的 module 导入（import）进来，作为自己的依赖（dependency）。<strong>注意 target 的依赖和工程的依赖稍有不同，所有 target 的依赖构成的集合才是工程的依赖。</strong></p>
-<p>通过将能够解决某一特定类型的问题的代码封装成一个独立的模块，可以使代码复用到其他场景中。例如，用于解析JSON数据的模块可以用到所有需要与网络数据打交道的项目中，这样就不需要重新自己写相应功能的代码了。<strong>对这类代码的要求是必须独立于项目之外，具有类似于函数的特性。</strong></p>
-<p>SPM 允许我们从本地或者网络上获取到我们所需要的其他第三方 module。</p>
-<h4 id="library">Library</h4>
-<p>Library 类似于开发中的库，即工程本身不产生可执行文件，而是作用一个通用的功能模块，可以被导入到其他项目中发挥作用。</p>
-<h4 id="dependency">Dependency</h4>
-<p>如果想要能够复用代码，就需要指定自己的工程<em>依赖</em>于哪些外部的代码，因为自己的工程能否正常运行取决于这些外部代码是否正常工作，因此这些外部代码也被称为依赖（dependency）。</p>
-<h3 id="简单使用方法">简单使用方法</h3>
-<p>下面简单介绍一下SPM的使用方法。</p>
-<h4 id="创建项目">创建项目</h4>
-<p>在需要创建项目的目录中执行<code>swift package init</code>以创建一个新的 Swift 项目。</p>
-<pre><code>$ mkdir testProgram
-$ cd testProgram
-$ swift package init (--type library/executable/empty/system module)
-</code></pre>
-<p>type可以有四种类型：</p>
-<ul>
-<li>library: 创建库</li>
-<li>executable: 创建可执行文件</li>
-<li>empty:创建空项目</li>
-<li>system module:创建系统模块项目<br>
-默认创建的是library。</li>
-</ul>
-<p>另外，在创建好项目后，为了能够充分发挥Xcode强大的功能，还可以生成 Xcode project 以便在 Xcode 中编辑、调试代码。cd 到项目目录后，执行<code>swift package generate-xcodeproj</code>就可以创建对应的 Xcode project 了。</p>
-<blockquote>
-<p>目前只能在 Xcode 中实现代码编辑，暂时没有找到能够充分发挥 Xcode 功能的办法，编译和运行都需要回到 Terminal 进行。</p>
-</blockquote>
-<h4 id="添加外部模块">添加外部模块</h4>
-<p>如前所述，<code>Package.swift</code>是项目的配置文件，模版代码如下。</p>
-<pre><code class="language-swift">// swift-tools-version:4.2
-// The swift-tools-version declares the minimum version of Swift required to build this package.
-
-import PackageDescription
-
-let package = Package(
-    name: &quot;testProgram&quot;,
-    products: [
-        // Products define the executables and libraries produced by a package, and make them visible to other packages.
-        // A package can produce multiple executables and libraries.
-        .library(
-            name: &quot;testProgram&quot;,
-            targets: [&quot;testProgram&quot;]),
-        .executable(
-            name: &quot;MainExecutable&quot;,
-            targets: [&quot;MainExecutable&quot;])
-    ],
-    dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: &quot;1.0.0&quot;),
-    ],
-    targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite, and of course an executable.
-        // Targets can depend on other targets in this package, and on products in packages which this package depends on.
-        .target(
-            name: &quot;testProgram&quot;,
-            dependencies: []),
-        .testTarget(
-            name: &quot;testProgramTests&quot;,
-            dependencies: [&quot;testProgram&quot;]),
-    ]
-)
-
-</code></pre>
-<p>该模版代码创建了一个Package实例，并通过构造参数来指定项目的name、product、target和dependency。各字段作用如下：</p>
-<ul>
-<li>name:指定项目名称</li>
-<li>products:指定项目生成的东西，可以是library或者executable，同一个项目可以生成多个library或executable。</li>
-<li>dependencies: 指定项目所使用的依赖库及其URL、版本等信息。</li>
-<li>targets:指定项目生成的目标，</li>
-</ul>
-<p>若要添加开源代码，在.dependency中添加：</p>
-<pre><code class="language-swift">.package(url: &quot;open source url&quot;, from: &quot;version number&quot;)
-</code></pre>
-<p>若要添加本地依赖，在.dependency中添加：</p>
-<pre><code class="language-swift">.package(path:&quot;local path&quot;)
-</code></pre>
-<p>可以添加多个依赖，并且用上述类似的方法还可以创建多个products和targets。</p>
-<p>然后在产生的targets中，指定对应的dependency的名称就可以了。</p>
-<h4 id="发布library">发布library</h4>
-<p>使用Git将自己创建好的library发布到托管仓库中。</p>
-<pre><code>$ git init  // create a new git project
-$ git add . // add all files to the stack
-$ git remote add origin [github-URL] // add a remote origin in the remote repository
-$ git commit -m &quot;Initial Commit&quot; // commit all files in the stack to local repository
-$ git tag 1.0.0 // tag the branch
-$ git push origin master --tags // push local repository to remote repository
-</code></pre>
-<p>tag标记的版本号就是其他项目将本项目作为依赖时引用的版本号（from）。对于本地依赖，虽然可以借助git的本地仓库回溯功能进行代码管理，但是在Swift Package Manager中暂时不支持引用本地依赖的版本号。</p>
-<h4 id="更新依赖包">更新依赖包</h4>
-<p>编辑<code>Package.swift</code>中依赖包的版本信息，然后执行<code>swift package update</code>即可更新需要的依赖包。</p>
-<h4 id="创建模块">创建模块</h4>
-<p>只需要将<code>Package.swift</code>中的products添加.library就可以创建模块了。每一个Package可以产生多个library，不同的library在Sources目录下以不同名称的目录呈现。</p>
-<p>如果生成的library之间有相互关联，则需要在完成一个library的编码工作后，先执行<code>swift build</code>对已有的library进行编译，然后再进行下一个library的编码工作。这有助于以模块化的方式完成library的创建。</p>
-<p>注意：对于使用Git开源的代码，需要打上git tag，别人才能够导入对应版本的代码。同样地，对于本地依赖，最好也加上git tag，但是应该不是必须的。</p>
-<h3 id="实例结合使用swift-for-tensorflow和swift-package-manager">实例——结合使用Swift for TensorFlow和Swift Package Manager</h3>
-<p>为了能够同时使用Swift for TensorFlow和Swift Package Manager进行Swift机器学习项目的管理（个人认为这是比较通用的方法），需要先指定swift路径为SFT的路径，然后使用SPM对项目进行编译、运行等处理。下面macOS上的SFT和SPM为例介绍如何结合使用两者。</p>
-<ol>
-<li>指定swift路径<br>
-在<code>$PATH</code>中指定swift的路径。由于使用了Swift for TensorFLow，因此需要到GitHub仓库中下载对应的swift toolchain，链接<a href="https://github.com/tensorflow/swift">在这里</a>。该swift toolchain中包含了完整的swift编译器，与Xcode自带的toolchain相比多了能够使用TensorFlow的功能。</li>
-</ol>
-<blockquote>
-<p>如果在Linux下进行开发，还需要事先配置好swift的环境，具体教程<a href="https://swift.org/getting-started/">见这里</a>。</p>
-</blockquote>
-<ol start="2">
-<li>创建model对应的library<br>
-由于机器学习模型是比较独立的部分，因此最好将其作为一个独立的module，然后将其导入到其他项目中去。接下来要做的创建ML model对应的library。</li>
-</ol>
-<p>由于例子中MLModel没有使用到第三方库，因此配置文件不需要修改。在<code>./Sources/name</code>中就包含了一个本地module，修改代码为:</p>
-<pre><code class="language-swift">import TensorFlow
-
-struct MLPClassifier {
-    var w1 = Tensor&lt;Float&gt;(shape: [2, 4], repeating: 0.1)
-    var w2 = Tensor&lt;Float&gt;(shape: [4, 1], scalars: [0.4, -0.5, -0.5, 0.4])
-    var b1 = Tensor&lt;Float&gt;([0.2, -0.3, -0.3, 0.2])
-    var b2 = Tensor&lt;Float&gt;([[0.4]])
-
-    func prediction(`for` x: Tensor&lt;Float&gt;) -&gt; Tensor&lt;Float&gt; {
-        let o1 = tanh(matmul(x, w1) + b1)
-        return tanh(matmul(o1, w2) + b2)
-    }
-}
-</code></pre>
-<p>这里用一个简单的MLP模型作为例子进行展示，自定义了一个MLPClassifierd的类，定义了第一层及第二层的权重和bias，然后使用tanh作为activation function，得到“网络”输出的结果。<br>
-通过上述代码就完成了ML model的创建，可以运行swift build看看有没有问题。</p>
-<blockquote>
-<p>为了加速模型的计算，会有warning说没有用optimization编译。对于小网络来说影响不大，但如果网络结构比较复杂的时候可能会导致训练过慢。暂时好像没有什么办法，唯一想到的解决方案是在release模式下编译，即<code>swift build -c release</code>，release模式默认使用-O进行编译。</p>
-</blockquote>
-<ol start="3">
-<li>创建swift项目<br>
-接下来创建使用前面建立好的module的swift项目。新建一个executable的项目，并在Package.swift中添加本地依赖MLModel和用于测试的第三方库SwiftyJSON。</li>
-</ol>
-<p>测试代码如下：</p>
-<pre><code class="language-swift">import TensorFlow
-import MLModel
-
-let input = Tensor&lt;Float&gt;([[0.2, 0.8]])
-let classifier = MLPClassifier()
-let prediction = classifier.prediction(for: input)
-print(prediction)
-</code></pre>
-<p>⚠️：SwiftyJSON要求toolchain版本在4以上，而Swift for TensorFlow的toolchain版本为3，因此暂时没有办法同时使用这两个框架。</p>
-<ol start="4">
-<li>编译运行<br>
-尝试进行编译运行。可以分别执行编译和运行两个步骤，也可以直接运行观察代码运行结果。<br>
-编译项目：</li>
-</ol>
-<pre><code>swift build
-</code></pre>
-<p>默认的编译环境是<code>debug</code>，可通过<code>-c release</code>的标记，将编译环境切换到<code>release</code>。debug模式默认不开启-O优化，因此为了使Swift for TensorFlow获得最佳性能，建议先在release模式下编译项目，再到指定目录执行link生成的可执行文件。</p>
-<p>运行项目：</p>
-<pre><code>swift run (executable name)
-</code></pre>
-<p>也可以找到build生成的可执行文件，然后直接执行。</p>
-<blockquote>
-<p>如果项目中存在多个可执行文件，需要在<code>swift run</code>命令后增加对应的可执行文件的名称。利用这一特性可以将多个独立的工程汇总在一个package下面，便于管理，但是一个不好的地方是如果修改了一个地方就必须把当前package下的所有swift源文件编译一遍。目前的解决方法是当package规模扩大后，将其中一部分相对独立的功能打包成新的swift package，然后导入进来，这样就不用重新编译导入进来的源码了。</p>
-</blockquote>
 <hr>
 <p>本文为原创文章，转载请注明。</p>
 ]]></content>
